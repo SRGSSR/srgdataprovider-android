@@ -29,6 +29,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    namespace 'ch.srgssr.dataprovider.demo'
 }
 
 dependencies {
