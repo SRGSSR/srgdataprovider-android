@@ -1,4 +1,4 @@
-package ch.srgssr.dataprovider
+package ch.srg.dataProvider.integrationlayer.data
 
 import org.junit.Test
 

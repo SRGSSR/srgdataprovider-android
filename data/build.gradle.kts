@@ -4,26 +4,23 @@ plugins {
 }
 
 android {
-    namespace = "ch.srgssr.dataprovider"
+    namespace = "ch.srg.dataProvider.integrationlayer.data"
     compileSdk = Config.compileSdk
 
     defaultConfig {
         minSdk = Config.minSdk
         targetSdk = Config.targetSdk
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFile("consumer-rules.pro")
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
-        getByName("release") {
-            isMinifyEnabled = true
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+        release {
+            isMinifyEnabled = false
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
-
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -35,9 +32,8 @@ android {
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.7.0")
-
+    implementation("androidx.core:core-ktx:${Versions.coreKtx}")
     testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.3")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 }
