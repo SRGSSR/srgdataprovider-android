@@ -9,7 +9,4 @@ The library provides:
 * Requests with Retrofit to get the usual metadata associated with SRG SSR productions.
 * Gson serialization and deserialization.
 * A flat object model to easily access the data relevant to front-end users.
-
-## Warning
-
-The library is still in progress!ub.com/SRGSSR/srgnetwork-apple).
+* Dagger2 modules to easy integration.
