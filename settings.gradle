@@ -13,5 +13,6 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "SRGDataProvider"
-include ':dataprovider'
 include ':dataproviderdemo'
+include ':data'
+include ':dataprovider-retrofit'
