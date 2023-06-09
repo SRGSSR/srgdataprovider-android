@@ -1,15 +1,39 @@
 package ch.srg.dataProvider.integrationlayer.request
 
-import ch.srg.dataProvider.integrationlayer.data.*
+import ch.srg.dataProvider.integrationlayer.data.Channel
+import ch.srg.dataProvider.integrationlayer.data.ChannelListResult
+import ch.srg.dataProvider.integrationlayer.data.EpisodeCompositionListResult
+import ch.srg.dataProvider.integrationlayer.data.LiveCenterType
+import ch.srg.dataProvider.integrationlayer.data.Media
+import ch.srg.dataProvider.integrationlayer.data.MediaComposition
+import ch.srg.dataProvider.integrationlayer.data.MediaListResult
+import ch.srg.dataProvider.integrationlayer.data.MediaListWithShowResult
+import ch.srg.dataProvider.integrationlayer.data.NowAndNext
+import ch.srg.dataProvider.integrationlayer.data.ProgramCompositionListResult
+import ch.srg.dataProvider.integrationlayer.data.ProgramGuide
+import ch.srg.dataProvider.integrationlayer.data.Show
+import ch.srg.dataProvider.integrationlayer.data.ShowListResult
+import ch.srg.dataProvider.integrationlayer.data.SongListResult
+import ch.srg.dataProvider.integrationlayer.data.TopicListResult
 import ch.srg.dataProvider.integrationlayer.data.content.Page
 import ch.srg.dataProvider.integrationlayer.data.content.Product
 import ch.srg.dataProvider.integrationlayer.data.content.Section
 import ch.srg.dataProvider.integrationlayer.data.search.SearchResultMediaList
 import ch.srg.dataProvider.integrationlayer.data.search.SearchResultShowList
-import ch.srg.dataProvider.integrationlayer.request.parameters.*
+import ch.srg.dataProvider.integrationlayer.request.parameters.Bu
+import ch.srg.dataProvider.integrationlayer.request.parameters.ILMediaType
+import ch.srg.dataProvider.integrationlayer.request.parameters.ILTransmission
+import ch.srg.dataProvider.integrationlayer.request.parameters.IlDate
+import ch.srg.dataProvider.integrationlayer.request.parameters.IlDateTime
+import ch.srg.dataProvider.integrationlayer.request.parameters.IlPaging
+import ch.srg.dataProvider.integrationlayer.request.parameters.IlUrns
 import com.google.gson.Gson
 import com.google.gson.JsonObject
-import retrofit2.http.*
+import retrofit2.http.GET
+import retrofit2.http.Path
+import retrofit2.http.Query
+import retrofit2.http.QueryMap
+import retrofit2.http.Url
 
 /**
  * Il Retrofit service
@@ -31,8 +55,8 @@ interface IlService {
 
     @GET("2.1/mediaComposition/byUrn/{urn}")
     suspend fun getMediaComposition(
-            @Path("urn") urn: String,
-            @Query("onlyChapters") onlyChapters: Boolean? = null
+        @Path("urn") urn: String,
+        @Query("onlyChapters") onlyChapters: Boolean? = null
     ): MediaComposition
 
     @GET("2.0/media/byUrn/{urn}")
@@ -43,20 +67,20 @@ interface IlService {
 
     @GET("2.0/mediaList/latest/byTopicUrn/{urn}")
     suspend fun getLatestMediaByTopicUrn(
-            @Path("urn") topicUrn: String,
-            @Query("pageSize") pageSize: IlPaging.Size? = null
+        @Path("urn") topicUrn: String,
+        @Query("pageSize") pageSize: IlPaging.Size? = null
     ): MediaListResult
 
     @GET("2.0/mediaList/mostClicked/byTopicUrn/{topicUrn}")
     suspend fun getMostClickedMediaByTopicUrn(
-            @Path("topicUrn") topicUrn: String,
-            @Query("pageSize") pageSize: IlPaging.Size? = null
+        @Path("topicUrn") topicUrn: String,
+        @Query("pageSize") pageSize: IlPaging.Size? = null
     ): MediaListResult
 
     @GET("2.0/mediaList/recommended/byUrn/{urn}")
     suspend fun getMediaRecommendedByUrn(
-            @Path("urn") urn: String,
-            @Query("pageSize") pageSize: IlPaging.Size? = null
+        @Path("urn") urn: String,
+        @Query("pageSize") pageSize: IlPaging.Size? = null
     ): MediaListResult
 
     /**
@@ -70,25 +94,25 @@ interface IlService {
      */
     @GET("2.0/mediaList/latest/byShowUrns")
     suspend fun getLatestMediaByShowUrns(
-            @Query("urns") showUrns: IlUrns,
-            @Query("onlyEpisodes") onlyEpisodes: Boolean? = null,
-            @Query("excludingEpisodes") excludeEpisodes: Boolean? = null,
-            @Query("maxPublishedDate") maxPublishedDate: IlDateTime? = null,
-            @Query("minPublishedDate") minPublishedDate: IlDateTime? = null,
-            @Query("types") types: String? = null,
-            @Query("pageSize") pageSize: IlPaging? = null
+        @Query("urns") showUrns: IlUrns,
+        @Query("onlyEpisodes") onlyEpisodes: Boolean? = null,
+        @Query("excludingEpisodes") excludeEpisodes: Boolean? = null,
+        @Query("maxPublishedDate") maxPublishedDate: IlDateTime? = null,
+        @Query("minPublishedDate") minPublishedDate: IlDateTime? = null,
+        @Query("types") types: String? = null,
+        @Query("pageSize") pageSize: IlPaging? = null
     ): MediaListResult
 
     @GET("2.0/mediaList/latest/byShowUrn/{showUrn}")
     suspend fun getLatestMediaByShowUrn(
-            @Path("showUrn") showUrn: String,
-            @Query("pageSize") pageSize: IlPaging.Size? = null
+        @Path("showUrn") showUrn: String,
+        @Query("pageSize") pageSize: IlPaging.Size? = null
     ): MediaListResult
 
     @GET("2.0/episodeComposition/latestByShow/byUrn/{urn}")
     suspend fun getEpisodeCompositionByUrn(
-            @Path("urn") urn: String,
-            @Query("pageSize") pageSize: IlPaging.Size? = null
+        @Path("urn") urn: String,
+        @Query("pageSize") pageSize: IlPaging.Size? = null
     ): EpisodeCompositionListResult
 
     @GET("2.0/channel/byUrn/{channelUrn}")
@@ -101,8 +125,8 @@ interface IlService {
      */
     @GET("2.0/channel/byUrn/{channelUrn}/nowAndNext")
     suspend fun getNowAndNextByChannelUrn(
-            @Path("channelUrn") channelUrn: String,
-            @Query("livestreamUrn") liveStreamUrn: String? = null
+        @Path("channelUrn") channelUrn: String,
+        @Query("livestreamUrn") liveStreamUrn: String? = null
     ): NowAndNext
 
     @GET("2.0/show/byUrn/{urn}")
@@ -124,21 +148,21 @@ interface IlService {
      */
     @GET("2.0/{bu}/mediaList/video/mostClicked")
     suspend fun getTvMostClickedMedias(
-            @Path("bu") bu: Bu,
-            @Query("topicId") topicId: String? = null,
-            @Query("pageSize") pageSize: IlPaging.Size? = null
+        @Path("bu") bu: Bu,
+        @Query("topicId") topicId: String? = null,
+        @Query("pageSize") pageSize: IlPaging.Size? = null
     ): MediaListResult
 
     @GET("2.0/{bu}/mediaList/video/latestEpisodes")
     suspend fun getTvLatestEpisodes(
-            @Path("bu") bu: Bu,
-            @Query("pageSize") pageSize: IlPaging.Size? = null
+        @Path("bu") bu: Bu,
+        @Query("pageSize") pageSize: IlPaging.Size? = null
     ): MediaListResult
 
     @GET("2.0/{bu}/mediaList/video/latestEpisodes/webFirst")
     suspend fun getTvWebFirstMedias(
-            @Path("bu") bu: Bu,
-            @Query("pageSize") pageSize: IlPaging.Size? = null
+        @Path("bu") bu: Bu,
+        @Query("pageSize") pageSize: IlPaging.Size? = null
     ): MediaListResult
 
     /**
@@ -147,9 +171,9 @@ interface IlService {
      */
     @GET("2.0/{bu}/mediaList/video/soonExpiring")
     suspend fun getTvSoonExpiringMedias(
-            @Path("bu") bu: Bu,
-            @Query("topicId") topicId: String? = null,
-            @Query("pageSize") pageSize: IlPaging.Size? = null
+        @Path("bu") bu: Bu,
+        @Query("topicId") topicId: String? = null,
+        @Query("pageSize") pageSize: IlPaging.Size? = null
     ): MediaListResult
 
     @GET("2.0/{bu}/mediaList/video/heroStage")
@@ -160,21 +184,22 @@ interface IlService {
      */
     @GET("2.0/{bu}/programGuide/tv/byDate/{date}")
     suspend fun getProgramGuide(
-            @Path("bu") bu: Bu,
-            @Path("date") date: IlDate,
-            @Query("reduced") reduced: Boolean = false
+        @Path("bu") bu: Bu,
+        @Path("date") date: IlDate,
+        @Query("reduced") reduced: Boolean = false
     ): ProgramGuide
 
     @GET("2.0/{bu}/programGuideNonSrg/tv/byDate/{date}")
     suspend fun programGuideNonSrg(
-            @Path("bu") bu: Bu,
-            @Path("date") date: IlDate,
-            @Query("reduced") reduced: Boolean = false): ProgramGuide
+        @Path("bu") bu: Bu,
+        @Path("date") date: IlDate,
+        @Query("reduced") reduced: Boolean = false
+    ): ProgramGuide
 
     @GET("2.0/{bu}/showList/tv/alphabetical")
     suspend fun getTvAlphabeticalShows(
-            @Path("bu") bu: Bu,
-            @Query("pageSize") pageSize: IlPaging?
+        @Path("bu") bu: Bu,
+        @Query("pageSize") pageSize: IlPaging?
     ): ShowListResult
 
     //endregion tv
@@ -187,30 +212,30 @@ interface IlService {
      */
     @GET("2.0/{bu}/mediaList/audio/livestreams")
     suspend fun getRadioLiveStreams(
-            @Path("bu") bu: Bu,
-            @Query("includeThirdPartyStreams") includeThirdPartyStreams: Boolean? = null,
-            @Query("onlyThirdPartyContentProvider") onlyThirdPartyContentProvider: String? = null
+        @Path("bu") bu: Bu,
+        @Query("includeThirdPartyStreams") includeThirdPartyStreams: Boolean? = null,
+        @Query("onlyThirdPartyContentProvider") onlyThirdPartyContentProvider: String? = null
     ): MediaListResult
 
     @GET("2.0/{bu}/mediaList/audio/livestreamsByChannel/{channelId}")
     suspend fun getRadioLiveStreamsByChannelId(
-            @Path("bu") bu: Bu,
-            @Path("channelId") channelId: String
+        @Path("bu") bu: Bu,
+        @Path("channelId") channelId: String
     ): MediaListResult
 
     @GET("2.0/{bu}/mediaList/audio/mostClicked")
     suspend fun getRadioMostClickedMedias(
-            @Path("bu") bu: Bu,
-            @Query("onlyEpisodes") onlyEpisodes: Boolean? = null,
-            @Query("pageSize") pageSize: IlPaging.Size? = null
+        @Path("bu") bu: Bu,
+        @Query("onlyEpisodes") onlyEpisodes: Boolean? = null,
+        @Query("pageSize") pageSize: IlPaging.Size? = null
     ): MediaListResult
 
     @GET("2.0/{bu}/mediaList/audio/mostClickedByChannel/{channelId}")
     suspend fun getRadioMostClickedMediasByChannelId(
-            @Path("bu") bu: Bu,
-            @Path("channelId") channelId: String,
-            @Query("onlyEpisodes") onlyEpisodes: Boolean? = null,
-            @Query("pageSize") pageSize: IlPaging.Size? = null
+        @Path("bu") bu: Bu,
+        @Path("channelId") channelId: String,
+        @Query("onlyEpisodes") onlyEpisodes: Boolean? = null,
+        @Query("pageSize") pageSize: IlPaging.Size? = null
     ): MediaListResult
 
     /**
@@ -218,10 +243,10 @@ interface IlService {
      */
     @GET("2.0/{bu}/mediaList/audio/episodesByDateAndChannel/{date}/{channelId}")
     suspend fun getRadioEpisodesByDateByChannelId(
-            @Path("bu") bu: Bu,
-            @Path("date") date: IlDate?,
-            @Path("channelId") channelId: String,
-            @Query("pageSize") pageSize: IlPaging.Size? = null
+        @Path("bu") bu: Bu,
+        @Path("date") date: IlDate?,
+        @Path("channelId") channelId: String,
+        @Query("pageSize") pageSize: IlPaging.Size? = null
     ): MediaListResult
 
     /**
@@ -229,23 +254,23 @@ interface IlService {
      */
     @GET("2.0/{bu}/mediaList/video/episodesByDate/{date}")
     suspend fun getTvEpisodesByDate(
-            @Path("bu") bu: Bu,
-            @Path("date") date: IlDate,
-            @Query("pageSize") pageSize: IlPaging.Size? = null
+        @Path("bu") bu: Bu,
+        @Path("date") date: IlDate,
+        @Query("pageSize") pageSize: IlPaging.Size? = null
     ): MediaListResult
 
     @GET("2.0/{bu}/songList/radio/byChannel/{channelId}")
     suspend fun getRadioSongListByChannelId(
-            @Path("bu") bu: Bu,
-            @Path("channelId") channelId: String?,
-            @Query("pageSize") pageSize: IlPaging? = null
+        @Path("bu") bu: Bu,
+        @Path("channelId") channelId: String?,
+        @Query("pageSize") pageSize: IlPaging? = null
     ): SongListResult
 
     @GET("2.0/{bu}/showList/radio/alphabeticalByChannel/{channelId}")
     suspend fun getRadioAlphabeticalRadioShowsByChannelId(
-            @Path("bu") bu: Bu,
-            @Path("channelId") channelId: String,
-            @Query("pageSize") pageSize: IlPaging?
+        @Path("bu") bu: Bu,
+        @Path("channelId") channelId: String,
+        @Query("pageSize") pageSize: IlPaging?
     ): ShowListResult
 
     //endregion radio
@@ -254,18 +279,17 @@ interface IlService {
 
     @GET("2.0/{bu}/mediaList/video/scheduledLivestreams/livecenter")
     suspend fun getLiveCenterVideos(
-            @Path("bu") bu: Bu,
-            @Query("types") type: LiveCenterType? = null,
-            @Query("onlyEventsWithResult") onlyEventsWithResult: Boolean = true,
-            @Query("pageSize") pageSize: IlPaging.Size? = null
+        @Path("bu") bu: Bu,
+        @Query("types") type: LiveCenterType? = null,
+        @Query("onlyEventsWithResult") onlyEventsWithResult: Boolean = true,
+        @Query("pageSize") pageSize: IlPaging.Size? = null
     ): MediaListResult
-
 
     @GET("2.0/{bu}/mediaList/video/scheduledLivestreams")
     suspend fun getScheduledLiveStreamVideos(
-            @Path("bu") bu: Bu,
-            @Query("signLanguageOnly") signLanguageOnly: Boolean = false,
-            @Query("pageSize") pageSize: IlPaging.Size? = null,
+        @Path("bu") bu: Bu,
+        @Query("signLanguageOnly") signLanguageOnly: Boolean = false,
+        @Query("pageSize") pageSize: IlPaging.Size? = null,
     ): MediaListResult
 
     //endregion livecenter
@@ -274,40 +298,39 @@ interface IlService {
 
     @GET("2.0/{bu}/mediaList/{type}/trending")
     suspend fun getTrendingMedias(
-            @Path("bu") bu: Bu,
-            @Path("type") type: ILMediaType,
-            @Query("onlyEpisodes") onlyEpisodes: Boolean? = null,
-            @Query("pageSize") pageSize: IlPaging.Size? = null
+        @Path("bu") bu: Bu,
+        @Path("type") type: ILMediaType,
+        @Query("onlyEpisodes") onlyEpisodes: Boolean? = null,
+        @Query("pageSize") pageSize: IlPaging.Size? = null
     ): MediaListResult
 
     @GET("2.0/{bu}/mediaList/{type}/latestEpisodesByChannel/{channelId}")
     suspend fun getLatestEpisodesByChannelId(
-            @Path("bu") bu: Bu,
-            @Path("type") type: ILMediaType,
-            @Path("channelId") channelId: String,
-            pageSize: IlPaging.Size? = null
+        @Path("bu") bu: Bu,
+        @Path("type") type: ILMediaType,
+        @Path("channelId") channelId: String,
+        pageSize: IlPaging.Size? = null
     ): MediaListResult
 
     @GET("2.0/{bu}/mediaList/{type}/latestByChannel/{channelId}")
     suspend fun getLatestMediaByChannelId(
-            @Path("bu") bu: Bu,
-            @Path("type") type: ILMediaType,
-            @Path("channelId") channelId: String,
-            @Query("pageSize") pageSize: IlPaging.Size? = null,
+        @Path("bu") bu: Bu,
+        @Path("type") type: ILMediaType,
+        @Path("channelId") channelId: String,
+        @Query("pageSize") pageSize: IlPaging.Size? = null,
     ): MediaListResult
 
     @GET("2.0/{bu}/channelList/{transmission}")
     suspend fun getChannelList(
-            @Path("bu") bu: Bu,
-            @Path("transmission") transmissionType: ILTransmission
+        @Path("bu") bu: Bu,
+        @Path("transmission") transmissionType: ILTransmission
     ): ChannelListResult
 
     @GET("2.0/{bu}/topicList/{transmission}")
     suspend fun getTopics(
-            @Path("bu") bu: Bu,
-            @Path("transmission") transmissionType: ILTransmission
+        @Path("bu") bu: Bu,
+        @Path("transmission") transmissionType: ILTransmission
     ): TopicListResult
-
 
     /**
      * @param channelId        Channel id not the urn
@@ -317,20 +340,20 @@ interface IlService {
      */
     @GET("2.0/{bu}/programListComposition/{transmissionType}/byChannel/{channelId}")
     suspend fun getProgramListByChannelId(
-            @Path("bu") bu: Bu,
-            @Path("transmissionType") transmissionType: ILTransmission,
-            @Path("channelId") channelId: String,
-            @Query("minEndTime") minEndTime: IlDateTime?,
-            @Query("maxStartTime") maxStartTime: IlDateTime?,
-            @Query("livestreamId") liveStreamId: String?,
-            @Query("pageSize") pageSize: IlPaging.Size? = null,
+        @Path("bu") bu: Bu,
+        @Path("transmissionType") transmissionType: ILTransmission,
+        @Path("channelId") channelId: String,
+        @Query("minEndTime") minEndTime: IlDateTime?,
+        @Query("maxStartTime") maxStartTime: IlDateTime?,
+        @Query("livestreamId") liveStreamId: String?,
+        @Query("pageSize") pageSize: IlPaging.Size? = null,
     ): ProgramCompositionListResult
 
     @GET("2.0/{bu}/showList/{transmission}/alphabetical/all")
     suspend fun getAllAlphabeticalShows(
-            @Path("bu") bu: Bu,
-            @Path("transmission") transmission: ILTransmission,
-            @Query("channelId") radioChannelId: String? = null
+        @Path("bu") bu: Bu,
+        @Path("transmission") transmission: ILTransmission,
+        @Query("channelId") radioChannelId: String? = null
     ): ShowListResult
 
     //endregion tv and radio
@@ -349,18 +372,18 @@ interface IlService {
      */
     @GET("2.0/{bu}/searchResultMediaList")
     suspend fun getSearchMedias(
-            @Path("bu") bu: Bu,
-            @Query("q") searchTerm: String,
-            @QueryMap params: Map<String, String>? = null,
-            @Query("pageSize") pageSize: IlPaging.Size? = null,
+        @Path("bu") bu: Bu,
+        @Query("q") searchTerm: String,
+        @QueryMap params: Map<String, String>? = null,
+        @Query("pageSize") pageSize: IlPaging.Size? = null,
     ): SearchResultMediaList
 
     @GET("2.0/{bu}/searchResultShowList")
     suspend fun getSearchShows(
-            @Path("bu") bu: Bu,
-            @Query("q") searchTerm: String,
-            @Query("mediaType") mediaType: ILMediaType? = null,
-            @Query("pageSize") pageSize: IlPaging? = null,
+        @Path("bu") bu: Bu,
+        @Query("q") searchTerm: String,
+        @Query("mediaType") mediaType: ILMediaType? = null,
+        @Query("pageSize") pageSize: IlPaging? = null,
     ): SearchResultShowList
 
     //endregion search
@@ -369,51 +392,51 @@ interface IlService {
 
     @GET("2.0/{bu}/page/landingPage/byProduct/{product}")
     suspend fun getLandingPageByProduct(
-            @Path("bu") bu: Bu,
-            @Path("product") product: Product,
-            @Query("isPublished") isPublished: Boolean? = null
+        @Path("bu") bu: Bu,
+        @Path("product") product: Product,
+        @Query("isPublished") isPublished: Boolean? = null
     ): Page
 
     @GET("2.0/{bu}/page/{pageId}")
     suspend fun getPage(
-            @Path("bu") bu: Bu,
-            @Path("pageId") pageId: String,
-            @Query("isPublished") isPublished: Boolean? = null
+        @Path("bu") bu: Bu,
+        @Path("pageId") pageId: String,
+        @Query("isPublished") isPublished: Boolean? = null
     ): Page
 
     @GET("2.0/{bu}/page/byTopicUrn/{topicUrn}")
     suspend fun getPageForTopic(
-            @Path("bu") bu: Bu,
-            @Path("topicUrn") topicUrn: String,
-            @Query("isPublished") isPublished: Boolean? = null
+        @Path("bu") bu: Bu,
+        @Path("topicUrn") topicUrn: String,
+        @Query("isPublished") isPublished: Boolean? = null
     ): Page
 
     @GET("2.0/{bu}/section/{sectionId}")
     suspend fun getSection(
-            @Path("bu") bu: Bu,
-            @Path("sectionId") sectionId: String,
-            @Query("isPublished") isPublished: Boolean? = null
+        @Path("bu") bu: Bu,
+        @Path("sectionId") sectionId: String,
+        @Query("isPublished") isPublished: Boolean? = null
     ): Section
 
     @GET("2.0/{bu}/section/mediaSection/{sectionId}")
     suspend fun getMediaListForMediaSection(
-            @Path("bu") bu: Bu,
-            @Path("sectionId") sectionId: String,
-            @Query("isPublished") isPublished: Boolean? = null
+        @Path("bu") bu: Bu,
+        @Path("sectionId") sectionId: String,
+        @Query("isPublished") isPublished: Boolean? = null
     ): MediaListResult
 
     @GET("2.0/{bu}/section/mediaSectionWithShow/{sectionId}")
     suspend fun getMediaListForMediaSectionWithShow(
-            @Path("bu") bu: Bu,
-            @Path("sectionId") sectionId: String,
-            @Query("isPublished") isPublished: Boolean? = null
+        @Path("bu") bu: Bu,
+        @Path("sectionId") sectionId: String,
+        @Query("isPublished") isPublished: Boolean? = null
     ): MediaListWithShowResult
 
     @GET("2.0/{bu}/section/showSection/{sectionId}")
     suspend fun getShowListForShowSection(
-            @Path("bu") bu: Bu,
-            @Path("sectionId") sectionId: String,
-            @Query("isPublished") isPublished: Boolean? = null
+        @Path("bu") bu: Bu,
+        @Path("sectionId") sectionId: String,
+        @Query("isPublished") isPublished: Boolean? = null
     ): ShowListResult
     //endregion content
 
@@ -448,4 +471,3 @@ interface IlService {
         return gson.fromJson(jsonObj, clazz)
     }
 }
-

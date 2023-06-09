@@ -6,4 +6,3 @@ package ch.srg.dataProvider.integrationlayer.data
  * License information is available from the LICENSE file.
  */
 data class SocialCountEntry(val key: SocialCountKey, val value: Int)
-

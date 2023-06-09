@@ -26,13 +26,13 @@ data class DurationInMinutesBucket(val duration: Long, override val count: Int) 
 data class DateBucket(val date: Date, override val count: Int) : Bucket
 
 data class MediaAggregations(
-        val mediaTypeList: List<MediaTypeBucket>? = null,
-        val subtitlesAvailableList: List<SubtitlesAvailableBucket>? = null,
-        val downloadAvailableList: List<DownloadAvailableBucket>? = null,
-        val playableAbroadList: List<PlayableAbroadBucket>? = null,
-        val qualityList: List<QualityBucket>? = null,
-        val topicList: List<TopicBucket>? = null,
-        val showList: List<ShowBucket>? = null,
-        val durationListInMinutes: List<DurationInMinutesBucket>? = null,
-        val dataList: List<DateBucket>? = null
+    val mediaTypeList: List<MediaTypeBucket>? = null,
+    val subtitlesAvailableList: List<SubtitlesAvailableBucket>? = null,
+    val downloadAvailableList: List<DownloadAvailableBucket>? = null,
+    val playableAbroadList: List<PlayableAbroadBucket>? = null,
+    val qualityList: List<QualityBucket>? = null,
+    val topicList: List<TopicBucket>? = null,
+    val showList: List<ShowBucket>? = null,
+    val durationListInMinutes: List<DurationInMinutesBucket>? = null,
+    val dataList: List<DateBucket>? = null
 )

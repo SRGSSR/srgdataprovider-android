@@ -1,6 +1,6 @@
 package ch.srg.dataProvider.integrationlayer.data
 
-import ch.srg.dataProvider.integrationlayer.gson.BlockReasonJSonDeserializer
+import ch.srg.dataProvider.integrationlayer.data.gson.BlockReasonJSonDeserializer
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonObject

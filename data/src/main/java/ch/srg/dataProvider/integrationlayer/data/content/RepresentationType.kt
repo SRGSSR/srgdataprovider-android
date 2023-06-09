@@ -25,5 +25,3 @@ object RepresentationType {
     const val MyProgram = "MyProgram"
     const val ShowAccess = "ShowAccess"
 }
-
-

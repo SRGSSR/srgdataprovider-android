@@ -63,6 +63,6 @@ interface SRGMediaMetadata : SRGIdentifierMetadata, SRGImageMetadata, SRGMetadat
     }
 
     fun isLive(): Boolean {
-        return type == Type.SCHEDULED_LIVESTREAM || type == Type.LIVESTREAM;
+        return type == Type.SCHEDULED_LIVESTREAM || type == Type.LIVESTREAM
     }
 }

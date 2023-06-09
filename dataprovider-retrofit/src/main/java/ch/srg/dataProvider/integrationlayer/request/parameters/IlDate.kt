@@ -1,7 +1,10 @@
 package ch.srg.dataProvider.integrationlayer.request.parameters
 
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Calendar
+import java.util.Date
+import java.util.Locale
+import java.util.TimeZone
 
 /**
  * Write date as YYYY-MM-dd
@@ -17,17 +20,19 @@ class IlDate(date: Date = Date()) : IlParam(formatDate(date)) {
      * months = [0-11]
      * days = [0-30]
      */
-    constructor(years: Int, months: Int = 0, days: Int = 0) : this(Calendar.getInstance(zurichTimeZone).apply {
-        set(Calendar.YEAR, years)
-        set(years, months, days)
-    })
+    constructor(years: Int, months: Int = 0, days: Int = 0) : this(
+        Calendar.getInstance(zurichTimeZone).apply {
+            set(Calendar.YEAR, years)
+            set(years, months, days)
+        }
+    )
 
     companion object {
+        val zurichTimeZone: TimeZone = TimeZone.getTimeZone("GMT+2")
+
         private fun formatDate(date: Date): String {
             val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.US)
             return sdf.format(date)
         }
-
-        val zurichTimeZone: TimeZone = TimeZone.getTimeZone("GMT+2")
     }
 }

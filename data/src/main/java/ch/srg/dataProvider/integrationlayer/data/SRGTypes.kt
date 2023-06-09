@@ -42,7 +42,7 @@ enum class BlockReason {
         fun parseValue(value: String): BlockReason {
             return try {
                 valueOf(value)
-            } catch (e: Exception) {
+            } catch (e: IllegalArgumentException) {
                 UNKNOWN
             }
         }

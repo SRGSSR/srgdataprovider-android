@@ -9,7 +9,7 @@ import ch.srg.dataProvider.integrationlayer.data.Vendor
  * License information is available from the LICENSE file.
  */
 data class SearchResult(
-        override val id: String,
-        override val vendor: Vendor,
-        override val urn: String
+    override val id: String,
+    override val vendor: Vendor,
+    override val urn: String
 ) : SRGIdentifierMetadata

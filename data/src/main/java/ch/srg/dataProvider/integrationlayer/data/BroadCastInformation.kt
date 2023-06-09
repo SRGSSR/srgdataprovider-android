@@ -8,8 +8,8 @@ import java.util.*
  * License information is available from the LICENSE file.
  */
 data class BroadCastInformation @JvmOverloads constructor(
-        val hintText: String? = null,
-        val url: String? = null,
-        val startDate: Date? = null,
-        val endDate: Date? = null
+    val hintText: String? = null,
+    val url: String? = null,
+    val startDate: Date? = null,
+    val endDate: Date? = null
 )

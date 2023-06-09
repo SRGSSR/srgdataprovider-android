@@ -2,7 +2,11 @@ package ch.srg.dataProvider.integrationlayer.request
 
 import ch.srg.dataProvider.integrationlayer.data.MediaListResult
 import ch.srg.dataProvider.integrationlayer.data.ShowListResult
-import ch.srg.dataProvider.integrationlayer.data.search.*
+import ch.srg.dataProvider.integrationlayer.data.search.SearchParams
+import ch.srg.dataProvider.integrationlayer.data.search.SearchResultMediaList
+import ch.srg.dataProvider.integrationlayer.data.search.SearchResultShowList
+import ch.srg.dataProvider.integrationlayer.data.search.SearchResultWithMediaList
+import ch.srg.dataProvider.integrationlayer.data.search.SearchResultWithShowList
 import ch.srg.dataProvider.integrationlayer.request.parameters.Bu
 import ch.srg.dataProvider.integrationlayer.request.parameters.ILMediaType
 import ch.srg.dataProvider.integrationlayer.request.parameters.IlPaging
@@ -14,15 +18,18 @@ import javax.inject.Inject
  * <p>
  * License information is available from the LICENSE file.
  */
+@Suppress("TooGenericExceptionCaught")
 class SearchProvider @Inject constructor(val ilService: IlService) {
 
     /**
      * Search media result without Media object, only urns
      */
-    suspend fun searchMediaResult(bu: Bu,
-                                  searchTerm: String,
-                                  params: SearchParams.MediaParams? = null,
-                                  pageSize: IlPaging.Size? = null): SearchResultMediaList {
+    suspend fun searchMediaResult(
+        bu: Bu,
+        searchTerm: String,
+        params: SearchParams.MediaParams? = null,
+        pageSize: IlPaging.Size? = null
+    ): SearchResultMediaList {
         return ilService.getSearchMedias(bu, searchTerm, params?.toQueryMap(), pageSize)
     }
 
@@ -34,10 +41,10 @@ class SearchProvider @Inject constructor(val ilService: IlService) {
     }
 
     suspend fun searchMedias(
-            bu: Bu,
-            searchTerm: String,
-            params: SearchParams.MediaParams? = null,
-            pageSize: IlPaging.Size? = null,
+        bu: Bu,
+        searchTerm: String,
+        params: SearchParams.MediaParams? = null,
+        pageSize: IlPaging.Size? = null,
     ): SearchResultWithMediaList {
         return getSearchWithMediaResult(searchMediaResult(bu, searchTerm, params, pageSize))
     }
@@ -56,23 +63,25 @@ class SearchProvider @Inject constructor(val ilService: IlService) {
                 MediaListResult(emptyList())
             }
         }
-        return SearchResultWithMediaList(next = searchResult.next,
-                data = mediaList.list,
-                searchTerm = searchResult.searchTerm,
-                total = searchResult.total,
-                aggregations = searchResult.aggregations,
-                exactMatchTotal = searchResult.exactMatchTotal,
-                suggestionList = searchResult.suggestionList)
+        return SearchResultWithMediaList(
+            next = searchResult.next,
+            data = mediaList.list,
+            searchTerm = searchResult.searchTerm,
+            total = searchResult.total,
+            aggregations = searchResult.aggregations,
+            exactMatchTotal = searchResult.exactMatchTotal,
+            suggestionList = searchResult.suggestionList
+        )
     }
 
     /**
      * Search show result without Media object, only urns
      */
     suspend fun searchShowResult(
-            bu: Bu,
-            searchTerm: String,
-            mediaType: ILMediaType? = null,
-            pageSize: IlPaging? = null,
+        bu: Bu,
+        searchTerm: String,
+        mediaType: ILMediaType? = null,
+        pageSize: IlPaging? = null,
     ): SearchResultShowList {
         return ilService.getSearchShows(bu, searchTerm, mediaType, pageSize)
     }
@@ -85,10 +94,10 @@ class SearchProvider @Inject constructor(val ilService: IlService) {
     }
 
     suspend fun searchShows(
-            bu: Bu,
-            searchTerm: String,
-            mediaType: ILMediaType? = null,
-            pageSize: IlPaging? = null,
+        bu: Bu,
+        searchTerm: String,
+        mediaType: ILMediaType? = null,
+        pageSize: IlPaging? = null,
     ): SearchResultWithShowList {
         return getSearchWithShowResult(searchShowResult(bu, searchTerm, mediaType, pageSize))
     }
@@ -107,9 +116,11 @@ class SearchProvider @Inject constructor(val ilService: IlService) {
                 ShowListResult(emptyList())
             }
         }
-        return SearchResultWithShowList(next = searchResult.next,
-                data = mediaList.list,
-                searchTerm = searchResult.searchTerm,
-                total = searchResult.total)
+        return SearchResultWithShowList(
+            next = searchResult.next,
+            data = mediaList.list,
+            searchTerm = searchResult.searchTerm,
+            total = searchResult.total
+        )
     }
 }

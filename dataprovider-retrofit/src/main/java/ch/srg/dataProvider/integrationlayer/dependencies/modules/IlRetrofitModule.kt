@@ -34,6 +34,7 @@ class IlRetrofitModule {
         return Retrofit.Builder()
             .addConverterFactory(gsonFactory)
             .client(httpClient)
-            .baseUrl(uri.toString()).build()
+            .baseUrl(uri.toString())
+            .build()
     }
 }

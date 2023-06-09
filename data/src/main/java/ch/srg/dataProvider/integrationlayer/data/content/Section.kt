@@ -11,15 +11,15 @@ import java.util.*
  * License information is available from the LICENSE file.
  */
 data class Section(
-        override val id: String,
-        override val vendor: Vendor,
-        @SerializedName("sectionType")
-        val type: String,
-        val representation: Representation,
-        val isPublished: Boolean,
-        @SerializedName("start")
-        val startDate: Date? = null,
-        @SerializedName("end")
-        val endDate: Date? = null,
-        val hasPersonalizedContent: Boolean? = null,
+    override val id: String,
+    override val vendor: Vendor,
+    @SerializedName("sectionType")
+    val type: String,
+    val representation: Representation,
+    val isPublished: Boolean,
+    @SerializedName("start")
+    val startDate: Date? = null,
+    @SerializedName("end")
+    val endDate: Date? = null,
+    val hasPersonalizedContent: Boolean? = null,
 ) : ILObject

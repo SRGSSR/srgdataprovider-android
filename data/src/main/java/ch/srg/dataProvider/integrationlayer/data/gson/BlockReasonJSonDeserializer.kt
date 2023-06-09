@@ -1,4 +1,4 @@
-package ch.srg.dataProvider.integrationlayer.gson
+package ch.srg.dataProvider.integrationlayer.data.gson
 
 import ch.srg.dataProvider.integrationlayer.data.BlockReason
 import com.google.gson.JsonDeserializationContext
@@ -13,11 +13,10 @@ import java.lang.reflect.Type
  */
 class BlockReasonJSonDeserializer : JsonDeserializer<BlockReason> {
     override fun deserialize(
-            json: JsonElement,
-            typeOfT: Type?,
-            context: JsonDeserializationContext?
+        json: JsonElement,
+        typeOfT: Type?,
+        context: JsonDeserializationContext?
     ): BlockReason {
         return BlockReason.parseValue(json.asString)
     }
-
 }
