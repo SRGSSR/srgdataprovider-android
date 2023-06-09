@@ -12,13 +12,8 @@ import ch.srg.dataProvider.integrationlayer.dependencies.modules.GsonModule;
 import ch.srg.dataProvider.integrationlayer.dependencies.modules.IlAppModule;
 import ch.srg.dataProvider.integrationlayer.dependencies.modules.IlRetrofitModule;
 import ch.srg.dataProvider.integrationlayer.dependencies.modules.IlServiceModule;
-import ch.srg.dataProvider.integrationlayer.dependencies.modules.LegacyModule;
 import ch.srg.dataProvider.integrationlayer.dependencies.modules.OkHttpModule;
 import ch.srg.dataProvider.integrationlayer.dependencies.modules.SRGConfigModule;
-import ch.srg.dataProvider.integrationlayer.legacy.LegacyIlDataProviderRemote;
-import ch.srg.dataProvider.integrationlayer.legacy.requests.LegacyIlDataProvider;
-import ch.srg.dataProvider.integrationlayer.legacy.requests.LegacyIlMediaCompositionService;
-import ch.srg.dataProvider.integrationlayer.legacy.requests.LegacyIlService;
 import ch.srg.dataProvider.integrationlayer.request.IlService;
 import ch.srg.dataProvider.integrationlayer.request.ImageProvider;
 import ch.srg.dataProvider.integrationlayer.request.SearchProvider;
@@ -36,8 +31,7 @@ import okhttp3.OkHttpClient;
                 GsonModule.class,
                 OkHttpModule.class,
                 IlRetrofitModule.class,
-                IlServiceModule.class,
-                LegacyModule.class
+                IlServiceModule.class
         }
 )
 public interface IlDataProviderComponent {
@@ -52,14 +46,6 @@ public interface IlDataProviderComponent {
     OkHttpClient.Builder getOkHttpClientBuilder();
 
     OkHttpClient getOkHttpClient();
-
-    LegacyIlMediaCompositionService getIlByUrnService();
-
-    LegacyIlService getLegacyIlService();
-
-    LegacyIlDataProvider getLegacyIlDataProvider();
-
-    LegacyIlDataProviderRemote getIlDataProviderRemote();
 
     GsonBuilder getGsonBuilder();
 
