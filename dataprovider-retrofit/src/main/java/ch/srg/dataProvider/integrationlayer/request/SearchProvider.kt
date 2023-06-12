@@ -8,7 +8,7 @@ import ch.srg.dataProvider.integrationlayer.data.search.SearchResultShowList
 import ch.srg.dataProvider.integrationlayer.data.search.SearchResultWithMediaList
 import ch.srg.dataProvider.integrationlayer.data.search.SearchResultWithShowList
 import ch.srg.dataProvider.integrationlayer.request.parameters.Bu
-import ch.srg.dataProvider.integrationlayer.request.parameters.ILMediaType
+import ch.srg.dataProvider.integrationlayer.request.parameters.IlMediaType
 import ch.srg.dataProvider.integrationlayer.request.parameters.IlPaging
 import ch.srg.dataProvider.integrationlayer.request.parameters.IlUrns
 import javax.inject.Inject
@@ -80,7 +80,7 @@ class SearchProvider @Inject constructor(val ilService: IlService) {
     suspend fun searchShowResult(
         bu: Bu,
         searchTerm: String,
-        mediaType: ILMediaType? = null,
+        mediaType: IlMediaType? = null,
         pageSize: IlPaging? = null,
     ): SearchResultShowList {
         return ilService.getSearchShows(bu, searchTerm, mediaType, pageSize)
@@ -96,7 +96,7 @@ class SearchProvider @Inject constructor(val ilService: IlService) {
     suspend fun searchShows(
         bu: Bu,
         searchTerm: String,
-        mediaType: ILMediaType? = null,
+        mediaType: IlMediaType? = null,
         pageSize: IlPaging? = null,
     ): SearchResultWithShowList {
         return getSearchWithShowResult(searchShowResult(bu, searchTerm, mediaType, pageSize))
