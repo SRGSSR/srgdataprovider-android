@@ -39,6 +39,16 @@ android {
         jvmTarget = "1.8"
     }
 
+    lint {
+        // https://developer.android.com/reference/tools/gradle-api/4.1/com/android/build/api/dsl/LintOptions
+        abortOnError = true
+        checkAllWarnings = true
+        checkDependencies = false
+        xmlReport = true // Enable for Danger Android Lint
+        xmlOutput = file("${project.rootDir}/build/reports/android-lint.xml")
+        disable.add("LogConditional")
+    }
+
 }
 
 dependencies {
