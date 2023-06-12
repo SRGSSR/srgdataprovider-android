@@ -11,8 +11,8 @@ interface SRGVariant : SRGLanguage {
 }
 
 data class Variant(
-        override val locale: String,
-        override val source: VariantSource,
-        override val language: String? = null,
-        override val type: VariantType? = null
+    override val locale: String,
+    override val source: VariantSource,
+    override val language: String? = null,
+    override val type: VariantType? = null
 ) : SRGVariant

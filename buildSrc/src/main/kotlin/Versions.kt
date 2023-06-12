@@ -5,4 +5,5 @@ object Versions {
     const val retrofit_version = "2.9.0"
     const val okHttp_version = "4.9.1"
     const val gsonVersion = "2.10.1"
+    const val detekt = "1.22.0"
 }

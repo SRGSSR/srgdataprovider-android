@@ -7,4 +7,4 @@ import ch.srg.dataProvider.integrationlayer.data.MediaType
  * <p>
  * License information is available from the LICENSE file.
  */
-class ILMediaType(mediaType: MediaType) : IlParam(mediaType.toString().lowercase())
+class IlMediaType(mediaType: MediaType) : IlParam(mediaType.toString().lowercase())

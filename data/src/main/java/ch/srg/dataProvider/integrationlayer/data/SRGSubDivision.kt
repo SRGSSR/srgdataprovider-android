@@ -13,5 +13,3 @@ interface SRGSubDivision : SRGMediaMetadata {
     val analyticsLabels: HashMap<String, String>?
     val eventData: String?
 }
-
-

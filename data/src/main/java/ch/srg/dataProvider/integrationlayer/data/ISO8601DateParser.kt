@@ -16,19 +16,9 @@ import java.util.*
  *
  * License information is available from the LICENSE file.
  */
-class ISO8601DateParser() {
+class ISO8601DateParser {
     // SimpleDateFormat use Object that aren't thread-safe, what may lead to IndexOutOfBoundException.
     private val sdf: SimpleDateFormat = SimpleDateFormat(ISO_8601_FORMAT, Locale.US)
-
-    fun parseTime(s: String): Long {
-        var date: Date? = null
-        try {
-            date = parseDate(s)
-        } catch (e: ParseException) {
-            e.printStackTrace()
-        }
-        return date?.time ?: 0
-    }
 
     @Throws(ParseException::class)
     fun parseDate(s: String): Date? {
@@ -52,5 +42,4 @@ class ISO8601DateParser() {
             return output
         }
     }
-
 }

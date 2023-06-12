@@ -8,18 +8,18 @@ import java.util.*
  * License information is available from the LICENSE file.
  */
 data class Song(
-        val isPlayingNow: Boolean,
-        val date: Date,
-        val title: String,
-        val artist: Artist,
-        val duration: Int? = null,
-        val cd: Cd? = null
+    val isPlayingNow: Boolean,
+    val date: Date,
+    val title: String,
+    val artist: Artist,
+    val duration: Int? = null,
+    val cd: Cd? = null
 )
 
 data class Cd(
-        val name: String,
-        val coverUrlSmall: ImageUrl? = null,
-        val coverUrlLarge: ImageUrl? = null
+    val name: String,
+    val coverUrlSmall: ImageUrl? = null,
+    val coverUrlLarge: ImageUrl? = null
 )
 
 data class Artist(val name: String, val url: String? = null)

@@ -9,11 +9,11 @@ import ch.srg.dataProvider.integrationlayer.data.ImageUrl
  * License information is available from the LICENSE file.
  */
 data class Representation(
-        /**
-         * @see RepresentationType
-         */
-        val name: String,
-        val properties: Properties? = Properties()
+    /**
+     * @see RepresentationType
+     */
+    val name: String,
+    val properties: Properties? = Properties()
 ) {
     val title: String?
         get() = properties?.title
@@ -37,12 +37,12 @@ data class Representation(
         get() = properties?.imageFocalPoint
 
     data class Properties(
-            val title: String? = null,
-            val description: String? = null,
-            val label: String? = null,
-            val hasDetailPage: Boolean? = null,
-            val pickRandomElement: Boolean? = null,
-            val imageUrl: ImageUrl? = null,
-            val imageFocalPoint: FocalPoint? = null)
+        val title: String? = null,
+        val description: String? = null,
+        val label: String? = null,
+        val hasDetailPage: Boolean? = null,
+        val pickRandomElement: Boolean? = null,
+        val imageUrl: ImageUrl? = null,
+        val imageFocalPoint: FocalPoint? = null
+    )
 }
-

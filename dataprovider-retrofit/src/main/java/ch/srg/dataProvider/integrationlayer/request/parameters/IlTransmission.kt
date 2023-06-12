@@ -7,4 +7,4 @@ import ch.srg.dataProvider.integrationlayer.data.Transmission
  * <p>
  * License information is available from the LICENSE file.
  */
-class ILTransmission(transmission: Transmission) : IlParam(transmission.toString().lowercase())
+class IlTransmission(transmission: Transmission) : IlParam(transmission.toString().lowercase())

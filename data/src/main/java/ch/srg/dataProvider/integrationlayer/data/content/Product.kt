@@ -8,7 +8,7 @@ package ch.srg.dataProvider.integrationlayer.data.content
 data class Product(val name: String) {
 
     override fun toString(): String {
-        return name;
+        return name
     }
 
     companion object {

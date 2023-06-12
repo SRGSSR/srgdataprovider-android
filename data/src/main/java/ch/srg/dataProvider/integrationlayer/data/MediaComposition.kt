@@ -14,30 +14,29 @@ import com.google.gson.annotations.SerializedName
  * License information is available from the LICENSE file.
  */
 data class MediaComposition(
-        val chapterUrn: String,
-        val chapterList: List<Chapter>,
-        val segmentUrn: String? = null,
-        val episode: Episode? = null,
-        val show: Show? = null,
-        val channel: Channel? = null,
-        @SerializedName("analyticsData")
-        val comScoreAnalyticsLabels: HashMap<String, String>? = null,
-        @SerializedName("analyticsMetadata")
-        val analyticsLabels: HashMap<String, String>? = null,
+    val chapterUrn: String,
+    val chapterList: List<Chapter>,
+    val segmentUrn: String? = null,
+    val episode: Episode? = null,
+    val show: Show? = null,
+    val channel: Channel? = null,
+    @SerializedName("analyticsData")
+    val comScoreAnalyticsLabels: HashMap<String, String>? = null,
+    @SerializedName("analyticsMetadata")
+    val analyticsLabels: HashMap<String, String>? = null,
 ) {
 
     constructor(media: SRGMediaMetadata) : this(
-            chapterUrn = media.urn,
-            chapterList = listOf(Chapter(media)),
-            segmentUrn = null
+        chapterUrn = media.urn,
+        chapterList = listOf(Chapter(media)),
+        segmentUrn = null
     )
 
     /**
      *  The chapter which should be initially played.
      */
     fun getMainChapter(): Chapter {
-        return findChapter(chapterUrn)
-                ?: throw IllegalStateException("The main chapter is missing from mediaComposition")
+        return checkNotNull(findChapter(chapterUrn)) { "The main chapter is missing from mediaComposition" }
     }
 
     /**
@@ -67,10 +66,7 @@ data class MediaComposition(
      */
     fun containsUrn(urn: String): Boolean {
         for (chapter in chapterList) {
-            if (chapter.urn == urn) {
-                return true
-            }
-            if (chapter.findSegment(urn) != null) {
+            if (chapter.urn == urn || chapter.findSegment(urn) != null) {
                 return true
             }
         }
@@ -90,7 +86,5 @@ data class MediaComposition(
             }
         }
         return false
-
     }
-
 }

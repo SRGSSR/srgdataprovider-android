@@ -7,4 +7,4 @@ import ch.srg.dataProvider.integrationlayer.data.Type
  * <p>
  * License information is available from the LICENSE file.
  */
-class ILType(type: Type) : IlParam(type.toString().lowercase())
+class IlType(type: Type) : IlParam(type.toString().lowercase())
