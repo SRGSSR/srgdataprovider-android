@@ -48,7 +48,6 @@ android {
         xmlOutput = file("${project.rootDir}/build/reports/android-lint.xml")
         disable.add("LogConditional")
     }
-
 }
 
 dependencies {
