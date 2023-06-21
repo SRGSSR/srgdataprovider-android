@@ -16,3 +16,4 @@ rootProject.name = "SRGDataProvider"
 include ':dataproviderdemo'
 include ':data'
 include ':dataprovider-retrofit'
+include ':dataprovider-paging'
