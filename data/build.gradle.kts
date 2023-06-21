@@ -38,7 +38,7 @@ android {
 
 dependencies {
     implementation("androidx.core:core-ktx:${Versions.coreKtx}")
-    implementation("com.google.code.gson:gson:${Versions.gsonVersion}")
+    implementation("com.google.code.gson:gson:${Versions.gson}")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

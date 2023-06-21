@@ -52,6 +52,7 @@ android {
 
 dependencies {
     implementation(project(mapOf("path" to ":dataprovider-retrofit")))
+    implementation(project(mapOf("path" to ":dataprovider-paging")))
     implementation("androidx.core:core-ktx:${Versions.coreKtx}")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.9.0")

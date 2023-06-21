@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "ch.srg.dataProvider.integrationlayer"
+    namespace = "ch.srgssr.dataprovider.paging"
     compileSdk = Config.compileSdk
 
     defaultConfig {
@@ -38,18 +38,13 @@ android {
 }
 
 dependencies {
-    api(project(mapOf("path" to ":data")))
+    api(project(mapOf("path" to ":dataprovider-retrofit")))
     implementation("androidx.core:core-ktx:${Versions.coreKtx}")
-    api("androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle}")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}")
+    api("androidx.paging:paging-runtime-ktx:${Versions.paging}")
 
     implementation("com.google.dagger:dagger:${Versions.dagger}")
     kapt("com.google.dagger:dagger-compiler:${Versions.dagger}")
-
-    //retrofit implementation
-    api("com.squareup.retrofit2:retrofit:${Versions.retrofit}")
-    api("com.squareup.retrofit2:converter-gson:${Versions.retrofit}")
-    //noinspection GradleDependency
-    implementation("com.squareup.okhttp3:logging-interceptor:${Versions.okHttp}")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

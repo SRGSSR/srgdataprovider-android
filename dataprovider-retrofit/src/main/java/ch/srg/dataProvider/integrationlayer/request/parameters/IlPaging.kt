@@ -8,4 +8,6 @@ package ch.srg.dataProvider.integrationlayer.request.parameters
 sealed class IlPaging(value: String) : IlParam(value) {
     object Unlimited : IlPaging("unlimited")
     class Size(pageSize: Int) : IlPaging(pageSize.toString())
+
+    fun Int.toIlPaging() = Size(this)
 }
