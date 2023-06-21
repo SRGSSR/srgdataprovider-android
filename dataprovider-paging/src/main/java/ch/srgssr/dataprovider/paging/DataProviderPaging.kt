@@ -56,7 +56,7 @@ class DataProviderPaging @Inject constructor(
     }
 
     fun getLatestMediaByShowUrn(showUrn: String, pageSize: Int = DefaultPageSize): Flow<PagingData<Media>> {
-        return createPager(
+        return createNextUrlPagingData(
             pageSize = pageSize,
             initialCall = { ilService.getLatestMediaByShowUrn(showUrn, it.toIlPaging()) },
             nextCall = { ilService.getMediaListNextUrl(it) }
@@ -86,7 +86,7 @@ class DataProviderPaging @Inject constructor(
     }
 
     fun getMediaRecommendedByUrn(urn: String, pageSize: Int = DefaultPageSize): Flow<PagingData<Media>> {
-        return createPager(
+        return createNextUrlPagingData(
             pageSize = pageSize,
             initialCall = { ilService.getMediaRecommendedByUrn(urn, it.toIlPaging()) },
             nextCall = { ilService.getMediaListNextUrl(it) }
@@ -94,7 +94,7 @@ class DataProviderPaging @Inject constructor(
     }
 
     fun getLatestMediaByTopicUrn(topicUrn: String, pageSize: Int = DefaultPageSize): Flow<PagingData<Media>> {
-        return createPager(
+        return createNextUrlPagingData(
             pageSize = pageSize,
             initialCall = { ilService.getLatestMediaByTopicUrn(topicUrn, it.toIlPaging()) },
             nextCall = { ilService.getMediaListNextUrl(it) }
@@ -102,7 +102,7 @@ class DataProviderPaging @Inject constructor(
     }
 
     fun getMostClickedMediaByTopicUrn(topicUrn: String, pageSize: Int = DefaultPageSize): Flow<PagingData<Media>> {
-        return createPager(
+        return createNextUrlPagingData(
             pageSize = pageSize,
             initialCall = { ilService.getMostClickedMediaByTopicUrn(topicUrn, it.toIlPaging()) },
             nextCall = { ilService.getMediaListNextUrl(it) }
@@ -110,7 +110,7 @@ class DataProviderPaging @Inject constructor(
     }
 
     fun getTvMostClickedMedias(bu: Bu, topicId: String? = null, pageSize: Int = DefaultPageSize): Flow<PagingData<Media>> {
-        return createPager(
+        return createNextUrlPagingData(
             pageSize = pageSize,
             initialCall = { ilService.getTvMostClickedMedias(bu, topicId, it.toIlPaging()) },
             nextCall = { ilService.getMediaListNextUrl(it) }
@@ -118,7 +118,7 @@ class DataProviderPaging @Inject constructor(
     }
 
     fun getTvSoonExpiringMedias(bu: Bu, topicId: String? = null, pageSize: Int = DefaultPageSize): Flow<PagingData<Media>> {
-        return createPager(
+        return createNextUrlPagingData(
             pageSize = pageSize,
             initialCall = { ilService.getTvSoonExpiringMedias(bu, topicId, it.toIlPaging()) },
             nextCall = { ilService.getMediaListNextUrl(it) }
@@ -126,7 +126,7 @@ class DataProviderPaging @Inject constructor(
     }
 
     fun getTvSoonExpiringMedias(bu: Bu, pageSize: Int = DefaultPageSize): Flow<PagingData<Media>> {
-        return createPager(
+        return createNextUrlPagingData(
             pageSize = pageSize,
             initialCall = { ilService.getTvWebFirstMedias(bu, it.toIlPaging()) },
             nextCall = { ilService.getMediaListNextUrl(it) }
@@ -134,7 +134,7 @@ class DataProviderPaging @Inject constructor(
     }
 
     fun getTrendingMedias(bu: Bu, type: IlMediaType, onlyEpisodes: Boolean = false, pageSize: Int = DefaultPageSize): Flow<PagingData<Media>> {
-        return createPager(
+        return createNextUrlPagingData(
             pageSize = pageSize,
             initialCall = { ilService.getTrendingMedias(bu, type, onlyEpisodes, it.toIlPaging()) },
             nextCall = { ilService.getMediaListNextUrl(it) }
@@ -142,7 +142,7 @@ class DataProviderPaging @Inject constructor(
     }
 
     fun getLatestMediaByChannelId(bu: Bu, type: IlMediaType, channelId: String, pageSize: Int = DefaultPageSize): Flow<PagingData<Media>> {
-        return createPager(
+        return createNextUrlPagingData(
             pageSize = pageSize,
             initialCall = { ilService.getLatestMediaByChannelId(bu, type, channelId, it.toIlPaging()) },
             nextCall = { ilService.getMediaListNextUrl(it) }
@@ -150,7 +150,7 @@ class DataProviderPaging @Inject constructor(
     }
 
     fun getTvEpisodesByDate(bu: Bu, date: IlDate, pageSize: Int = DefaultPageSize): Flow<PagingData<Media>> {
-        return createPager(
+        return createNextUrlPagingData(
             pageSize = pageSize,
             initialCall = { ilService.getTvEpisodesByDate(bu, date, it.toIlPaging()) },
             nextCall = { ilService.getMediaListNextUrl(it) }
@@ -158,7 +158,7 @@ class DataProviderPaging @Inject constructor(
     }
 
     fun getEpisodeCompositionByUrn(showUrn: String, pageSize: Int = DefaultPageSize): Flow<PagingData<Episode>> {
-        return createPager(
+        return createNextUrlPagingData(
             pageSize = pageSize,
             initialCall = { ilService.getEpisodeCompositionByUrn(showUrn, it.toIlPaging()) },
             nextCall = { ilService.getEpisodeCompositionByUrn(it) }
@@ -171,7 +171,7 @@ class DataProviderPaging @Inject constructor(
         onlyEventsWithResult: Boolean = true,
         pageSize: Int = DefaultPageSize
     ): Flow<PagingData<Media>> {
-        return createPager(
+        return createNextUrlPagingData(
             pageSize = pageSize,
             initialCall = { ilService.getLiveCenterVideos(bu, type, onlyEventsWithResult, it.toIlPaging()) },
             nextCall = { ilService.getMediaListNextUrl(it) }
@@ -179,7 +179,7 @@ class DataProviderPaging @Inject constructor(
     }
 
     fun getScheduledLiveStreamVideos(bu: Bu, signLanguageOnly: Boolean = false, pageSize: Int = DefaultPageSize): Flow<PagingData<Media>> {
-        return createPager(
+        return createNextUrlPagingData(
             pageSize = pageSize,
             initialCall = { ilService.getScheduledLiveStreamVideos(bu, signLanguageOnly, it.toIlPaging()) },
             nextCall = { ilService.getMediaListNextUrl(it) }
@@ -187,7 +187,7 @@ class DataProviderPaging @Inject constructor(
     }
 
     fun getRadioEpisodesByDateByChannelId(bu: Bu, date: IlDate, channelId: String, pageSize: Int = DefaultPageSize): Flow<PagingData<Media>> {
-        return createPager(
+        return createNextUrlPagingData(
             pageSize = pageSize,
             initialCall = { ilService.getRadioEpisodesByDateByChannelId(bu, date, channelId, it.toIlPaging()) },
             nextCall = { ilService.getMediaListNextUrl(it) }
@@ -200,7 +200,7 @@ class DataProviderPaging @Inject constructor(
         onlyEpisodes: Boolean? = null,
         pageSize: Int = DefaultPageSize
     ): Flow<PagingData<Media>> {
-        return createPager(
+        return createNextUrlPagingData(
             pageSize = pageSize,
             initialCall = { ilService.getRadioMostClickedMediasByChannelId(bu, channelId, onlyEpisodes, it.toIlPaging()) },
             nextCall = { ilService.getMediaListNextUrl(it) }
@@ -208,7 +208,7 @@ class DataProviderPaging @Inject constructor(
     }
 
     fun getRadioMostClickedMediasByChannelId(bu: Bu, onlyEpisodes: Boolean? = null, pageSize: Int = DefaultPageSize): Flow<PagingData<Media>> {
-        return createPager(
+        return createNextUrlPagingData(
             pageSize = pageSize,
             initialCall = { ilService.getRadioMostClickedMedias(bu, onlyEpisodes, it.toIlPaging()) },
             nextCall = { ilService.getMediaListNextUrl(it) }
@@ -216,7 +216,7 @@ class DataProviderPaging @Inject constructor(
     }
 
     fun getRadioSongListByChannelId(bu: Bu, channelId: String, pageSize: Int = DefaultPageSize): Flow<PagingData<Song>> {
-        return createPager(
+        return createNextUrlPagingData(
             pageSize = pageSize,
             initialCall = { ilService.getRadioSongListByChannelId(bu, channelId, it.toIlPaging()) },
             nextCall = { ilService.getSongListNextUrl(it) }
@@ -239,7 +239,7 @@ class DataProviderPaging @Inject constructor(
         lastResult: MutableSharedFlow<SearchResultWithMediaList>? = null,
         pageSize: Int = DefaultPageSize
     ): Flow<PagingData<Media>> {
-        return createPager(pageSize, initialCall = {
+        return createNextUrlPagingData(pageSize, initialCall = {
             val result = searchProvider.searchMedias(bu, searchTerm, queryParameters)
             lastResult?.emit(result)
             result
@@ -263,7 +263,7 @@ class DataProviderPaging @Inject constructor(
         lastResult: MutableSharedFlow<SearchResultWithShowList>? = null,
         pageSize: Int = DefaultPageSize
     ): Flow<PagingData<Show>> {
-        return createPager(pageSize, initialCall = {
+        return createNextUrlPagingData(pageSize, initialCall = {
             val result = searchProvider.searchShows(bu, searchTerm, IlMediaType(queryParameters.mediaType ?: MediaType.VIDEO))
             lastResult?.emit(result)
             result
@@ -277,7 +277,7 @@ class DataProviderPaging @Inject constructor(
 
         private fun Int.toPagingConfig() = PagingConfig(pageSize = this, prefetchDistance = 1)
 
-        private fun <T : Any> createPager(
+        private fun <T : Any> createNextUrlPagingData(
             pageSize: Int,
             initialCall: suspend (pageSize: Int) -> ListResult<T>?,
             nextCall: suspend (next: String) -> ListResult<T>?
