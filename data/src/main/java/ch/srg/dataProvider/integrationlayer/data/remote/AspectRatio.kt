@@ -2,7 +2,7 @@ package ch.srg.dataProvider.integrationlayer.data.remote
 
 import com.squareup.moshi.JsonClass
 
-@JsonClass(generateAdapter = false)
+@JsonClass(generateAdapter = true)
 data class AspectRatio(val numerator: Int, val denominator: Int) {
 
     override fun toString(): String {
