@@ -1,12 +1,12 @@
 package ch.srg.dataProvider.integrationlayer.dependencies.modules
 
 import android.net.Uri
-import com.google.gson.Gson
+import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Qualifier
 
 /**
@@ -23,16 +23,11 @@ annotation class RetrofitIntegrationLayer
 class IlRetrofitModule {
 
     @Provides
-    fun provideGsonConverterFactory(gson: Gson): GsonConverterFactory {
-        return GsonConverterFactory.create(gson)
-    }
-
-    @Provides
     @ConfiguredScope
     @RetrofitIntegrationLayer
-    fun provideRetrofitBase(@IlUri uri: Uri, httpClient: OkHttpClient, gsonFactory: GsonConverterFactory): Retrofit {
+    fun provideRetrofitBase(@IlUri uri: Uri, httpClient: OkHttpClient, moshi: Moshi): Retrofit {
         return Retrofit.Builder()
-            .addConverterFactory(gsonFactory)
+            .addConverterFactory(MoshiConverterFactory.create(moshi))
             .client(httpClient)
             .baseUrl(uri.toString())
             .build()

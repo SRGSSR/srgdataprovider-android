@@ -1,6 +1,6 @@
 package ch.srg.dataProvider.integrationlayer.request.parameters
 
-import ch.srg.dataProvider.integrationlayer.data.Transmission
+import ch.srg.dataProvider.integrationlayer.data.remote.Transmission
 
 /**
  * Copyright (c) SRG SSR. All rights reserved.

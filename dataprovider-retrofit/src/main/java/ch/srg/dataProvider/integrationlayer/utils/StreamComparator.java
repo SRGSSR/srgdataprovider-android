@@ -5,9 +5,9 @@ import androidx.annotation.Nullable;
 import java.util.Comparator;
 import java.util.List;
 
-import ch.srg.dataProvider.integrationlayer.data.Quality;
-import ch.srg.dataProvider.integrationlayer.data.Resource;
-import ch.srg.dataProvider.integrationlayer.data.StreamingMethod;
+import ch.srg.dataProvider.integrationlayer.data.remote.Quality;
+import ch.srg.dataProvider.integrationlayer.data.remote.Resource;
+import ch.srg.dataProvider.integrationlayer.data.remote.StreamingMethod;
 
 /**
  * Copyright (c) SRG SSR. All rights reserved.

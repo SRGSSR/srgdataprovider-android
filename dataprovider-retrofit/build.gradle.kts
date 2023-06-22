@@ -47,7 +47,7 @@ dependencies {
 
     //retrofit implementation
     api("com.squareup.retrofit2:retrofit:${Versions.retrofit}")
-    api("com.squareup.retrofit2:converter-gson:${Versions.retrofit}")
+    api("com.squareup.retrofit2:converter-moshi:${Versions.retrofit}")
     //noinspection GradleDependency
     implementation("com.squareup.okhttp3:logging-interceptor:${Versions.okHttp}")
 

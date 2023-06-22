@@ -1,6 +1,6 @@
 package ch.srg.dataProvider.integrationlayer.request.parameters
 
-import ch.srg.dataProvider.integrationlayer.data.ISO8601DateParser
+import java.text.SimpleDateFormat
 import java.util.*
 
 /**
@@ -9,7 +9,7 @@ import java.util.*
  * <p>
  * License information is available from the LICENSE file.
  */
-class IlDateTime(date: Date = Date()) : IlParam(ISO8601DateParser().format(date)) {
+class IlDateTime(date: Date = Date()) : IlParam(SimpleDateFormat("yyyy-MM-ddTHH:mm:ss", Locale.US).format(date)) {
     constructor(calendar: Calendar) : this(calendar.time)
     constructor(time: Long) : this(Date(time))
 }

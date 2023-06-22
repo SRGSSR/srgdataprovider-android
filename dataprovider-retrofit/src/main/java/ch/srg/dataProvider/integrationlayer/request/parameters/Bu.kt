@@ -1,6 +1,6 @@
 package ch.srg.dataProvider.integrationlayer.request.parameters
 
-import ch.srg.dataProvider.integrationlayer.data.Vendor
+import ch.srg.dataProvider.integrationlayer.data.remote.Vendor
 
 /**
  * Bu parameter for Il call
