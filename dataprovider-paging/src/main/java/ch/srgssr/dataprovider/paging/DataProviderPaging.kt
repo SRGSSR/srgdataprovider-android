@@ -264,7 +264,11 @@ class DataProviderPaging @Inject constructor(
         pageSize: Int = DefaultPageSize
     ): Flow<PagingData<Show>> {
         return createNextUrlPagingData(pageSize, initialCall = {
-            val result = searchProvider.searchShows(bu, searchTerm, IlMediaType(queryParameters.mediaType ?: MediaType.VIDEO))
+            val result = searchProvider.searchShows(
+                bu,
+                searchTerm,
+                IlMediaType(queryParameters.mediaType ?: MediaType.VIDEO)
+            )
             lastResult?.emit(result)
             result
         }, nextCall = {
@@ -283,7 +287,8 @@ class DataProviderPaging @Inject constructor(
             nextCall: suspend (next: String) -> ListResult<T>?
         ): Flow<PagingData<T>> = Pager(config = pageSize.toPagingConfig(), pagingSourceFactory = {
             NextUrlPagingSource(
-                initialCall = initialCall, nextCall = nextCall
+                initialCall = initialCall,
+                nextCall = nextCall
             )
         }).flow
     }

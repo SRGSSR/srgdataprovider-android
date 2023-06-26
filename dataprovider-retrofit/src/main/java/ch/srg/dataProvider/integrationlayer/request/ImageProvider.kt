@@ -62,10 +62,12 @@ class ImageProvider @Inject constructor(factory: SRGUrlFactory) {
     private fun decorateImageUrlWithSizeInPixel(imageUrl: String, scaling: Scaling?, widthInPixels: Int): Uri? {
         return if (TextUtils.isEmpty(imageUrl)) {
             null
-        } else when (scaling) {
-            Scaling.PreserveAspectRatio -> createImageServiceUrl(imageUrl, widthInPixels)
-            Scaling.Default -> scaledImageUrl(imageUrl, widthInPixels)
-            else -> scaledImageUrl(imageUrl, widthInPixels)
+        } else {
+            when (scaling) {
+                Scaling.PreserveAspectRatio -> createImageServiceUrl(imageUrl, widthInPixels)
+                Scaling.Default -> scaledImageUrl(imageUrl, widthInPixels)
+                else -> scaledImageUrl(imageUrl, widthInPixels)
+            }
         }
     }
 

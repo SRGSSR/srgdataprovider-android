@@ -15,7 +15,7 @@ tasks.register("clean", Delete::class) {
 allprojects {
     apply(plugin = "io.gitlab.arturbosch.detekt")
     detekt {
-        buildUponDefaultConfig = true // preconfigure defaults
+        buildUponDefaultConfig = false // preconfigure defaults
         allRules = false // activate all available (even unstable) rules.
         source.setFrom("src/main/java", "src/main/kotlin")
         config.setFrom("../config/detekt.yml") // point to your custom config defining rules to run, overwriting default behavior
