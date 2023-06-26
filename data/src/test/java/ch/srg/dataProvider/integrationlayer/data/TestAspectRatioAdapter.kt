@@ -8,17 +8,17 @@ import org.junit.Test
 
 class TestAspectRatioAdapter {
 
-    private lateinit var adapter : AspectRatioAdapter
+    private lateinit var adapter: AspectRatioAdapter
 
     @Before
-    fun setup(){
+    fun setup() {
         adapter = AspectRatioAdapter()
     }
 
     @Test
     fun testToJson() {
         val expectedJson = "16:9"
-        val input = AspectRatio(16,9)
+        val input = AspectRatio(16, 9)
 
         assertEquals(expectedJson, adapter.toJson(input))
     }
@@ -26,7 +26,7 @@ class TestAspectRatioAdapter {
     @Test
     fun testFromJsonValidValue() {
         val json = "16:9"
-        val expectedAspectRatio = AspectRatio(16,9)
+        val expectedAspectRatio = AspectRatio(16, 9)
         assertEquals(expectedAspectRatio, adapter.fromJson(json))
     }
 
@@ -52,5 +52,19 @@ class TestAspectRatioAdapter {
     fun testFromJsonInvalidStringWithSeparator() {
         val json = "AspectRatio = 1:2"
         adapter.fromJson(json)
+    }
+
+    @Test
+    fun testFromJsonInfinity() {
+        val json = "1:0"
+        val actualAspectRatio = adapter.fromJson(json)
+        assertEquals(AspectRatio.Infinity, actualAspectRatio)
+    }
+
+    @Test
+    fun testFromJsonZero() {
+        val json = "0:12"
+        val actualAspectRatio = adapter.fromJson(json)
+        assertEquals(AspectRatio.Zero, actualAspectRatio)
     }
 }
