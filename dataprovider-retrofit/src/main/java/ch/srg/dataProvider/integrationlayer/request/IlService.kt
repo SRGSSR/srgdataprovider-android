@@ -1,25 +1,24 @@
 package ch.srg.dataProvider.integrationlayer.request
 
-import ch.srg.dataProvider.integrationlayer.data.Channel
-import ch.srg.dataProvider.integrationlayer.data.ChannelListResult
-import ch.srg.dataProvider.integrationlayer.data.EpisodeCompositionListResult
-import ch.srg.dataProvider.integrationlayer.data.LiveCenterType
-import ch.srg.dataProvider.integrationlayer.data.Media
-import ch.srg.dataProvider.integrationlayer.data.MediaComposition
-import ch.srg.dataProvider.integrationlayer.data.MediaListResult
-import ch.srg.dataProvider.integrationlayer.data.MediaListWithShowResult
-import ch.srg.dataProvider.integrationlayer.data.NowAndNext
-import ch.srg.dataProvider.integrationlayer.data.ProgramCompositionListResult
-import ch.srg.dataProvider.integrationlayer.data.ProgramGuide
-import ch.srg.dataProvider.integrationlayer.data.Show
-import ch.srg.dataProvider.integrationlayer.data.ShowListResult
-import ch.srg.dataProvider.integrationlayer.data.SongListResult
-import ch.srg.dataProvider.integrationlayer.data.TopicListResult
-import ch.srg.dataProvider.integrationlayer.data.content.Page
-import ch.srg.dataProvider.integrationlayer.data.content.Product
-import ch.srg.dataProvider.integrationlayer.data.content.Section
-import ch.srg.dataProvider.integrationlayer.data.search.SearchResultMediaList
-import ch.srg.dataProvider.integrationlayer.data.search.SearchResultShowList
+import ch.srg.dataProvider.integrationlayer.data.remote.Channel
+import ch.srg.dataProvider.integrationlayer.data.remote.ChannelListResult
+import ch.srg.dataProvider.integrationlayer.data.remote.EpisodeCompositionListResult
+import ch.srg.dataProvider.integrationlayer.data.remote.LiveCenterType
+import ch.srg.dataProvider.integrationlayer.data.remote.Media
+import ch.srg.dataProvider.integrationlayer.data.remote.MediaComposition
+import ch.srg.dataProvider.integrationlayer.data.remote.MediaListResult
+import ch.srg.dataProvider.integrationlayer.data.remote.MediaListWithShowResult
+import ch.srg.dataProvider.integrationlayer.data.remote.NowAndNext
+import ch.srg.dataProvider.integrationlayer.data.remote.Page
+import ch.srg.dataProvider.integrationlayer.data.remote.ProgramCompositionListResult
+import ch.srg.dataProvider.integrationlayer.data.remote.ProgramGuide
+import ch.srg.dataProvider.integrationlayer.data.remote.SearchResultMediaList
+import ch.srg.dataProvider.integrationlayer.data.remote.SearchResultShowList
+import ch.srg.dataProvider.integrationlayer.data.remote.Section
+import ch.srg.dataProvider.integrationlayer.data.remote.Show
+import ch.srg.dataProvider.integrationlayer.data.remote.ShowListResult
+import ch.srg.dataProvider.integrationlayer.data.remote.SongListResult
+import ch.srg.dataProvider.integrationlayer.data.remote.TopicListResult
 import ch.srg.dataProvider.integrationlayer.request.parameters.Bu
 import ch.srg.dataProvider.integrationlayer.request.parameters.IlDate
 import ch.srg.dataProvider.integrationlayer.request.parameters.IlDateTime
@@ -27,8 +26,6 @@ import ch.srg.dataProvider.integrationlayer.request.parameters.IlMediaType
 import ch.srg.dataProvider.integrationlayer.request.parameters.IlPaging
 import ch.srg.dataProvider.integrationlayer.request.parameters.IlTransmission
 import ch.srg.dataProvider.integrationlayer.request.parameters.IlUrns
-import com.google.gson.Gson
-import com.google.gson.JsonObject
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -393,7 +390,7 @@ interface IlService {
     @GET("2.0/{bu}/page/landingPage/byProduct/{product}")
     suspend fun getLandingPageByProduct(
         @Path("bu") bu: Bu,
-        @Path("product") product: Product,
+        @Path("product") product: String,
         @Query("isPublished") isPublished: Boolean? = null
     ): Page
 
@@ -459,15 +456,4 @@ interface IlService {
 
     @GET
     suspend fun getSearchShowNextUrl(@Url url: String): SearchResultShowList
-
-    //region nextUrl
-
-    @GET
-    suspend fun getNextUrl(@Url url: String): JsonObject
-
-    //endregion nextUrl
-    suspend fun <T> getFromNextUrl(gson: Gson, url: String, clazz: Class<T>): T {
-        val jsonObj = getNextUrl(url)
-        return gson.fromJson(jsonObj, clazz)
-    }
 }

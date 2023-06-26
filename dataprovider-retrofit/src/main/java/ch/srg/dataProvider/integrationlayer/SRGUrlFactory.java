@@ -2,7 +2,7 @@ package ch.srg.dataProvider.integrationlayer;
 
 import android.net.Uri;
 
-import ch.srg.dataProvider.integrationlayer.data.IlHost;
+import ch.srg.dataProvider.integrationlayer.request.IlHost;
 
 /**
  * Copyright (c) SRG SSR. All rights reserved.

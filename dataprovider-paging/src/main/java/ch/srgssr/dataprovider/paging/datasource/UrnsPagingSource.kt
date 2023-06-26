@@ -2,7 +2,7 @@ package ch.srgssr.dataprovider.paging.datasource
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import ch.srg.dataProvider.integrationlayer.data.ListResult
+import ch.srg.dataProvider.integrationlayer.data.remote.ListResult
 import java.io.IOException
 import kotlin.math.min
 

@@ -4,7 +4,7 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 
-import ch.srg.dataProvider.integrationlayer.data.IlHost;
+import ch.srg.dataProvider.integrationlayer.request.IlHost;
 import ch.srg.dataProvider.integrationlayer.dependencies.modules.IlAppModule;
 import ch.srg.dataProvider.integrationlayer.dependencies.modules.SRGConfigModule;
 

@@ -1,6 +1,7 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("org.jetbrains.kotlin.kapt")
     `maven-publish`
 }
 
@@ -38,7 +39,10 @@ android {
 
 dependencies {
     implementation("androidx.core:core-ktx:${Versions.coreKtx}")
-    implementation("com.google.code.gson:gson:${Versions.gson}")
+
+    api("com.squareup.moshi:moshi:${Versions.moshi}")
+    api("com.squareup.moshi:moshi-adapters:${Versions.moshi}")
+    kapt("com.squareup.moshi:moshi-kotlin-codegen:${Versions.moshi}")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

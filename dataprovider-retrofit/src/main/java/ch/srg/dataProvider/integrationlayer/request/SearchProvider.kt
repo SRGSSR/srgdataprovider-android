@@ -1,12 +1,12 @@
 package ch.srg.dataProvider.integrationlayer.request
 
-import ch.srg.dataProvider.integrationlayer.data.MediaListResult
-import ch.srg.dataProvider.integrationlayer.data.ShowListResult
-import ch.srg.dataProvider.integrationlayer.data.search.SearchParams
-import ch.srg.dataProvider.integrationlayer.data.search.SearchResultMediaList
-import ch.srg.dataProvider.integrationlayer.data.search.SearchResultShowList
-import ch.srg.dataProvider.integrationlayer.data.search.SearchResultWithMediaList
-import ch.srg.dataProvider.integrationlayer.data.search.SearchResultWithShowList
+import ch.srg.dataProvider.integrationlayer.data.remote.MediaListResult
+import ch.srg.dataProvider.integrationlayer.data.remote.SearchParams
+import ch.srg.dataProvider.integrationlayer.data.remote.SearchResultMediaList
+import ch.srg.dataProvider.integrationlayer.data.remote.SearchResultShowList
+import ch.srg.dataProvider.integrationlayer.data.remote.SearchResultWithMediaList
+import ch.srg.dataProvider.integrationlayer.data.remote.SearchResultWithShowList
+import ch.srg.dataProvider.integrationlayer.data.remote.ShowListResult
 import ch.srg.dataProvider.integrationlayer.request.parameters.Bu
 import ch.srg.dataProvider.integrationlayer.request.parameters.IlMediaType
 import ch.srg.dataProvider.integrationlayer.request.parameters.IlPaging

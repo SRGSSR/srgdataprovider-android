@@ -2,7 +2,7 @@ package ch.srgssr.dataprovider.paging.datasource
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import ch.srg.dataProvider.integrationlayer.data.ListResult
+import ch.srg.dataProvider.integrationlayer.data.remote.ListResult
 
 /**
  * Copyright (c) SRG SSR. All rights reserved.
@@ -24,10 +24,11 @@ class NextUrlPagingSource<Value : Any>(
     override suspend fun load(params: LoadParams<String>): LoadResult<String, Value> {
         return try {
             val nextUrl = params.key // PageSize+PrefetchDistance
-            val listResult = if (nextUrl == null)
+            val listResult = if (nextUrl == null) {
                 initialCall.invoke(params.loadSize)
-            else
+            } else {
                 nextCall.invoke(nextUrl)
+            }
             val data = listResult?.list
             LoadResult.Page(data.orEmpty(), prevKey = null, nextKey = listResult?.next)
         } catch (e: Exception) {

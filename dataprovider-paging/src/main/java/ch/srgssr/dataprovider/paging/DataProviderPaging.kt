@@ -3,17 +3,17 @@ package ch.srgssr.dataprovider.paging
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import ch.srg.dataProvider.integrationlayer.data.Episode
-import ch.srg.dataProvider.integrationlayer.data.ListResult
-import ch.srg.dataProvider.integrationlayer.data.LiveCenterType
-import ch.srg.dataProvider.integrationlayer.data.Media
-import ch.srg.dataProvider.integrationlayer.data.MediaFilter
-import ch.srg.dataProvider.integrationlayer.data.MediaType
-import ch.srg.dataProvider.integrationlayer.data.Show
-import ch.srg.dataProvider.integrationlayer.data.Song
-import ch.srg.dataProvider.integrationlayer.data.search.SearchParams
-import ch.srg.dataProvider.integrationlayer.data.search.SearchResultWithMediaList
-import ch.srg.dataProvider.integrationlayer.data.search.SearchResultWithShowList
+import ch.srg.dataProvider.integrationlayer.data.remote.Episode
+import ch.srg.dataProvider.integrationlayer.data.remote.ListResult
+import ch.srg.dataProvider.integrationlayer.data.remote.LiveCenterType
+import ch.srg.dataProvider.integrationlayer.data.remote.Media
+import ch.srg.dataProvider.integrationlayer.data.remote.MediaFilter
+import ch.srg.dataProvider.integrationlayer.data.remote.MediaType
+import ch.srg.dataProvider.integrationlayer.data.remote.SearchParams
+import ch.srg.dataProvider.integrationlayer.data.remote.SearchResultWithMediaList
+import ch.srg.dataProvider.integrationlayer.data.remote.SearchResultWithShowList
+import ch.srg.dataProvider.integrationlayer.data.remote.Show
+import ch.srg.dataProvider.integrationlayer.data.remote.Song
 import ch.srg.dataProvider.integrationlayer.request.IlService
 import ch.srg.dataProvider.integrationlayer.request.SearchProvider
 import ch.srg.dataProvider.integrationlayer.request.parameters.Bu
@@ -264,7 +264,11 @@ class DataProviderPaging @Inject constructor(
         pageSize: Int = DefaultPageSize
     ): Flow<PagingData<Show>> {
         return createNextUrlPagingData(pageSize, initialCall = {
-            val result = searchProvider.searchShows(bu, searchTerm, IlMediaType(queryParameters.mediaType ?: MediaType.VIDEO))
+            val result = searchProvider.searchShows(
+                bu,
+                searchTerm,
+                IlMediaType(queryParameters.mediaType ?: MediaType.VIDEO)
+            )
             lastResult?.emit(result)
             result
         }, nextCall = {
@@ -283,7 +287,8 @@ class DataProviderPaging @Inject constructor(
             nextCall: suspend (next: String) -> ListResult<T>?
         ): Flow<PagingData<T>> = Pager(config = pageSize.toPagingConfig(), pagingSourceFactory = {
             NextUrlPagingSource(
-                initialCall = initialCall, nextCall = nextCall
+                initialCall = initialCall,
+                nextCall = nextCall
             )
         }).flow
     }

@@ -3,12 +3,11 @@ package ch.srg.dataProvider.integrationlayer.dependencies.components;
 import android.app.Application;
 import android.content.Context;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.squareup.moshi.Moshi;
 
 import ch.srg.dataProvider.integrationlayer.SRGUrlFactory;
 import ch.srg.dataProvider.integrationlayer.dependencies.modules.ConfiguredScope;
-import ch.srg.dataProvider.integrationlayer.dependencies.modules.GsonModule;
+import ch.srg.dataProvider.integrationlayer.dependencies.modules.MoshiModule;
 import ch.srg.dataProvider.integrationlayer.dependencies.modules.IlAppModule;
 import ch.srg.dataProvider.integrationlayer.dependencies.modules.IlRetrofitModule;
 import ch.srg.dataProvider.integrationlayer.dependencies.modules.IlServiceModule;
@@ -25,14 +24,14 @@ import okhttp3.OkHttpClient;
  */
 @ConfiguredScope
 @Component(
-        modules = {
-                SRGConfigModule.class,
-                IlAppModule.class,
-                GsonModule.class,
-                OkHttpModule.class,
-                IlRetrofitModule.class,
-                IlServiceModule.class
-        }
+    modules = {
+        SRGConfigModule.class,
+        IlAppModule.class,
+        MoshiModule.class,
+        OkHttpModule.class,
+        IlRetrofitModule.class,
+        IlServiceModule.class
+    }
 )
 public interface IlDataProviderComponent {
     Application getApplication();
@@ -47,9 +46,7 @@ public interface IlDataProviderComponent {
 
     OkHttpClient getOkHttpClient();
 
-    GsonBuilder getGsonBuilder();
-
-    Gson getGson();
+    Moshi getMoshi();
 
     IlService getIlService();
 

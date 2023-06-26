@@ -1,6 +1,6 @@
 package ch.srg.dataProvider.integrationlayer.request.parameters
 
-import ch.srg.dataProvider.integrationlayer.data.MediaType
+import ch.srg.dataProvider.integrationlayer.data.remote.MediaType
 
 /**
  * Copyright (c) SRG SSR. All rights reserved.

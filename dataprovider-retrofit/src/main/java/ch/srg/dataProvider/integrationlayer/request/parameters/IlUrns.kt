@@ -1,6 +1,6 @@
 package ch.srg.dataProvider.integrationlayer.request.parameters
 
-import ch.srg.dataProvider.integrationlayer.data.SRGIdentifierMetadata
+import ch.srg.dataProvider.integrationlayer.data.remote.SRGIdentifierMetadata
 
 /**
  * Copyright (c) SRG SSR. All rights reserved.

@@ -2,7 +2,7 @@ package ch.srg.dataProvider.integrationlayer.dependencies.modules
 
 import android.net.Uri
 import ch.srg.dataProvider.integrationlayer.SRGUrlFactory
-import ch.srg.dataProvider.integrationlayer.data.IlHost
+import ch.srg.dataProvider.integrationlayer.request.IlHost
 import dagger.Module
 import dagger.Provides
 import javax.inject.Qualifier

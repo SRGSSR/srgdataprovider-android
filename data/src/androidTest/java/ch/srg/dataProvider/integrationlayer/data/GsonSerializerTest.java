@@ -14,9 +14,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-import ch.srg.dataProvider.integrationlayer.data.gson.DateJsonSerializer;
-import ch.srg.dataProvider.integrationlayer.data.gson.RationalSerializer;
-
 /**
  * <a href="http://d.android.com/tools/testing/testing_android.html">Testing Fundamentals</a>
  */
