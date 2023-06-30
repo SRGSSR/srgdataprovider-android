@@ -264,7 +264,7 @@ interface IlService {
     ): SongListResult
 
     @GET("2.0/{bu}/showList/radio/alphabeticalByChannel/{channelId}")
-    suspend fun getRadioAlphabeticalRadioShowsByChannelId(
+    suspend fun getRadioAlphabeticalShowsByChannelId(
         @Path("bu") bu: Bu,
         @Path("channelId") channelId: String,
         @Query("pageSize") pageSize: IlPaging?

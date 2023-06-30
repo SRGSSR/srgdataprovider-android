@@ -256,10 +256,10 @@ class DataProviderPaging @Inject constructor(
         )
     }
 
-    fun getTvAlphabeticalShows(bu: Bu, radioChannelId: String, pageSize: Int = DefaultPageSize): Flow<PagingData<Show>> {
+    fun getRadioAlphabeticalShowsByChannelId(bu: Bu, radioChannelId: String, pageSize: Int = DefaultPageSize): Flow<PagingData<Show>> {
         return createNextUrlPagingData(
             pageSize = pageSize,
-            initialCall = { ilService.getRadioAlphabeticalRadioShowsByChannelId(bu = bu, channelId = radioChannelId, pageSize = it.toIlPaging()) },
+            initialCall = { ilService.getRadioAlphabeticalShowsByChannelId(bu = bu, channelId = radioChannelId, pageSize = it.toIlPaging()) },
             nextCall = { ilService.getShowListNextUrl(it) }
         )
     }
