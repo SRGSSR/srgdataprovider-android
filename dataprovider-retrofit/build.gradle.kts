@@ -45,21 +45,21 @@ android {
 
 dependencies {
     api(project(mapOf("path" to ":data")))
-    implementation("androidx.core:core-ktx:${Versions.coreKtx}")
-    api("androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle}")
+    implementation(libs.core.ktx)
+    api(libs.lifecycle.livedata.ktx)
 
-    implementation("com.google.dagger:dagger:${Versions.dagger}")
-    kapt("com.google.dagger:dagger-compiler:${Versions.dagger}")
+    implementation(libs.dagger)
+    kapt(libs.dagger.compiler)
 
     //retrofit implementation
-    api("com.squareup.retrofit2:retrofit:${Versions.retrofit}")
-    api("com.squareup.retrofit2:converter-moshi:${Versions.retrofit}")
+    api(libs.retrofit)
+    api(libs.converter.moshi)
     //noinspection GradleDependency
-    implementation("com.squareup.okhttp3:logging-interceptor:${Versions.okHttp}")
+    implementation(libs.logging.interceptor)
 
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.ext.junit)
+    androidTestImplementation(libs.espresso.core)
 }
 
 publishing {
