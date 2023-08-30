@@ -1,15 +1,15 @@
 package ch.srg.dataProvider.integrationlayer.data.remote
 
 import android.net.Uri
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /**
  * Copyright (c) SRG SSR. All rights reserved.
  * <p>
  * License information is available from the LICENSE file.
  */
-@JsonClass(generateAdapter = true)
+@Serializable
 data class Resource @JvmOverloads constructor(
     val url: String,
     val drmList: List<Drm>? = null,
@@ -17,7 +17,7 @@ data class Resource @JvmOverloads constructor(
     val quality: Quality,
     val mimeType: String? = null,
     val presentation: Presentation = Presentation.DEFAULT,
-    @Json(name = "streaming")
+    @SerialName("streaming")
     val streamingMethod: StreamingMethod,
     val dvr: Boolean = false,
     val live: Boolean = false,
@@ -25,18 +25,18 @@ data class Resource @JvmOverloads constructor(
     val audioCodec: AudioCodec = AudioCodec.UNKNOWN,
     val videoCodec: VideoCodec = VideoCodec.UNKNOWN,
     val tokenType: TokenType = TokenType.NONE,
-    @Json(name = "subtitleInformationList")
+    @SerialName("subtitleInformationList")
     val subtitleVariants: List<Variant>? = null,
-    @Json(name = "audioTrackList")
+    @SerialName("audioTrackList")
     val audioVariants: List<Variant>? = null,
     /**
      * The stream offset from the real-world clock, in milliseconds (0 for on-demand or streams without DVR capabilities).
      */
-    @Json(name = "streamOffset")
+    @SerialName("streamOffset")
     val windowDvrOffset: Long? = null,
-    @Json(name = "analyticsData")
+    @SerialName("analyticsData")
     var comScoreAnalyticsLabels: HashMap<String, String>? = null,
-    @Json(name = "analyticsMetadata")
+    @SerialName("analyticsMetadata")
     var analyticsLabels: HashMap<String, String>? = null,
 ) {
     val streamType: StreamType
@@ -64,6 +64,7 @@ data class Resource @JvmOverloads constructor(
         return audioVariants != null && audioVariants.isNotEmpty()
     }
 
+    @Serializable
     data class Drm(val type: Type, val licenseUrl: String, val certificateUrl: String?) {
         enum class Type {
             FAIRPLAY, WIDEVINE, PLAYREADY

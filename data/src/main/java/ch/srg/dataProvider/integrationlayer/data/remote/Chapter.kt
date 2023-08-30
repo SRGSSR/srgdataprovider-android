@@ -1,16 +1,19 @@
+@file:UseSerializers(DateSerializer::class)
 package ch.srg.dataProvider.integrationlayer.data.remote
 
 import ch.srg.dataProvider.integrationlayer.data.ImageUrl
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
-import java.util.*
+import ch.srg.dataProvider.integrationlayer.data.serializer.DateSerializer
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.UseSerializers
+import java.util.Date
 
 /**
  * Copyright (c) SRG SSR. All rights reserved.
  * <p>
  * License information is available from the LICENSE file.
  */
-@JsonClass(generateAdapter = true)
+@Serializable
 data class Chapter(
     override val id: String,
     override val mediaType: MediaType,
@@ -39,9 +42,9 @@ data class Chapter(
     override val fullLengthUrn: String? = null,
     override val eventData: String? = null,
     override val subtitleList: List<Subtitle>? = null,
-    @Json(name = "analyticsData")
+    @SerialName("analyticsData")
     override val comScoreAnalyticsLabels: HashMap<String, String>? = null,
-    @Json(name = "analyticsMetadata")
+    @SerialName("analyticsMetadata")
     override val analyticsLabels: HashMap<String, String>? = null,
     override val aspectRatio: AspectRatio? = null,
     val segmentList: List<Segment>? = null,
@@ -53,7 +56,7 @@ data class Chapter(
      *  The reference date corresponding to the beginning of the stream, if any. You can use this date to map a time
      *  position relative to the stream (e.g. a segment mark in or mark out) to a date.
      */
-    @Json(name = "dvrReferenceDate")
+    @SerialName("dvrReferenceDate")
     val resourceReferenceDate: Date? = null,
     val timeIntervalList: List<TimeInterval>? = null,
     override val imageFocalPoint: FocalPoint? = null

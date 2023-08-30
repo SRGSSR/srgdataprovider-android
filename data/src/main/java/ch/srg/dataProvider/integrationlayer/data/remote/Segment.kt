@@ -1,8 +1,12 @@
+@file:UseSerializers(DateSerializer::class)
+
 package ch.srg.dataProvider.integrationlayer.data.remote
 
 import ch.srg.dataProvider.integrationlayer.data.ImageUrl
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import ch.srg.dataProvider.integrationlayer.data.serializer.DateSerializer
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.UseSerializers
 import java.util.Date
 
 /**
@@ -10,7 +14,7 @@ import java.util.Date
  * <p>
  * License information is available from the LICENSE file.
  */
-@JsonClass(generateAdapter = true)
+@Serializable
 data class Segment @JvmOverloads constructor(
     override val id: String,
     override val mediaType: MediaType,
@@ -48,9 +52,9 @@ data class Segment @JvmOverloads constructor(
     override val fullLengthUrn: String? = null,
     override val eventData: String? = null,
     override val subtitleList: List<Subtitle>? = null,
-    @Json(name = "analyticsData")
+    @SerialName("analyticsData")
     override var comScoreAnalyticsLabels: HashMap<String, String>? = null,
-    @Json(name = "analyticsMetadata")
+    @SerialName("analyticsMetadata")
     override var analyticsLabels: HashMap<String, String>? = null,
     /**
      * Set by the chapter

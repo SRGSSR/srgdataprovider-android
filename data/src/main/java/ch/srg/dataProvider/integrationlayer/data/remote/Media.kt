@@ -1,16 +1,19 @@
+@file:UseSerializers(DateSerializer::class)
 package ch.srg.dataProvider.integrationlayer.data.remote
 
 import ch.srg.dataProvider.integrationlayer.data.ImageUrl
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
-import java.util.*
+import ch.srg.dataProvider.integrationlayer.data.serializer.DateSerializer
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.UseSerializers
+import java.util.Date
 
 /**
  * Copyright (c) SRG SSR. All rights reserved.
  * <p>
  * License information is available from the LICENSE file.
  */
-@JsonClass(generateAdapter = true)
+@Serializable
 data class Media(
     override val id: String,
     override val mediaType: MediaType,
@@ -41,8 +44,8 @@ data class Media(
     val show: Show? = null,
     val channel: Channel? = null,
     val episode: Episode? = null,
-    @Json(name = "subtitleInformationList")
+    @SerialName("subtitleInformationList")
     val subtitleVariants: List<Variant>? = null,
-    @Json(name = "audioTrackList")
+    @SerialName("audioTrackList")
     val audioVariants: List<Variant>? = null
 ) : SRGMediaMetadata

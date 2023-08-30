@@ -1,6 +1,8 @@
 package ch.srg.dataProvider.integrationlayer.data.remote
 
-import com.squareup.moshi.Json
+import ch.srg.dataProvider.integrationlayer.data.serializer.BlockReasonSerializer
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /**
  * Copyright (c) SRG SSR. All rights reserved.
@@ -35,6 +37,7 @@ enum class YouthProtectionColor {
     RED, YELLOW
 }
 
+@Serializable(with = BlockReasonSerializer::class)
 enum class BlockReason {
     GEOBLOCK, LEGAL, COMMERCIAL, AGERATING18, AGERATING12, STARTDATE, ENDDATE, UNKNOWN;
 
@@ -87,7 +90,7 @@ enum class AudioCodec {
     UNKNOWN,
     AAC,
 
-    @Json(name = "AAC-HE")
+    @SerialName("AAC-HE")
     AAC_HE,
     MP3,
     MP2,
@@ -103,13 +106,13 @@ enum class MediaContainer {
 }
 
 enum class MediaTypeFilter {
-    @Json(name = "episode")
+    @SerialName("episode")
     EPISODE,
 
-    @Json(name = "segment")
+    @SerialName("segment")
     SEGMENT,
 
-    @Json(name = "clip")
+    @SerialName("clip")
     CLIP
 }
 
@@ -120,22 +123,22 @@ enum class MediaFilter {
 enum class TimeAvailability { NOT_YET_AVAILABLE, NOT_AVAILABLE_ANYMORE, AVAILABLE }
 
 enum class SocialCountKey {
-    @Json(name = "srgView")
+    @SerialName("srgView")
     SRG_VIEW,
 
-    @Json(name = "srgLike")
+    @SerialName("srgLike")
     SRG_LIKE,
 
-    @Json(name = "fbShare")
+    @SerialName("fbShare")
     FB_SHARE,
 
-    @Json(name = "googleShare")
+    @SerialName("googleShare")
     GOOGLE_SHARE,
 
-    @Json(name = "twitterShare")
+    @SerialName("twitterShare")
     TWITTER_SHARE,
 
-    @Json(name = "whatsAppShare")
+    @SerialName("whatsAppShare")
     WHATSAPP_SHARE
 }
 

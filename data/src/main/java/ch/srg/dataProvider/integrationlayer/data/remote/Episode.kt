@@ -1,15 +1,18 @@
+@file:UseSerializers(DateSerializer::class)
 package ch.srg.dataProvider.integrationlayer.data.remote
 
 import ch.srg.dataProvider.integrationlayer.data.ImageUrl
-import com.squareup.moshi.JsonClass
-import java.util.*
+import ch.srg.dataProvider.integrationlayer.data.serializer.DateSerializer
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.UseSerializers
+import java.util.Date
 
 /**
  * Copyright (c) SRG SSR. All rights reserved.
  * <p>
  * License information is available from the LICENSE file.
  */
-@JsonClass(generateAdapter = true)
+@Serializable
 data class Episode(
     val id: String,
     override val title: String,

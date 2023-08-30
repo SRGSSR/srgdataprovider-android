@@ -1,6 +1,8 @@
+@file:UseSerializers(DateSerializer::class)
 package ch.srg.dataProvider.integrationlayer.data.remote
-
-import com.squareup.moshi.JsonClass
+import ch.srg.dataProvider.integrationlayer.data.serializer.DateSerializer
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.UseSerializers
 import java.util.Date
 
 /**
@@ -8,7 +10,8 @@ import java.util.Date
  * <p>
  * License information is available from the LICENSE file.
  */
-@JsonClass(generateAdapter = true)
+@Serializable
+
 data class BroadCastInformation(
     val hintText: String? = null,
     val url: String? = null,

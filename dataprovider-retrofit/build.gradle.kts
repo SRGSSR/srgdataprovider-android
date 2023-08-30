@@ -49,7 +49,7 @@ dependencies {
 
     //retrofit implementation
     api(libs.retrofit)
-    api(libs.converter.moshi)
+    implementation(libs.retrofit2.kotlinx.serialization.converter)
     //noinspection GradleDependency
     implementation(libs.logging.interceptor)
 
