@@ -1,7 +1,7 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
-    id("org.jetbrains.kotlin.kapt")
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.kapt)
     `maven-publish`
 }
 
@@ -45,16 +45,16 @@ android {
 
 dependencies {
     api(project(mapOf("path" to ":dataprovider-retrofit")))
-    implementation("androidx.core:core-ktx:${Versions.coreKtx}")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}")
-    api("androidx.paging:paging-runtime-ktx:${Versions.paging}")
+    implementation(libs.core.ktx)
+    implementation(libs.lifecycle.viewmodel.ktx)
+    api(libs.paging.runtime.ktx)
 
-    implementation("com.google.dagger:dagger:${Versions.dagger}")
-    kapt("com.google.dagger:dagger-compiler:${Versions.dagger}")
+    implementation(libs.dagger)
+    kapt(libs.dagger.compiler)
 
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.ext.junit)
+    androidTestImplementation(libs.espresso.core)
 }
 
 publishing {

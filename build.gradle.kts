@@ -1,19 +1,18 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
+import io.gitlab.arturbosch.detekt.Detekt
 
 plugins {
-    id("com.android.application") version "8.0.1" apply false
-    id("com.android.library") version "8.0.1" apply false
-    id("org.jetbrains.kotlin.android") version "1.6.21" apply false
+    alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.android.library) apply false
+    alias(libs.plugins.kotlin.kapt) apply false
+    alias(libs.plugins.kotlin.android) apply false
     // https://github.com/detekt/detekt
-    id("io.gitlab.arturbosch.detekt").version(Versions.detekt)
-}
-
-tasks.register("clean", Delete::class) {
-    delete(rootProject.buildDir)
+    alias(libs.plugins.detekt)
 }
 
 allprojects {
     apply(plugin = "io.gitlab.arturbosch.detekt")
+
     detekt {
         buildUponDefaultConfig = false // preconfigure defaults
         allRules = false // activate all available (even unstable) rules.
@@ -24,9 +23,25 @@ allprojects {
         autoCorrect = true
     }
 
-    dependencies {
-        detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:${Versions.detekt}")
+    tasks.withType<Detekt>().configureEach {
+        jvmTarget = "17"
+        reports {
+            xml.required.set(false)
+            html.required.set(true)
+            txt.required.set(false)
+            sarif.required.set(false)
+            md.required.set(false)
+        }
     }
+
+    dependencies {
+        //noinspection UseTomlInstead
+        detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.22.0")
+    }
+}
+
+tasks.register("clean", Delete::class) {
+    delete(rootProject.buildDir)
 }
 
 /*

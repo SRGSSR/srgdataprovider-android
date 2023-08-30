@@ -1,7 +1,7 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
-    id("org.jetbrains.kotlin.kapt")
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.kapt)
     `maven-publish`
 }
 
@@ -44,15 +44,16 @@ android {
 }
 
 dependencies {
-    implementation("androidx.core:core-ktx:${Versions.coreKtx}")
+    implementation(libs.core.ktx)
 
-    api("com.squareup.moshi:moshi:${Versions.moshi}")
-    api("com.squareup.moshi:moshi-adapters:${Versions.moshi}")
-    kapt("com.squareup.moshi:moshi-kotlin-codegen:${Versions.moshi}")
+    api(libs.moshi)
+    api(libs.moshi.adapters)
+    kapt(libs.moshi.kotlin.codegen)
+    detektPlugins(libs.detekt.formatting)
 
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.ext.junit)
+    androidTestImplementation(libs.espresso.core)
 }
 
 publishing {
