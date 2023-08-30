@@ -141,7 +141,3 @@ enum class SocialCountKey {
     @SerialName("whatsAppShare")
     WHATSAPP_SHARE
 }
-
-sealed interface SectionType2 {
-    data class Unknow(val value: String)
-}
