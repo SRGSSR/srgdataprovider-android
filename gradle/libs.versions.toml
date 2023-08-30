@@ -1,11 +1,14 @@
 [versions]
+androidGradlePlugin = "8.1.1"
 androidx-junit = "1.1.5"
 appcompat = "1.6.1"
 constraintlayout = "2.1.4"
 core-ktx = "1.10.1"
 dagger = "2.47"
+detekt = "1.22.0"
 espresso-core = "3.5.1"
 junit = "4.13.2"
+kotlinPlugin = "1.9.10"
 lifecycle-viewmodel-ktx = "2.6.1"
 logging-interceptor = "4.9.1"
 material = "1.9.0"
@@ -32,5 +35,12 @@ moshi-adapters = { module = "com.squareup.moshi:moshi-adapters", version.ref = "
 moshi-kotlin-codegen = { module = "com.squareup.moshi:moshi-kotlin-codegen", version.ref = "moshi" }
 paging-runtime-ktx = { module = "androidx.paging:paging-runtime-ktx", version.ref = "paging-runtime-ktx" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+detekt-cli = { group = "io.gitlab.arturbosch.detekt", name = "detekt-cli", version.ref = "detekt" }
+detekt-formatting = { group = "io.gitlab.arturbosch.detekt", name = "detekt-formatting", version.ref = "detekt" }
 
 [plugins]
+android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
+android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }
+detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
+kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlinPlugin" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlinPlugin" }

@@ -1,7 +1,7 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
-    id("org.jetbrains.kotlin.kapt")
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.kapt)
     `maven-publish`
 }
 
@@ -49,6 +49,7 @@ dependencies {
     api(libs.moshi)
     api(libs.moshi.adapters)
     kapt(libs.moshi.kotlin.codegen)
+    detektPlugins(libs.detekt.formatting)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
