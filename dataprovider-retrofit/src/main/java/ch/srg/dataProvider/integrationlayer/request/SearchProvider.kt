@@ -11,7 +11,6 @@ import ch.srg.dataProvider.integrationlayer.request.parameters.Bu
 import ch.srg.dataProvider.integrationlayer.request.parameters.IlMediaType
 import ch.srg.dataProvider.integrationlayer.request.parameters.IlPaging
 import ch.srg.dataProvider.integrationlayer.request.parameters.IlUrns
-import javax.inject.Inject
 
 /**
  * Copyright (c) SRG SSR. All rights reserved.
@@ -19,7 +18,7 @@ import javax.inject.Inject
  * License information is available from the LICENSE file.
  */
 @Suppress("TooGenericExceptionCaught")
-class SearchProvider @Inject constructor(val ilService: IlService) {
+class SearchProvider(private val ilService: IlService) {
 
     /**
      * Search media result without Media object, only urns

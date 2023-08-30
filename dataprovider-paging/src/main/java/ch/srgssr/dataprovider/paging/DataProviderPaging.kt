@@ -26,20 +26,17 @@ import ch.srg.dataProvider.integrationlayer.request.parameters.IlTransmission
 import ch.srg.dataProvider.integrationlayer.request.parameters.IlUrns
 import ch.srgssr.dataprovider.paging.datasource.NextUrlPagingSource
 import ch.srgssr.dataprovider.paging.datasource.UrnsPagingSource
-import ch.srgssr.dataprovider.paging.dependencies.DataProviderPagingScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import java.util.Date
-import javax.inject.Inject
 
 /**
  * Paging data source
  */
-@DataProviderPagingScope
-class DataProviderPaging @Inject constructor(
-    private val ilService: IlService,
-    private val searchProvider: SearchProvider
+class DataProviderPaging(
+    private val ilService: IlService
 ) {
+    private val searchProvider = SearchProvider(ilService)
 
     fun getShowListFromUrns(tabUrns: List<String>, pageSize: Int = DefaultPageSize): Flow<PagingData<Show>> {
         return Pager(config = pageSize.toPagingConfig(), pagingSourceFactory = {
