@@ -1,7 +1,6 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.kapt)
     `maven-publish`
 }
 
@@ -47,9 +46,6 @@ dependencies {
     api(project(mapOf("path" to ":data")))
     implementation(libs.core.ktx)
     api(libs.lifecycle.livedata.ktx)
-
-    implementation(libs.dagger)
-    kapt(libs.dagger.compiler)
 
     //retrofit implementation
     api(libs.retrofit)

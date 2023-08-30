@@ -6,8 +6,6 @@ import androidx.annotation.IntDef
 import ch.srg.dataProvider.integrationlayer.SRGUrlFactory
 import ch.srg.dataProvider.integrationlayer.data.IlImage
 import ch.srg.dataProvider.integrationlayer.data.IlImage.Scaling
-import ch.srg.dataProvider.integrationlayer.dependencies.modules.ConfiguredScope
-import javax.inject.Inject
 
 /**
  * Copyright (c) SRG SSR. All rights reserved.
@@ -15,8 +13,7 @@ import javax.inject.Inject
  *
  * License information is available from the LICENSE file.
  */
-@ConfiguredScope
-class ImageProvider @Inject constructor(factory: SRGUrlFactory) {
+class ImageProvider(factory: SRGUrlFactory) {
     @IntDef(SIZE_SMALL, SIZE_MEDIUM, SIZE_LARGE)
     annotation class ImageSize
 
