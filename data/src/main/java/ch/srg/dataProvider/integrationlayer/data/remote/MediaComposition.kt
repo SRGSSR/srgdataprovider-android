@@ -1,8 +1,8 @@
 package ch.srg.dataProvider.integrationlayer.data.remote
 
 import android.text.TextUtils
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /**
  *  Full information used when playing a media. A media composition provides the full playback context:
@@ -14,7 +14,7 @@ import com.squareup.moshi.JsonClass
  * <p>
  * License information is available from the LICENSE file.
  */
-@JsonClass(generateAdapter = true)
+@Serializable
 data class MediaComposition(
     val chapterUrn: String,
     val chapterList: List<Chapter>,
@@ -22,9 +22,9 @@ data class MediaComposition(
     val episode: Episode? = null,
     val show: Show? = null,
     val channel: Channel? = null,
-    @Json(name = "analyticsData")
+    @SerialName("analyticsData")
     val comScoreAnalyticsLabels: HashMap<String, String>? = null,
-    @Json(name = "analyticsMetadata")
+    @SerialName("analyticsMetadata")
     val analyticsLabels: HashMap<String, String>? = null,
 ) {
 

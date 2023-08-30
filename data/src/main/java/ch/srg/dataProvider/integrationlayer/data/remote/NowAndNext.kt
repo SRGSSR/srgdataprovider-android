@@ -1,15 +1,15 @@
 package ch.srg.dataProvider.integrationlayer.data.remote
 
 import ch.srg.dataProvider.integrationlayer.data.ImageUrl
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /**
  * Copyright (c) SRG SSR. All rights reserved.
  * <p>
  * License information is available from the LICENSE file.
  */
-@JsonClass(generateAdapter = true)
+@Serializable
 data class NowAndNext(
     override val id: String,
     override val vendor: Vendor,
@@ -23,7 +23,7 @@ data class NowAndNext(
     override val imageCopyright: String? = null,
     override val transmission: Transmission,
     override val timeTableUrl: String? = null,
-    @Json(name = "imageUrlRaw")
+    @SerialName("imageUrlRaw")
     override val rawImageUrl: ImageUrl? = null,
     val now: Program? = null,
     val next: Program? = null

@@ -3,6 +3,7 @@
 package ch.srg.dataProvider.integrationlayer.data
 
 import ch.srg.dataProvider.integrationlayer.data.IlImage.Scaling
+import ch.srg.dataProvider.integrationlayer.data.serializer.ImageUrlSerializer
 import java.io.Serializable
 
 /**
@@ -12,6 +13,7 @@ import java.io.Serializable
  * License information is available from the LICENSE file.
  */
 @Suppress("SerialVersionUIDInSerializableClass")
+@kotlinx.serialization.Serializable(with = ImageUrlSerializer::class)
 data class ImageUrl(
     /**
      * Only for internal use!

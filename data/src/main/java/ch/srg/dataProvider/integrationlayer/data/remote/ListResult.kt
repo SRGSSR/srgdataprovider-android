@@ -1,7 +1,7 @@
 package ch.srg.dataProvider.integrationlayer.data.remote
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /**
  * Copyright (c) SRG SSR. All rights reserved.
@@ -43,64 +43,64 @@ abstract class ListResult<T> : Iterable<T> {
     }
 }
 
-@JsonClass(generateAdapter = true)
+@Serializable
 data class MediaListResult(
-    @Json(name = "mediaList")
+    @SerialName("mediaList")
     override val data: List<Media>? = null,
     override val next: String? = null,
     val recommendationId: String? = null,
     val title: String? = null,
 ) : ListResult<Media>()
 
-@JsonClass(generateAdapter = true)
+@Serializable
 data class ShowListResult(
-    @Json(name = "showList")
+    @SerialName("showList")
     override val data: List<Show>? = emptyList(),
     override val next: String? = null,
 ) : ListResult<Show>()
 
-@JsonClass(generateAdapter = true)
+@Serializable
 data class TopicListResult(
-    @Json(name = "topicList")
+    @SerialName("topicList")
     override val data: List<Topic>? = null,
     override val next: String? = null
 ) : ListResult<Topic>()
 
-@JsonClass(generateAdapter = true)
+@Serializable
 data class ChannelListResult(
-    @Json(name = "channelList")
+    @SerialName("channelList")
     override val data: List<Channel>? = null,
     override val next: String? = null
 ) : ListResult<Channel>()
 
-@JsonClass(generateAdapter = true)
+@Serializable
 data class MediaListWithShowResult(
     val show: Show?,
-    @Json(name = "mediaList")
+    @SerialName("mediaList")
     override val data: List<Media>? = null,
     override val next: String? = null
 ) : ListResult<Media>()
 
-@JsonClass(generateAdapter = true)
+@Serializable
 data class SongListResult(
-    @Json(name = "songList")
+    @SerialName("songList")
     override val data: List<Song>? = null,
     override val next: String? = null,
 ) : ListResult<Song>()
 
-@JsonClass(generateAdapter = true)
+@Serializable
 data class ProgramCompositionListResult(
     val channel: Channel,
-    @Json(name = "programList")
+    @SerialName("programList")
     override val data: List<Program>?,
     override val next: String? = null
 ) : ListResult<Program>()
 
-@JsonClass(generateAdapter = true)
+@Serializable
 data class EpisodeCompositionListResult(
     val show: Show,
     val channel: Channel? = null,
-    @Json(name = "episodeList")
+    @SerialName("episodeList")
     override val data: List<Episode>? = null,
     override val next: String? = null
 ) : ListResult<Episode>()

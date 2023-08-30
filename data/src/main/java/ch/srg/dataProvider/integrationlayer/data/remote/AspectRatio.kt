@@ -1,9 +1,10 @@
 package ch.srg.dataProvider.integrationlayer.data.remote
 
-import com.squareup.moshi.JsonClass
+import ch.srg.dataProvider.integrationlayer.data.serializer.AspectRatioSerializer
+import kotlinx.serialization.Serializable
 
 @Suppress("MemberVisibilityCanBePrivate")
-@JsonClass(generateAdapter = true)
+@Serializable(with = AspectRatioSerializer::class)
 data class AspectRatio(val numerator: Int, val denominator: Int) {
 
     override fun toString(): String {

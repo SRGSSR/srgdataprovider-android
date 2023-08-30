@@ -1,13 +1,13 @@
 package ch.srg.dataProvider.integrationlayer.data.remote
 
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * Copyright (c) SRG SSR. All rights reserved.
  * <p>
  * License information is available from the LICENSE file.
  */
-@JsonClass(generateAdapter = true)
+@Serializable
 data class MediaStatisticResult(
     override val id: String,
     override val vendor: Vendor,
@@ -16,5 +16,5 @@ data class MediaStatisticResult(
     val socialCountList: List<SocialCountEntry>? = null
 ) : SRGIdentifierMetadata
 
-@JsonClass(generateAdapter = true)
+@Serializable
 data class MediaStatisticPost(val eventData: String, val userId: String?)

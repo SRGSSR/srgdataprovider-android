@@ -1,8 +1,12 @@
+@file:UseSerializers(DateSerializer::class)
+
 package ch.srg.dataProvider.integrationlayer.data.remote
 
 import ch.srg.dataProvider.integrationlayer.data.ImageUrl
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import ch.srg.dataProvider.integrationlayer.data.serializer.DateSerializer
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.UseSerializers
 import java.util.Date
 
 /**
@@ -10,7 +14,7 @@ import java.util.Date
  * <p>
  * License information is available from the LICENSE file.
  */
-@JsonClass(generateAdapter = true)
+@Serializable
 data class Program(
     override val title: String,
     val startTime: Date,
@@ -33,20 +37,20 @@ data class Program(
     val youthProtectionColor: YouthProtectionColor? = null,
     val subtitle: String? = null,
     val originalTitle: String? = null,
-    @Json(name = "creditList")
+    @SerialName("creditList")
     val crewMemberList: List<CrewMember>? = null,
     val subProgramList: List<Program>? = null,
     val subtitlesAvailable: Boolean = false,
-    @Json(name = "hasTwoLanguages")
+    @SerialName("hasTwoLanguages")
     val hasAlternateAudio: Boolean = false,
     val hasSignLanguage: Boolean = false,
-    @Json(name = "hasVisualDescription")
+    @SerialName("hasVisualDescription")
     val hasAudioDescription: Boolean = false,
     val isFollowUp: Boolean = false,
     val isDolbyDigital: Boolean = false,
-    @Json(name = "isRepetition")
+    @SerialName("isRepetition")
     val isRebroadcast: Boolean = false,
-    @Json(name = "repetitionDescription")
+    @SerialName("repetitionDescription")
     val rebroadcastDescription: String? = null,
     val channelTitle: String? = null,
     val channelUrn: String? = null
@@ -57,5 +61,5 @@ data class Program(
     }
 }
 
-@JsonClass(generateAdapter = true)
+@Serializable
 data class CrewMember(var realName: String, var role: String? = null, var name: String? = null)

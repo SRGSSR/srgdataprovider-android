@@ -1,11 +1,11 @@
 package ch.srg.dataProvider.integrationlayer.data.remote
 
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * Copyright (c) SRG SSR. All rights reserved.
  * <p>
  * License information is available from the LICENSE file.
  */
-@JsonClass(generateAdapter = true)
+@Serializable
 data class SearchSuggestion(val exactMatchTotal: Int, val text: String?)

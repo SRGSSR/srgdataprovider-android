@@ -1,6 +1,6 @@
 package ch.srg.dataProvider.integrationlayer.data.remote
 
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * Copyright (c) SRG SSR. All rights reserved.
@@ -12,7 +12,7 @@ interface SRGVariant : SRGLanguage {
     val type: VariantType?
 }
 
-@JsonClass(generateAdapter = true)
+@Serializable
 data class Variant(
     override val locale: String,
     override val source: VariantSource,

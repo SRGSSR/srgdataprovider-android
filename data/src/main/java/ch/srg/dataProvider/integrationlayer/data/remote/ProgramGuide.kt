@@ -1,17 +1,17 @@
 package ch.srg.dataProvider.integrationlayer.data.remote
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /**
  * Copyright (c) SRG SSR. All rights reserved.
  * <p>
  * License information is available from the LICENSE file.
  */
-@JsonClass(generateAdapter = true)
+@Serializable
 data class ProgramGuide(
     override val next: String? = null,
-    @Json(name = "programGuide")
+    @SerialName("programGuide")
     override val data: List<ProgramCompositionListResult>?
 ) : ListResult<ProgramCompositionListResult>() {
 

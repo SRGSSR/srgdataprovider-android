@@ -1,14 +1,14 @@
 package ch.srg.dataProvider.integrationlayer.data.remote
 
 import ch.srg.dataProvider.integrationlayer.data.ImageUrl
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
 /**
  * Copyright (c) SRG SSR. All rights reserved.
  * <p>
  * License information is available from the LICENSE file.
  */
-@JsonClass(generateAdapter = true)
+@Serializable
 data class Representation(
     /**
      * @see RepresentationType
@@ -37,7 +37,7 @@ data class Representation(
     val imageFocalPoint: FocalPoint?
         get() = properties?.imageFocalPoint
 
-    @JsonClass(generateAdapter = true)
+    @Serializable
     data class Properties(
         val title: String? = null,
         val description: String? = null,

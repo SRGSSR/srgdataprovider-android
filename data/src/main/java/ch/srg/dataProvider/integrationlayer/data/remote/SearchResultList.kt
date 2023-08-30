@@ -1,7 +1,7 @@
 package ch.srg.dataProvider.integrationlayer.data.remote
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /**
  * Copyright (c) SRG SSR. All rights reserved.
@@ -17,10 +17,10 @@ sealed class SearchResultList : ListResult<SearchResult>() {
     }
 }
 
-@JsonClass(generateAdapter = true)
+@Serializable
 data class SearchResultMediaList(
     override val next: String?,
-    @Json(name = "searchResultMediaList")
+    @SerialName("searchResultMediaList")
     override val data: List<SearchResult>? = null,
     override val searchTerm: String? = null,
     override val total: Int? = null,
@@ -29,16 +29,16 @@ data class SearchResultMediaList(
     val suggestionList: List<SearchSuggestion>? = null
 ) : SearchResultList()
 
-@JsonClass(generateAdapter = true)
+@Serializable
 data class SearchResultShowList(
     override val next: String? = null,
     override val total: Int? = null,
-    @Json(name = "searchResultShowList")
+    @SerialName("searchResultShowList")
     override val data: List<SearchResult>? = null,
     override val searchTerm: String? = null
 ) : SearchResultList()
 
-@JsonClass(generateAdapter = true)
+@Serializable
 data class SearchResultWithMediaList(
     override val next: String? = null,
     override val data: List<Media>? = null,
@@ -49,7 +49,7 @@ data class SearchResultWithMediaList(
     val suggestionList: List<SearchSuggestion>? = null
 ) : ListResult<Media>()
 
-@JsonClass(generateAdapter = true)
+@Serializable
 data class SearchResultWithShowList(
     override val next: String? = null,
     val total: Int? = null,

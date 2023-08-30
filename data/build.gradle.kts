@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.kotlin.kapt)
     `maven-publish`
 }
@@ -45,10 +46,7 @@ android {
 
 dependencies {
     implementation(libs.core.ktx)
-
-    api(libs.moshi)
-    api(libs.moshi.adapters)
-    kapt(libs.moshi.kotlin.codegen)
+    api(libs.kotlinx.serialization.json)
     detektPlugins(libs.detekt.formatting)
 
     testImplementation(libs.junit)

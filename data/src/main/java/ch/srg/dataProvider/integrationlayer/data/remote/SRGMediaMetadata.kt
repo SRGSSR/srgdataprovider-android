@@ -1,7 +1,7 @@
 package ch.srg.dataProvider.integrationlayer.data.remote
 
 import android.text.TextUtils
-import java.util.*
+import java.util.Date
 
 /**
  * Copyright (c) SRG SSR. All rights reserved.
