@@ -18,12 +18,8 @@ public final class ImageUrl implements Serializable {
         this.url = url;
     }
 
-    public IlImage getIlImage(IlImage.Scaling scaling) {
-        return new IlImage(url, scaling);
-    }
-
     public IlImage getIlImage() {
-        return getIlImage(IlImage.Scaling.Default);
+        return new IlImage(url);
     }
 
     @Override

@@ -11,11 +11,6 @@ import java.util.Objects;
  */
 public final class IlImage {
 
-    public enum Scaling {
-        Default,
-        PreserveAspectRatio
-    }
-
     public enum Size {
         w240(240),
         w320(320),
@@ -51,16 +46,9 @@ public final class IlImage {
 
     @NonNull
     private final String url;
-    @NonNull
-    private final Scaling scaling;
-
-    public IlImage(@NonNull String url, @NonNull Scaling scaling) {
-        this.url = url;
-        this.scaling = scaling;
-    }
 
     public IlImage(@NonNull String url) {
-        this(url, Scaling.Default);
+        this.url = url;
     }
 
     @NonNull
@@ -68,21 +56,16 @@ public final class IlImage {
         return url;
     }
 
-    @NonNull
-    public Scaling getScaling() {
-        return scaling;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         IlImage ilImage = (IlImage) o;
-        return url.equals(ilImage.url) && scaling == ilImage.scaling;
+        return url.equals(ilImage.url);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(url, scaling);
+        return Objects.hash(url);
     }
 }

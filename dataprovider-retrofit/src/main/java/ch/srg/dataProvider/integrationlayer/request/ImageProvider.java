@@ -46,41 +46,35 @@ public final class ImageProvider {
      * @param widthInPixels 160,240,320,480,640,960,1280,1920
      */
     private Uri decorateImageWithSizeInPixel(IlImage image, int widthInPixels) {
-        return decorateImageUrlWithSizeInPixel(image.getUrl(), image.getScaling(), widthInPixels);
-    }
-
-    public Uri decorateImageUrlWithSize(String imageUrl, IlImage.Scaling scaling, @ImageSize int size) {
-        return decorateImageUrlWithSize(imageUrl, scaling, getImageSize(size));
+        return decorateImageUrlWithSizeInPixel(image.getUrl(), widthInPixels);
     }
 
     public Uri decorateImageUrlWithSize(String imageUrl, @ImageSize int size) {
-        return decorateImageUrlWithSize(imageUrl, IlImage.Scaling.Default, getImageSize(size));
+        return decorateImageUrlWithSize(imageUrl, getImageSize(size));
     }
 
-    public Uri decorateImageUrlWithSize(String imageUrl, IlImage.Scaling scaling, IlImage.Size size) {
-        return decorateImageUrlWithSizeInPixel(imageUrl, scaling, size.value);
+    public Uri decorateImageUrlWithSize(String imageUrl, IlImage.Size size) {
+        return decorateImageUrlWithSizeInPixel(imageUrl, size.value);
     }
 
     /**
-     * When using {@link IlImage.Scaling#PreserveAspectRatio} the Integration layer image service is used
-     * When using {@link IlImage.Scaling#Default} just append /scale/width/widthInPixels to the imageUrl.
+     * Fixme https://github.com/SRGSSR/srgdataprovider-apple/issues/47
      *
      * @param widthInPixels 160,240,320,480,640,960,1280,1920
      */
-    public Uri decorateImageUrlWithSizeInPixel(String imageUrl, IlImage.Scaling scaling, int widthInPixels) {
+    public Uri decorateImageUrlWithSizeInPixel(String imageUrl, int widthInPixels) {
         if (TextUtils.isEmpty(imageUrl)) {
             return null;
         }
-        switch (scaling) {
-            case PreserveAspectRatio:
-                return createImageServiceUrl(imageUrl, widthInPixels);
-            case Default:
-            default:
-                return scaledImageUrl(imageUrl, widthInPixels);
+
+        if (imageUrl.contains("rts.ch") && imageUrl.contains(".image")) {
+            return createBusinessUnitImageServiceUrl(imageUrl, widthInPixels);
+        } else {
+            return createPlaySrgImageServiceUrl(imageUrl, widthInPixels);
         }
     }
 
-    private Uri createImageServiceUrl(String imageUrl, int width) {
+    private Uri createPlaySrgImageServiceUrl(String imageUrl, int width) {
         return srgImageServiceUri.buildUpon()
                 .appendQueryParameter("imageUrl", imageUrl)
                 .appendQueryParameter("format", FORMAT_WEBP)
@@ -91,7 +85,7 @@ public final class ImageProvider {
         return uri.appendPath(Scale).appendPath(Width).appendPath(Integer.toString(width));
     }
 
-    private Uri scaledImageUrl(String url, int width) {
+    private Uri createBusinessUnitImageServiceUrl(String url, int width) {
         return addScaleWith(Uri.parse(url).buildUpon(), width).build();
     }
 
