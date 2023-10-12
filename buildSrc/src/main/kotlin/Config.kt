@@ -5,7 +5,7 @@ object Config {
 
     const val major = 0
     const val minor = 0
-    const val patch = 3
+    const val patch = 4
     const val versionName = "$major.$minor.$patch"
 
     const val maven_group = "ch.srg.data.provider"
