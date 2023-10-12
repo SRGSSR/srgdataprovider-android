@@ -6,10 +6,7 @@ package ch.srg.dataProvider.integrationlayer.data
  *
  * License information is available from the LICENSE file.
  */
-data class IlImage @JvmOverloads constructor(val url: String, val scaling: Scaling = Scaling.Default) {
-    enum class Scaling {
-        Default, PreserveAspectRatio
-    }
+data class IlImage @JvmOverloads constructor(val url: String) {
 
     @Suppress("MagicNumber")
     enum class Size(val sizePixels: Int) {

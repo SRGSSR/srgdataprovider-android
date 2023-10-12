@@ -5,7 +5,6 @@ import android.text.TextUtils
 import androidx.annotation.IntDef
 import ch.srg.dataProvider.integrationlayer.SRGUrlFactory
 import ch.srg.dataProvider.integrationlayer.data.IlImage
-import ch.srg.dataProvider.integrationlayer.data.IlImage.Scaling
 
 /**
  * Copyright (c) SRG SSR. All rights reserved.
@@ -35,40 +34,35 @@ class ImageProvider(factory: SRGUrlFactory) {
      * @param widthInPixels 160,240,320,480,640,960,1280,1920
      */
     private fun decorateImageWithSizeInPixel(image: IlImage, widthInPixels: Int): Uri? {
-        return decorateImageUrlWithSizeInPixel(image.url, image.scaling, widthInPixels)
-    }
-
-    fun decorateImageUrlWithSize(imageUrl: String, scaling: Scaling?, @ImageSize size: Int): Uri? {
-        return decorateImageUrlWithSize(imageUrl, scaling, getImageSize(size))
+        return decorateImageUrlWithSizeInPixel(image.url, widthInPixels)
     }
 
     fun decorateImageUrlWithSize(imageUrl: String, @ImageSize size: Int): Uri? {
-        return decorateImageUrlWithSize(imageUrl, Scaling.Default, getImageSize(size))
+        return decorateImageUrlWithSize(imageUrl, getImageSize(size))
     }
 
-    fun decorateImageUrlWithSize(imageUrl: String, scaling: Scaling?, size: IlImage.Size): Uri? {
-        return decorateImageUrlWithSizeInPixel(imageUrl, scaling, size.sizePixels)
+    fun decorateImageUrlWithSize(imageUrl: String, size: IlImage.Size): Uri? {
+        return decorateImageUrlWithSizeInPixel(imageUrl, size.sizePixels)
     }
 
     /**
-     * When using [IlImage.Scaling.PreserveAspectRatio] the Integration layer image service is used
-     * When using [IlImage.Scaling.Default] just append /scale/width/widthInPixels to the imageUrl.
+     * Fixme https://github.com/SRGSSR/srgdataprovider-apple/issues/47 once RTS image service is well connected to Il Play image service.
      *
      * @param widthInPixels 160,240,320,480,640,960,1280,1920
      */
-    private fun decorateImageUrlWithSizeInPixel(imageUrl: String, scaling: Scaling?, widthInPixels: Int): Uri? {
+    private fun decorateImageUrlWithSizeInPixel(imageUrl: String, widthInPixels: Int): Uri? {
         return if (TextUtils.isEmpty(imageUrl)) {
             null
         } else {
-            when (scaling) {
-                Scaling.PreserveAspectRatio -> createImageServiceUrl(imageUrl, widthInPixels)
-                Scaling.Default -> scaledImageUrl(imageUrl, widthInPixels)
-                else -> scaledImageUrl(imageUrl, widthInPixels)
+            if (imageUrl.contains("rts.ch") && imageUrl.contains(".image")) {
+                return createBusinessUnitImageServiceUrl(imageUrl, widthInPixels)
+            } else {
+                return createPlaySrgImageServiceUrl(imageUrl, widthInPixels)
             }
         }
     }
 
-    private fun createImageServiceUrl(imageUrl: String?, width: Int): Uri {
+    private fun createPlaySrgImageServiceUrl(imageUrl: String?, width: Int): Uri {
         return srgImageServiceUri.buildUpon()
             .appendQueryParameter("imageUrl", imageUrl)
             .appendQueryParameter("format", FORMAT_WEBP)
@@ -77,10 +71,10 @@ class ImageProvider(factory: SRGUrlFactory) {
     }
 
     private fun addScaleWith(uri: Uri.Builder, width: Int): Uri.Builder {
-        return uri.appendPath(Scale).appendPath(Width).appendPath(Integer.toString(width))
+        return uri.appendPath(Scale).appendPath(Width).appendPath(width.toString())
     }
 
-    private fun scaledImageUrl(url: String?, width: Int): Uri {
+    private fun createBusinessUnitImageServiceUrl(url: String?, width: Int): Uri {
         return addScaleWith(Uri.parse(url).buildUpon(), width).build()
     }
 
