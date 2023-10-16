@@ -2,7 +2,6 @@
 
 package ch.srg.dataProvider.integrationlayer.data
 
-import ch.srg.dataProvider.integrationlayer.data.IlImage.Scaling
 import ch.srg.dataProvider.integrationlayer.data.serializer.ImageUrlSerializer
 import java.io.Serializable
 
@@ -24,8 +23,8 @@ data class ImageUrl(
 ) : Serializable {
 
     @JvmOverloads
-    fun getIlImage(scaling: Scaling = Scaling.Default): IlImage {
-        return IlImage(rawUrl, scaling)
+    fun getIlImage(): IlImage {
+        return IlImage(rawUrl)
     }
 
     override fun toString(): String {
