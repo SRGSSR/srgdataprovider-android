@@ -40,7 +40,7 @@ public class TestIlUrn {
     }
 
     @Test
-    public void testIsAudioValideUrn() {
+    public void testIsAudioValidUrn() {
         Assert.assertFalse(IlUrn.isAudio("urn:rts:video:123456"));
         Assert.assertTrue(IlUrn.isAudio("urn:rts:audio:123456"));
         Assert.assertFalse(IlUrn.isAudio("urn:a:b:12345"));
@@ -58,7 +58,7 @@ public class TestIlUrn {
 
 
     @Test
-    public void testIsVideoValideUrn() {
+    public void testIsVideoValidUrn() {
         Assert.assertTrue(IlUrn.isVideo("urn:rts:video:123456"));
         Assert.assertFalse(IlUrn.isVideo("urn:rts:audio:123456"));
         Assert.assertFalse(IlUrn.isVideo("urn:a:b:12345"));

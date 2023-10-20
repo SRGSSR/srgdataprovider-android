@@ -19,15 +19,25 @@ data class ImageUrl(
      *
      * @return the undecorated url
      */
-    val rawUrl: String
+    internal val rawUrl: String
 ) : Serializable {
 
-    @JvmOverloads
-    fun getIlImage(): IlImage {
-        return IlImage(rawUrl)
+    /**
+     * Url
+     *
+     * @param decorator The [ImageUrlDecorator] used to decorate the [rawUrl].
+     * @param widthPixels The width of the image.
+     * @return The decorated [rawUrl].
+     */
+    fun url(decorator: ImageUrlDecorator, widthPixels: Int): String {
+        return decorator.decorate(rawUrl, widthPixels)
     }
 
     override fun toString(): String {
         return rawUrl
     }
+}
+
+interface ImageUrlDecorator {
+    fun decorate(source: String, size: Int): String
 }
