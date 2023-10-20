@@ -17,4 +17,13 @@ data class MediaStatisticResult(
 ) : SRGIdentifierMetadata
 
 @Serializable
-data class MediaStatisticPost(val eventData: String, val userId: String?)
+data class ShowStatisticResult(
+    override val id: String,
+    override val vendor: Vendor,
+    override val urn: String,
+    val transmission: Transmission,
+    val searchResultClicked: Int = 0,
+) : SRGIdentifierMetadata
+
+@Serializable
+data class MediaStatisticPost(val eventData: String, val userId: String? = null)
