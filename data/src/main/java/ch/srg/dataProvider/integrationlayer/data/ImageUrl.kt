@@ -39,5 +39,5 @@ data class ImageUrl(
 }
 
 interface ImageUrlDecorator {
-    fun decorate(source: String, size: Int): String
+    fun decorate(source: String, widthPixels: Int): String
 }

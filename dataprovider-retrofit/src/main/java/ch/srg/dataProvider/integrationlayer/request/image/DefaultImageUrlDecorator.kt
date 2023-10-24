@@ -20,12 +20,12 @@ import ch.srg.dataProvider.integrationlayer.request.IlHost
 class DefaultImageUrlDecorator(ilHost: IlHost = IlHost.PROD) : ImageUrlDecorator {
     private val ilHostImageUrlDecorator = IlHostImageUrlDecorator(ilHost)
 
-    override fun decorate(imageUrl: String, size: Int): String {
+    override fun decorate(imageUrl: String, widthPixels: Int): String {
         // FIXME https://github.com/SRGSSR/srgdataprovider-apple/issues/47 once RTS image service is well connected to Il Play image service.
         return if (imageUrl.contains("rts.ch") && imageUrl.contains(".image")) {
-            ScaleWidthImageUrlDecorator.decorate(imageUrl, size)
+            ScaleWidthImageUrlDecorator.decorate(imageUrl, widthPixels)
         } else {
-            ilHostImageUrlDecorator.decorate(imageUrl, size)
+            ilHostImageUrlDecorator.decorate(imageUrl, widthPixels)
         }
     }
 }

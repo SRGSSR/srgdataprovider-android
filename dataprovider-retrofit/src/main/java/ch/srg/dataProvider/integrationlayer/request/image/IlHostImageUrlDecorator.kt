@@ -16,9 +16,9 @@ class IlHostImageUrlDecorator(ilHost: IlHost) : ImageUrlDecorator {
         imageServiceUri = ilHost.hostUri.buildUpon().appendEncodedPath(IMAGES_SEGMENT).build()
     }
 
-    override fun decorate(source: String, size: Int): String {
+    override fun decorate(source: String, widthPixels: Int): String {
         // Il image service only support a limited image size!
-        val imageWidth = ImageWidth.getFromPixels(size)
+        val imageWidth = ImageWidth.getFromPixels(widthPixels)
         return imageServiceUri.buildUpon()
             .appendQueryParameter(PARAM_IMAGE_URL, source)
             .appendQueryParameter(PARAM_FORMAT, FORMAT_WEBP)
