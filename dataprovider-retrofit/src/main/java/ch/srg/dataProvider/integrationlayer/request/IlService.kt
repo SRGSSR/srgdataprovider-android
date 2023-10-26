@@ -150,6 +150,20 @@ interface IlService {
         @Query("pageSize") pageSize: IlPaging.Size? = null
     ): MediaListResult
 
+    @GET("2.0/{bu}/showList/tv/mostClicked")
+    suspend fun getTvMostClickedShows(
+        @Path("bu") bu: Bu,
+        @Query("pageSize") pageSize: IlPaging.Size? = null
+    ): ShowListResult
+
+    @GET("2.0/{bu}/showList/tv/byTopic/{topicId}/mostClicked")
+    suspend fun getTvMostClickedShowsByTopicId(
+        @Path("bu") bu: Bu,
+        @Path("topicId") topicId: String,
+        @Query("onlyActiveShows") onlyActiveShows: Boolean = true,
+        @Query("pageSize") pageSize: IlPaging.Size? = null
+    ): ShowListResult
+
     @GET("2.0/{bu}/mediaList/video/latestEpisodes")
     suspend fun getTvLatestEpisodes(
         @Path("bu") bu: Bu,
@@ -234,6 +248,13 @@ interface IlService {
         @Query("onlyEpisodes") onlyEpisodes: Boolean? = null,
         @Query("pageSize") pageSize: IlPaging.Size? = null
     ): MediaListResult
+
+    @GET("2.0/{bu}/showList/radio/mostClicked")
+    suspend fun getRadioMostClickedShows(
+        @Path("bu") bu: Bu,
+        @Query("channelId") channelId: String,
+        @Query("pageSize") pageSize: IlPaging.Size? = null
+    ): ShowListResult
 
     /**
      * @param date A ISO-8601 date (YYYY-MM-DD)
@@ -351,6 +372,17 @@ interface IlService {
         @Path("bu") bu: Bu,
         @Path("transmission") transmission: IlTransmission,
         @Query("channelId") radioChannelId: String? = null
+    ): ShowListResult
+
+    @GET("2.0/{bu}/showList/mostClickedSearchResults")
+    suspend fun getTop10MostClickedSearchShow(
+        @Path("bu") bu: Bu
+    ): ShowListResult
+
+    @GET("2.0/{bu}/showList/{transmission}/mostClickedSearchResults")
+    suspend fun getMostClickedSearchShow(
+        @Path("bu") bu: Bu,
+        @Path("transmission") transmission: IlTransmission,
     ): ShowListResult
 
     //endregion tv and radio
