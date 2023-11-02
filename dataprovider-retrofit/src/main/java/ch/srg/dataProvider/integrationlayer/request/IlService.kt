@@ -327,7 +327,7 @@ interface IlService {
         @Path("bu") bu: Bu,
         @Path("type") type: IlMediaType,
         @Path("channelId") channelId: String,
-        pageSize: IlPaging.Size? = null
+        @Query("pageSize") pageSize: IlPaging.Size? = null
     ): MediaListResult
 
     @GET("2.0/{bu}/mediaList/{type}/latestByChannel/{channelId}")
@@ -488,4 +488,5 @@ interface IlService {
 
     @GET
     suspend fun getSearchShowNextUrl(@Url url: String): SearchResultShowList
+    //endregion nextUrls
 }
