@@ -488,4 +488,5 @@ interface IlService {
 
     @GET
     suspend fun getSearchShowNextUrl(@Url url: String): SearchResultShowList
+    //endregion nextUrls
 }
