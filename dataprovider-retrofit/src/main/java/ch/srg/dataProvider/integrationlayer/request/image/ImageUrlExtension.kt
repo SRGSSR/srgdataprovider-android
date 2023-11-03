@@ -5,7 +5,8 @@ import ch.srg.dataProvider.integrationlayer.data.ImageUrlDecorator
 import ch.srg.dataProvider.integrationlayer.request.IlHost
 
 fun ImageUrl.url(widthPixels: Int, ilHost: IlHost = IlHost.PROD): String {
-    return url(DefaultImageUrlDecorator(ilHost), widthPixels)
+    val decorator = ImageUrlDecoratorInstances.getInstance(ilHost)
+    return url(decorator, widthPixels)
 }
 
 fun ImageUrl.url(width: ImageWidth, ilHost: IlHost = IlHost.PROD): String {
@@ -22,4 +23,12 @@ fun ImageUrl.url(decorator: ImageUrlDecorator, width: ImageWidth): String {
 
 fun ImageUrl.url(decorator: ImageUrlDecorator, imageSize: ImageSize): String {
     return url(decorator, imageSize.width)
+}
+
+private object ImageUrlDecoratorInstances {
+    private val instances = mutableMapOf<IlHost, ImageUrlDecorator>()
+
+    fun getInstance(ilHost: IlHost): ImageUrlDecorator {
+        return instances.getOrPut(ilHost) { DefaultImageUrlDecorator(ilHost) }
+    }
 }
