@@ -4,15 +4,18 @@ import ch.srg.dataProvider.integrationlayer.data.ImageUrl
 import ch.srg.dataProvider.integrationlayer.data.ImageUrlDecorator
 import ch.srg.dataProvider.integrationlayer.request.IlHost
 
+@JvmOverloads
 fun ImageUrl.url(widthPixels: Int, ilHost: IlHost = IlHost.PROD): String {
     val decorator = ImageUrlDecoratorInstances.getInstance(ilHost)
     return url(decorator, widthPixels)
 }
 
+@JvmOverloads
 fun ImageUrl.url(width: ImageWidth, ilHost: IlHost = IlHost.PROD): String {
     return url(widthPixels = width.widthPixels, ilHost = ilHost)
 }
 
+@JvmOverloads
 fun ImageUrl.url(imageSize: ImageSize, ilHost: IlHost = IlHost.PROD): String {
     return url(width = imageSize.width, ilHost = ilHost)
 }
