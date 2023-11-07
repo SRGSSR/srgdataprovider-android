@@ -440,6 +440,14 @@ interface IlService {
         @Query("isPublished") isPublished: Boolean? = null
     ): Page
 
+    @GET("2.0/{bu}/page/{product}/showPage/{showUrn}")
+    suspend fun getPageForShow(
+        @Path("bu") bu: Bu,
+        @Path("product") product: String,
+        @Path("showUrn") showUrn: String,
+        @Query("isPublished") isPublished: Boolean? = null
+    ): Page
+
     @GET("2.0/{bu}/section/{sectionId}")
     suspend fun getSection(
         @Path("bu") bu: Bu,
