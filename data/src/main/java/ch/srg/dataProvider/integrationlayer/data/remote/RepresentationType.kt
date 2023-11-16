@@ -24,4 +24,6 @@ object RepresentationType {
     const val ExpiringSoon = "ExpiringSoon"
     const val MyProgram = "MyProgram"
     const val ShowAccess = "ShowAccess"
+    const val TrendingShowsByTopic = "TrendingShowsByTopic"
+    const val AvailableEpisodes = "AvailableEpisodes"
 }
