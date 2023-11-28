@@ -1,5 +1,7 @@
 package ch.srg.dataProvider.integrationlayer.request.image
 
+import kotlin.math.abs
+
 /**
  * Image width supported by the integration layer
  *
@@ -48,7 +50,7 @@ enum class ImageWidth(val widthPixels: Int) {
             var closestSize = 0
             var minDist = Int.MAX_VALUE
             for (i in sizes.indices) {
-                val dist = Math.abs(sizes[i].widthPixels - widthPixels)
+                val dist = abs(sizes[i].widthPixels - widthPixels)
                 if (dist <= minDist) {
                     minDist = dist
                     closestSize = i
