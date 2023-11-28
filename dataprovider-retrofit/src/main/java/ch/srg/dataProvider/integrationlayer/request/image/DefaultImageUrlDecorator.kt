@@ -13,7 +13,7 @@ import ch.srg.dataProvider.integrationlayer.request.IlHost
 /**
  * Default image url decorator
  *
- * For specific RTS image url the old [ScaleWidthImageUrlDecorator] is used, but it should be fixed soon or later.
+ * For specific RTS image url, the old [ScaleWidthImageUrlDecorator] is used, but it should be fixed sooner or later.
  * *
  * @param ilHost The [IlHost] to use with [ilHostImageUrlDecorator].
  */
