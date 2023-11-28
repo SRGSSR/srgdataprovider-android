@@ -9,7 +9,7 @@ import kotlinx.serialization.Serializable
  * License information is available from the LICENSE file.
  */
 abstract class ListResult<T> : Iterable<T> {
-    abstract val data: List<T>?
+    protected abstract val data: List<T>?
     abstract val next: String?
 
     val list: List<T>
