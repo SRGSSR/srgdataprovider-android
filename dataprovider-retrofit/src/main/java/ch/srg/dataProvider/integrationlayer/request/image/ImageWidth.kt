@@ -44,7 +44,7 @@ enum class ImageWidth(val widthPixels: Int) {
             if (widthPixels <= W240.widthPixels) {
                 return W240
             }
-            val sizes = values()
+            val sizes = entries
             var closestSize = 0
             var minDist = Int.MAX_VALUE
             for (i in sizes.indices) {
