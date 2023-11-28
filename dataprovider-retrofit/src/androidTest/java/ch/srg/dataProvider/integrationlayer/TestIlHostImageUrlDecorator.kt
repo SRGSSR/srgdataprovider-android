@@ -7,6 +7,7 @@ import ch.srg.dataProvider.integrationlayer.request.image.IlHostImageUrlDecorato
 import ch.srg.dataProvider.integrationlayer.request.image.ImageSize
 import ch.srg.dataProvider.integrationlayer.request.image.ImageWidth
 import ch.srg.dataProvider.integrationlayer.request.image.url
+import ch.srg.dataProvider.integrationlayer.request.image.decorated
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
@@ -19,7 +20,7 @@ class TestIlHostImageUrlDecorator {
         val input = ImageUrl("https://ws.srf.ch/asset/image/audio/123")
         val encodedInput = Uri.encode("https://ws.srf.ch/asset/image/audio/123")
         val expected = "https://il.srgssr.ch/images/?imageUrl=${encodedInput}&format=webp&width=480"
-        assertEquals(expected, input.url(decorator, 480))
+        assertEquals(expected, input.decorated(decorator, 480))
     }
 
     @Test
@@ -27,7 +28,7 @@ class TestIlHostImageUrlDecorator {
         val input = ImageUrl("https://ws.srf.ch/asset/image/audio/123")
         val encodedInput = Uri.encode("https://ws.srf.ch/asset/image/audio/123")
         val expected = "https://il.srgssr.ch/images/?imageUrl=${encodedInput}&format=webp&width=480"
-        assertEquals(expected, input.url(decorator, 460))
+        assertEquals(expected, input.decorated(decorator, 460))
     }
 
     @Test
@@ -35,7 +36,7 @@ class TestIlHostImageUrlDecorator {
         val input = ImageUrl("https://ws.srf.ch/asset/image/audio/123")
         val encodedInput = Uri.encode("https://ws.srf.ch/asset/image/audio/123")
         val expected = "https://il.srgssr.ch/images/?imageUrl=${encodedInput}&format=webp&width=480"
-        assertEquals(expected, input.url(decorator, ImageSize.MEDIUM))
+        assertEquals(expected, input.decorated(decorator, ImageSize.MEDIUM))
     }
 
     @Test
@@ -59,7 +60,7 @@ class TestIlHostImageUrlDecorator {
         val input = ImageUrl("https://ws.srf.ch/asset/image/audio/123")
         val encodedInput = Uri.encode("https://ws.srf.ch/asset/image/audio/123")
         val expected = "https://il-stage.srgssr.ch/images/?imageUrl=${encodedInput}&format=webp&width=1920"
-        assertEquals(expected, input.url(ilHost = IlHost.STAGE, width = ImageWidth.W1920))
+        assertEquals(expected, input.decorated(ilHost = IlHost.STAGE, width = ImageWidth.W1920))
     }
 
     @Test
@@ -67,6 +68,6 @@ class TestIlHostImageUrlDecorator {
         val input = ImageUrl("https://ws.srf.ch/asset/image/audio/123")
         val encodedInput = Uri.encode("https://ws.srf.ch/asset/image/audio/123")
         val expected = "https://il-test.srgssr.ch/images/?imageUrl=${encodedInput}&format=webp&width=480"
-        assertEquals(expected, input.url(ilHost = IlHost.TEST, imageSize = ImageSize.MEDIUM))
+        assertEquals(expected, input.decorated(ilHost = IlHost.TEST, imageSize = ImageSize.MEDIUM))
     }
 }

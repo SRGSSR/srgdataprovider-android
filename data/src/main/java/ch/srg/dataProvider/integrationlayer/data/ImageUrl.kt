@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) SRG SSR. All rights reserved.
+ * License information is available from the LICENSE file.
+ */
 @file:Suppress("MemberVisibilityCanBePrivate")
 
 package ch.srg.dataProvider.integrationlayer.data
@@ -6,10 +10,9 @@ import ch.srg.dataProvider.integrationlayer.data.serializer.ImageUrlSerializer
 import java.io.Serializable
 
 /**
- * Copyright (c) SRG SSR. All rights reserved.
+ * Image url
  *
- *
- * License information is available from the LICENSE file.
+ * @property rawUrl Internal image url, to retrieve the url use [ImageUrl.decorated].
  */
 @Suppress("SerialVersionUIDInSerializableClass")
 @kotlinx.serialization.Serializable(with = ImageUrlSerializer::class)
@@ -23,21 +26,13 @@ data class ImageUrl(
 ) : Serializable {
 
     /**
-     * Url
+     * Decorated
      *
      * @param decorator The [ImageUrlDecorator] used to decorate the [rawUrl].
      * @param widthPixels The width of the image.
      * @return The decorated [rawUrl].
      */
-    fun url(decorator: ImageUrlDecorator, widthPixels: Int): String {
+    fun decorated(decorator: ImageUrlDecorator, widthPixels: Int): String {
         return decorator.decorate(rawUrl, widthPixels)
     }
-
-    override fun toString(): String {
-        return rawUrl
-    }
-}
-
-interface ImageUrlDecorator {
-    fun decorate(source: String, widthPixels: Int): String
 }

@@ -5,6 +5,7 @@ import ch.srg.dataProvider.integrationlayer.request.image.ImageSize
 import ch.srg.dataProvider.integrationlayer.request.image.ImageWidth
 import ch.srg.dataProvider.integrationlayer.request.image.ScaleWidthImageUrlDecorator
 import ch.srg.dataProvider.integrationlayer.request.image.url
+import ch.srg.dataProvider.integrationlayer.request.image.decorated
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
@@ -17,14 +18,14 @@ class TestScaleWidthImageUrlDecorator {
         val input = ImageUrl("https://www.data.com/images/images.png")
         val width = 458
         val expected = "https://www.data.com/images/images.png/scale/width/458"
-        assertEquals(expected, input.url(decorator, width))
+        assertEquals(expected, input.decorated(decorator, width))
     }
 
     @Test
     fun testScaleWidthImageSize() {
         val input = ImageUrl("https://www.data.com/images/images.png")
         val expected = "https://www.data.com/images/images.png/scale/width/480"
-        assertEquals(expected, input.url(decorator, ImageSize.MEDIUM))
+        assertEquals(expected, input.decorated(decorator, ImageSize.MEDIUM))
     }
 
     @Test

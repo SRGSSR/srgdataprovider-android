@@ -15,7 +15,7 @@ class TestDefaultImageUrlDecorator {
         val input = ImageUrl("https://ws.srf.ch/asset/image/audio/123")
         val encodedInput = Uri.encode("https://ws.srf.ch/asset/image/audio/123")
         val expected = "https://il.srgssr.ch/images/?imageUrl=${encodedInput}&format=webp&width=480"
-        Assert.assertEquals(expected, input.url(decorator, 480))
+        Assert.assertEquals(expected, input.decorated(decorator, 480))
     }
 
     @Test
@@ -23,7 +23,7 @@ class TestDefaultImageUrlDecorator {
         val input = ImageUrl("https://ws.rts.ch/asset/image/audio/123")
         val encodedInput = Uri.encode("https://ws.rts.ch/asset/image/audio/123")
         val expected = "https://il.srgssr.ch/images/?imageUrl=${encodedInput}&format=webp&width=480"
-        Assert.assertEquals(expected, input.url(decorator, 480))
+        Assert.assertEquals(expected, input.decorated(decorator, 480))
     }
 
     @Test
@@ -31,14 +31,14 @@ class TestDefaultImageUrlDecorator {
         val input = ImageUrl("https://ws.srf.ch/asset/image/audio/123.image")
         val encodedInput = Uri.encode("https://ws.srf.ch/asset/image/audio/123.image")
         val expected = "https://il.srgssr.ch/images/?imageUrl=${encodedInput}&format=webp&width=480"
-        Assert.assertEquals(expected, input.url(decorator, 480))
+        Assert.assertEquals(expected, input.decorated(decorator, 480))
     }
 
     @Test
     fun testRtsUrlWithImage() {
         val input = ImageUrl("https://ws.rts.ch/asset/image/audio/123.image")
         val expected = "https://ws.rts.ch/asset/image/audio/123.image/scale/width/460"
-        Assert.assertEquals(expected, input.url(decorator, 460))
+        Assert.assertEquals(expected, input.decorated(decorator, 460))
     }
 
 

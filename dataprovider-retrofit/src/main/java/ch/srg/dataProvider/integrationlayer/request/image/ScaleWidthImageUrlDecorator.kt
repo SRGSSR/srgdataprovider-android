@@ -12,8 +12,8 @@ object ScaleWidthImageUrlDecorator : ImageUrlDecorator {
     private const val Scale = "scale"
     private const val Width = "width"
 
-    override fun decorate(source: String, widthPixels: Int): String {
-        return Uri.parse(source).buildUpon()
+    override fun decorate(sourceUrl: String, widthPixels: Int): String {
+        return Uri.parse(sourceUrl).buildUpon()
             .appendPath(Scale)
             .appendPath(Width)
             .appendPath(widthPixels.toString())
