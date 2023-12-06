@@ -35,4 +35,9 @@ data class ImageUrl(
     fun decorated(decorator: ImageUrlDecorator, widthPixels: Int): String {
         return decorator.decorate(rawUrl, widthPixels)
     }
+
+    @Deprecated("Using toString is not recommended in this case.", replaceWith = ReplaceWith("rawUrl"))
+    override fun toString(): String {
+        return rawUrl
+    }
 }
