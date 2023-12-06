@@ -18,11 +18,11 @@ import java.io.Serializable
 @kotlinx.serialization.Serializable(with = ImageUrlSerializer::class)
 data class ImageUrl(
     /**
-     * Only for internal use!
+     * Only for internal use! Please use a Decorator!
      *
      * @return the undecorated url
      */
-    internal val rawUrl: String
+    val rawUrl: String
 ) : Serializable {
 
     /**
