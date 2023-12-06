@@ -18,11 +18,11 @@ import java.io.Serializable
 @kotlinx.serialization.Serializable(with = ImageUrlSerializer::class)
 data class ImageUrl(
     /**
-     * Only for internal use!
+     * Only for internal use! Please use a Decorator!
      *
      * @return the undecorated url
      */
-    internal val rawUrl: String
+    val rawUrl: String
 ) : Serializable {
 
     /**
@@ -34,5 +34,10 @@ data class ImageUrl(
      */
     fun decorated(decorator: ImageUrlDecorator, widthPixels: Int): String {
         return decorator.decorate(rawUrl, widthPixels)
+    }
+
+    @Deprecated("Using toString is not recommended in this case.", replaceWith = ReplaceWith("rawUrl"))
+    override fun toString(): String {
+        return rawUrl
     }
 }

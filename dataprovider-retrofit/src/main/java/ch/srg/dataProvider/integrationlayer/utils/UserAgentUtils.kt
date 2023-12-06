@@ -11,16 +11,17 @@ import android.os.Build
  * License information is available from the LICENSE file.
  */
 object UserAgentUtils {
+    private const val UNKNOWN_VERSION = "?"
 
     fun createUserAgent(application: Context): String {
         var version: String
         var verCode: Int
         try {
             val pInfo = application.packageManager.getPackageInfo(application.packageName, 0)
-            version = pInfo.versionName
+            version = pInfo.versionName ?: UNKNOWN_VERSION
             verCode = pInfo.versionCode
         } catch (ignored: PackageManager.NameNotFoundException) {
-            version = "?"
+            version = UNKNOWN_VERSION
             verCode = 0
         }
         return application.packageName + " " + version + "/" + verCode + " (" + Build.MODEL + ")"
