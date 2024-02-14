@@ -12,5 +12,7 @@ data class Page(
     val title: String,
     val isPublished: Boolean,
     val sectionList: List<Section>? = null,
-    val topicUrn: String? = null
+    val topicUrn: String? = null,
+    val description: String? = null,
+    val type: String? = null,
 ) : ILObject
