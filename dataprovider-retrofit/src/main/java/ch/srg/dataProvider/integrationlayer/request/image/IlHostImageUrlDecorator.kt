@@ -49,7 +49,6 @@ class IlHostImageUrlDecorator(ilHost: IlHost) : ImageUrlDecorator {
         private const val PARAM_FORMAT = "format"
         private const val PARAM_WIDTH = "width"
 
-
         private val SUPPORTED_HOST_NAME_REGEX = "((rts|srf|rsi|rtr|swissinfo|srgssr)\\.ch)|swi-services-ch".toRegex(RegexOption.IGNORE_CASE)
     }
 }
