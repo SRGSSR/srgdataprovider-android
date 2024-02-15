@@ -1,12 +1,15 @@
 package ch.srg.dataProvider.integrationlayer
 
 import android.net.Uri
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import ch.srg.dataProvider.integrationlayer.data.ImageUrl
 import ch.srg.dataProvider.integrationlayer.request.IlHost
 import ch.srg.dataProvider.integrationlayer.request.image.DefaultImageUrlDecorator
 import org.junit.Assert
 import org.junit.Test
+import org.junit.runner.RunWith
 
+@RunWith(AndroidJUnit4::class)
 class TestDefaultImageUrlDecorator {
     private val decorator = DefaultImageUrlDecorator(ilHost = IlHost.PROD)
 

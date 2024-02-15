@@ -53,7 +53,9 @@ dependencies {
     //noinspection GradleDependency
     implementation(libs.logging.interceptor)
 
+    testImplementation(libs.junit.ktx)
     testImplementation(libs.junit)
+    testRuntimeOnly(libs.robolectric)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
 }
