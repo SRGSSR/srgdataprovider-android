@@ -11,6 +11,8 @@ data class Page(
     override val vendor: Vendor,
     val title: String,
     val isPublished: Boolean,
+    val type: String,
     val sectionList: List<Section>? = null,
-    val topicUrn: String? = null
+    val topicUrn: String? = null,
+    val description: String? = null,
 ) : ILObject
