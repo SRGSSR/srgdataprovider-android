@@ -21,10 +21,10 @@ data class Program(
     val endTime: Date,
     override val lead: String? = null,
     override val description: String? = null,
-    override val imageUrl: ImageUrl,
-    override val imageFocalPoint: FocalPoint? = null,
-    override val imageTitle: String? = null,
-    override val imageCopyright: String? = null,
+    val imageUrl: ImageUrl? = null,
+    val imageFocalPoint: FocalPoint? = null,
+    val imageTitle: String? = null,
+    val imageCopyright: String? = null,
     val url: String? = null,
     val show: Show? = null,
     val mediaUrn: String? = null,
@@ -54,7 +54,7 @@ data class Program(
     val rebroadcastDescription: String? = null,
     val channelTitle: String? = null,
     val channelUrn: String? = null
-) : SRGImageMetadata, SRGMetadata {
+) : SRGMetadata {
 
     fun isDateInProgramTime(date: Date): Boolean {
         return date.after(startTime) && date.before(endTime)
