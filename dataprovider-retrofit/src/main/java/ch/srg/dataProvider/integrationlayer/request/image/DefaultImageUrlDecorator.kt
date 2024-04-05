@@ -1,31 +1,54 @@
 package ch.srg.dataProvider.integrationlayer.request.image
 
+import android.net.Uri
 import ch.srg.dataProvider.integrationlayer.data.ImageUrlDecorator
 import ch.srg.dataProvider.integrationlayer.request.IlHost
 
 /**
- * Copyright (c) SRG SSR. All rights reserved.
+ * Il host image url decorator
  *
+ * If the image url isn't supported by [DefaultImageUrlDecorator] the same url is returned.
  *
- * License information is available from the LICENSE file.
+ * confluence doc : https://srgssr-ch.atlassian.net/wiki/spaces/SRGPLAY/pages/799082429/Project+-+Image+Service)
+ *
+ * @param ilHost The [IlHost] of the integration layer image service.
  */
+class DefaultImageUrlDecorator(ilHost: IlHost) : ImageUrlDecorator {
+    private val imageServiceUri: Uri
 
-/**
- * Default image url decorator
- *
- * For specific RTS image url, the old [ScaleWidthImageUrlDecorator] is used, but it should be fixed sooner or later.
- *
- * @param ilHost The [IlHost] to use with [ilHostImageUrlDecorator].
- */
-class DefaultImageUrlDecorator(ilHost: IlHost = IlHost.PROD) : ImageUrlDecorator {
-    private val ilHostImageUrlDecorator = IlHostImageUrlDecorator(ilHost)
+    init {
+        imageServiceUri = ilHost.hostUri.buildUpon().appendEncodedPath(IMAGES_SEGMENT).build()
+    }
 
     override fun decorate(sourceUrl: String, widthPixels: Int): String {
-        // FIXME https://github.com/SRGSSR/srgdataprovider-apple/issues/47 once RTS image service is well connected to Il Play image service.
-        return if (sourceUrl.contains("rts.ch") && sourceUrl.contains(".image")) {
-            ScaleWidthImageUrlDecorator.decorate(sourceUrl, widthPixels)
-        } else {
-            ilHostImageUrlDecorator.decorate(sourceUrl, widthPixels)
-        }
+        // Il image service only support some image url hostnames!
+        if (!isImageUrlHostCompatible(sourceUrl)) return sourceUrl
+        // Il image service only support a limited image size!
+        val imageWidth = ImageWidth.getFromPixels(widthPixels)
+        return imageServiceUri.buildUpon()
+            .appendQueryParameter(PARAM_IMAGE_URL, sourceUrl)
+            .appendQueryParameter(PARAM_FORMAT, FORMAT_WEBP)
+            .appendQueryParameter(PARAM_WIDTH, imageWidth.widthPixels.toString())
+            .build()
+            .toString()
+    }
+
+    /**
+     * Check that the host of the [imageUrl] is compatible with the il image service.
+     *
+     * @param imageUrl The image url to decorate.
+     */
+    fun isImageUrlHostCompatible(imageUrl: String): Boolean {
+        return Uri.parse(imageUrl)?.host?.contains(SUPPORTED_HOST_NAME_REGEX) ?: false
+    }
+
+    companion object {
+        private const val FORMAT_WEBP = "webp" // webp, jpg, png
+        private const val IMAGES_SEGMENT = "images/"
+        private const val PARAM_IMAGE_URL = "imageUrl"
+        private const val PARAM_FORMAT = "format"
+        private const val PARAM_WIDTH = "width"
+
+        private val SUPPORTED_HOST_NAME_REGEX = "((rts|srf|rsi|rtr|swissinfo|srgssr)\\.ch)|swi-services-ch".toRegex(RegexOption.IGNORE_CASE)
     }
 }
