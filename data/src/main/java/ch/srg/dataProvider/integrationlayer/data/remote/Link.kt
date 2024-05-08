@@ -5,5 +5,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Link(
     val targetType: String,
-    val target: String,
+    val target: String?,
 )
