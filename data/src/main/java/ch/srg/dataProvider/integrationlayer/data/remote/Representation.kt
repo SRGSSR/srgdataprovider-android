@@ -37,6 +37,9 @@ data class Representation(
     val imageFocalPoint: FocalPoint?
         get() = properties?.imageFocalPoint
 
+    val link: Link?
+        get() = properties?.link
+
     @Serializable
     data class Properties(
         val title: String? = null,
@@ -45,6 +48,7 @@ data class Representation(
         val hasDetailPage: Boolean? = null,
         val pickRandomElement: Boolean? = null,
         val imageUrl: ImageUrl? = null,
-        val imageFocalPoint: FocalPoint? = null
+        val imageFocalPoint: FocalPoint? = null,
+        val link: Link? = null,
     )
 }
