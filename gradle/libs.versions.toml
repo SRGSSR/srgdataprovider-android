@@ -4,7 +4,6 @@ androidx-junit = "1.1.5"
 appcompat = "1.6.1"
 constraintlayout = "2.1.4"
 core-ktx = "1.10.1"
-dagger = "2.47"
 detekt = "1.22.0"
 espresso-core = "3.5.1"
 junit = "4.13.2"
@@ -23,8 +22,6 @@ junitKtx = "1.1.5"
 appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
 constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
 core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
-dagger = { module = "com.google.dagger:dagger", version.ref = "dagger" }
-dagger-compiler = { module = "com.google.dagger:dagger-compiler", version.ref = "dagger" }
 espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso-core" }
 ext-junit = { module = "androidx.test.ext:junit", version.ref = "androidx-junit" }
 junit = { module = "junit:junit", version.ref = "junit" }

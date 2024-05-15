@@ -9,4 +9,3 @@ The library provides:
 * Requests with Retrofit to get the usual metadata associated with SRG SSR productions.
 * Gson serialization and deserialization.
 * A flat object model to easily access the data relevant to front-end users.
-* Dagger2 modules to easy integration.
