@@ -49,21 +49,15 @@ android {
 }
 
 dependencies {
-    api(project(mapOf("path" to ":data")))
-    implementation(libs.core.ktx)
-    api(libs.lifecycle.livedata.ktx)
-
-    //retrofit implementation
+    api(project(":data"))
     api(libs.retrofit)
+    compileOnly(libs.androidx.annotation)
     implementation(libs.retrofit2.kotlinx.serialization.converter)
-    //noinspection GradleDependency
     implementation(libs.logging.interceptor)
 
-    testImplementation(libs.junit.ktx)
     testImplementation(libs.junit)
     testRuntimeOnly(libs.robolectric)
-    androidTestImplementation(libs.ext.junit)
-    androidTestImplementation(libs.espresso.core)
+    testImplementation(libs.ext.junit)
 }
 
 publishing {

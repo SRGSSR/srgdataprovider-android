@@ -50,15 +50,12 @@ android {
 }
 
 dependencies {
-    implementation(libs.core.ktx)
     api(libs.kotlinx.serialization.json)
     detektPlugins(libs.detekt.formatting)
 
     testImplementation(libs.robolectric)
     testImplementation(libs.junit)
-    testImplementation(libs.junit.ktx)
-    androidTestImplementation(libs.ext.junit)
-    androidTestImplementation(libs.espresso.core)
+    testImplementation(libs.ext.junit)
 }
 
 publishing {

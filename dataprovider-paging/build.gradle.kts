@@ -49,14 +49,8 @@ android {
 }
 
 dependencies {
-    api(project(mapOf("path" to ":dataprovider-retrofit")))
-    implementation(libs.core.ktx)
-    implementation(libs.lifecycle.viewmodel.ktx)
-    api(libs.paging.runtime.ktx)
-
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.ext.junit)
-    androidTestImplementation(libs.espresso.core)
+    api(project(":dataprovider-retrofit"))
+    api(libs.paging.common)
 }
 
 publishing {
