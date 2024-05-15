@@ -49,8 +49,8 @@ android {
         abortOnError = true
         checkAllWarnings = true
         checkDependencies = false
-        xmlReport = true // Enable for Danger Android Lint
-        xmlOutput = file("${project.rootDir}/build/reports/android-lint.xml")
+        sarifReport = true
+        sarifOutput = rootProject.layout.buildDirectory.file("reports/android-lint/${project.name}.sarif").get().asFile
         disable.add("LogConditional")
     }
 }

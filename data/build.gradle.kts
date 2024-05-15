@@ -40,6 +40,8 @@ android {
     lint {
         // https://developer.android.com/reference/tools/gradle-api/4.1/com/android/build/api/dsl/LintOptions
         abortOnError = false
+        sarifReport = true
+        sarifOutput = rootProject.layout.buildDirectory.file("reports/android-lint/${project.name}.sarif").get().asFile
     }
     publishing {
         singleVariant("release") {
@@ -51,7 +53,6 @@ android {
 
 dependencies {
     api(libs.kotlinx.serialization.json)
-    detektPlugins(libs.detekt.formatting)
 
     testImplementation(libs.robolectric)
     testImplementation(libs.junit)
