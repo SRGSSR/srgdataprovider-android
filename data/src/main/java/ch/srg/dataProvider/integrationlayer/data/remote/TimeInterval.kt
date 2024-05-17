@@ -8,7 +8,11 @@ import kotlinx.serialization.Serializable
  * License information is available from the LICENSE file.
  */
 @Serializable
-data class TimeInterval(val type: Type, val markIn: Long, val markOut: Long) {
+data class TimeInterval(
+    val type: Type?,
+    val markIn: Long?,
+    val markOut: Long?,
+) {
 
     enum class Type {
         OPENING_CREDITS, CLOSING_CREDITS
