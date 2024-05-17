@@ -1,4 +1,5 @@
 @file:UseSerializers(DateSerializer::class)
+
 package ch.srg.dataProvider.integrationlayer.data.remote
 
 import ch.srg.dataProvider.integrationlayer.data.ImageUrl
@@ -40,6 +41,8 @@ data class Chapter(
     override val socialCountList: List<SocialCountEntry>? = null,
     override val displayable: Boolean = false,
     override val fullLengthUrn: String? = null,
+    val fullLengthMarkIn: Long? = null,
+    val fullLengthMarkOut: Long? = null,
     override val eventData: String? = null,
     override val subtitleList: List<Subtitle>? = null,
     @SerialName("analyticsData")
