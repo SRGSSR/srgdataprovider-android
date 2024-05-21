@@ -23,6 +23,12 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
+
+    buildFeatures {
+        resValues = false
+        shaders = false
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -33,6 +39,8 @@ android {
     lint {
         // https://developer.android.com/reference/tools/gradle-api/4.1/com/android/build/api/dsl/LintOptions
         abortOnError = false
+        sarifReport = true
+        sarifOutput = rootProject.layout.buildDirectory.file("reports/android-lint/${project.name}.sarif").get().asFile
     }
     publishing {
         singleVariant("release") {
@@ -43,14 +51,8 @@ android {
 }
 
 dependencies {
-    api(project(mapOf("path" to ":dataprovider-retrofit")))
-    implementation(libs.core.ktx)
-    implementation(libs.lifecycle.viewmodel.ktx)
-    api(libs.paging.runtime.ktx)
-
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.ext.junit)
-    androidTestImplementation(libs.espresso.core)
+    api(project(":dataprovider-retrofit"))
+    api(libs.paging.common)
 }
 
 publishing {

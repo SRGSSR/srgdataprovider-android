@@ -1,13 +1,19 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 import io.gitlab.arturbosch.detekt.Detekt
+import io.gitlab.arturbosch.detekt.report.ReportMergeTask
 
 plugins {
     alias(libs.plugins.android.application) apply false
     alias(libs.plugins.android.library) apply false
-    alias(libs.plugins.kotlin.kapt) apply false
     alias(libs.plugins.kotlin.android) apply false
     // https://github.com/detekt/detekt
     alias(libs.plugins.detekt)
+}
+
+apply(plugin = "android-reporting")
+
+val detektReportMerge by tasks.registering(ReportMergeTask::class) {
+    output.set(rootProject.layout.buildDirectory.file("reports/detekt.sarif"))
 }
 
 allprojects {
@@ -29,14 +35,18 @@ allprojects {
             xml.required.set(false)
             html.required.set(true)
             txt.required.set(false)
-            sarif.required.set(false)
+            sarif.required.set(true)
             md.required.set(false)
         }
+        finalizedBy(detektReportMerge)
     }
 
     dependencies {
-        //noinspection UseTomlInstead
-        detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.22.0")
+        detektPlugins(libs.detekt.formatting)
+    }
+
+    detektReportMerge {
+        input.from(tasks.withType<Detekt>().map { it.sarifReportFile })
     }
 }
 

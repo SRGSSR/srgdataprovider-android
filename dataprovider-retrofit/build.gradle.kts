@@ -23,6 +23,12 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
+
+    buildFeatures {
+        resValues = false
+        shaders = false
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -33,6 +39,8 @@ android {
     lint {
         // https://developer.android.com/reference/tools/gradle-api/4.1/com/android/build/api/dsl/LintOptions
         abortOnError = false
+        sarifReport = true
+        sarifOutput = rootProject.layout.buildDirectory.file("reports/android-lint/${project.name}.sarif").get().asFile
     }
     publishing {
         singleVariant("release") {
@@ -43,21 +51,15 @@ android {
 }
 
 dependencies {
-    api(project(mapOf("path" to ":data")))
-    implementation(libs.core.ktx)
-    api(libs.lifecycle.livedata.ktx)
-
-    //retrofit implementation
+    api(project(":data"))
     api(libs.retrofit)
+    compileOnly(libs.androidx.annotation)
     implementation(libs.retrofit2.kotlinx.serialization.converter)
-    //noinspection GradleDependency
     implementation(libs.logging.interceptor)
 
-    testImplementation(libs.junit.ktx)
     testImplementation(libs.junit)
     testRuntimeOnly(libs.robolectric)
-    androidTestImplementation(libs.ext.junit)
-    androidTestImplementation(libs.espresso.core)
+    testImplementation(libs.ext.junit)
 }
 
 publishing {

@@ -1,7 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.kapt)
 }
 
 android {
@@ -32,6 +31,11 @@ android {
         }
     }
 
+    buildFeatures {
+        resValues = false
+        shaders = false
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -45,21 +49,16 @@ android {
         abortOnError = true
         checkAllWarnings = true
         checkDependencies = false
-        xmlReport = true // Enable for Danger Android Lint
-        xmlOutput = file("${project.rootDir}/build/reports/android-lint.xml")
+        sarifReport = true
+        sarifOutput = rootProject.layout.buildDirectory.file("reports/android-lint/${project.name}.sarif").get().asFile
         disable.add("LogConditional")
     }
 }
 
 dependencies {
-    implementation(project(mapOf("path" to ":dataprovider-retrofit")))
-    implementation(project(mapOf("path" to ":dataprovider-paging")))
-    implementation(libs.core.ktx)
+    implementation(project(":dataprovider-retrofit"))
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.constraintlayout)
-
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.ext.junit)
-    androidTestImplementation(libs.espresso.core)
+    implementation(libs.lifecycle.viewmodel)
 }

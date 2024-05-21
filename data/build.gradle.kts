@@ -2,7 +2,6 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.serialization)
-    alias(libs.plugins.kotlin.kapt)
     `maven-publish`
 }
 
@@ -25,6 +24,12 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
+
+    buildFeatures {
+        resValues = false
+        shaders = false
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -35,6 +40,8 @@ android {
     lint {
         // https://developer.android.com/reference/tools/gradle-api/4.1/com/android/build/api/dsl/LintOptions
         abortOnError = false
+        sarifReport = true
+        sarifOutput = rootProject.layout.buildDirectory.file("reports/android-lint/${project.name}.sarif").get().asFile
     }
     publishing {
         singleVariant("release") {
@@ -45,15 +52,11 @@ android {
 }
 
 dependencies {
-    implementation(libs.core.ktx)
     api(libs.kotlinx.serialization.json)
-    detektPlugins(libs.detekt.formatting)
 
     testImplementation(libs.robolectric)
     testImplementation(libs.junit)
-    testImplementation(libs.junit.ktx)
-    androidTestImplementation(libs.ext.junit)
-    androidTestImplementation(libs.espresso.core)
+    testImplementation(libs.ext.junit)
 }
 
 publishing {
