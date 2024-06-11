@@ -13,14 +13,19 @@ import okhttp3.Response
 class VectorInterceptor(private val vector: String) : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
-        val original = chain.request()
-        val originalHttpUrl = original.url
+        val originalRequest = chain.request()
+        val originalHttpUrl = originalRequest.url
+
+        if (originalHttpUrl.queryParameter("vector") != null) {
+            return chain.proceed(originalRequest)
+        }
+
         val url = originalHttpUrl.newBuilder()
             .addQueryParameter("vector", vector)
             .build()
 
         // Request customization: add request headers
-        val requestBuilder = original.newBuilder()
+        val requestBuilder = originalRequest.newBuilder()
             .url(url)
         val request = requestBuilder.build()
         return chain.proceed(request)
