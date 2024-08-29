@@ -13,7 +13,9 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "SRGDataProvider"
-include ':dataproviderdemo'
-include ':data'
-include ':dataprovider-retrofit'
-include ':dataprovider-paging'
+include(
+    ":dataproviderdemo",
+    ":data",
+    ":dataprovider-retrofit",
+    ":dataprovider-paging",
+)
