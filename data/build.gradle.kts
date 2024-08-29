@@ -11,7 +11,6 @@ android {
 
     defaultConfig {
         minSdk = Config.minSdk
-        targetSdk = Config.targetSdk
         group = Config.maven_group
         version = Config.versionName
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -42,6 +41,7 @@ android {
         abortOnError = false
         sarifReport = true
         sarifOutput = rootProject.layout.buildDirectory.file("reports/android-lint/${project.name}.sarif").get().asFile
+        targetSdk = Config.targetSdk
     }
     publishing {
         singleVariant("release") {
