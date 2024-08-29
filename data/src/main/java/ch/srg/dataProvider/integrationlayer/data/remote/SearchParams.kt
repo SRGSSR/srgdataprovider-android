@@ -1,8 +1,5 @@
 package ch.srg.dataProvider.integrationlayer.data.remote
 
-import android.text.TextUtils
-import java.util.Locale
-
 /**
  * Copyright (c) SRG SSR. All rights reserved.
  *
@@ -16,7 +13,7 @@ class SearchParams {
         AND, OR;
 
         override fun toString(): String {
-            return name.lowercase(Locale.getDefault())
+            return name.lowercase()
         }
     }
 
@@ -24,7 +21,7 @@ class SearchParams {
         DEFAULT, DATE;
 
         override fun toString(): String {
-            return name.lowercase(Locale.getDefault())
+            return name.lowercase()
         }
     }
 
@@ -32,7 +29,7 @@ class SearchParams {
         DESC, ASC;
 
         override fun toString(): String {
-            return name.lowercase(Locale.getDefault())
+            return name.lowercase()
         }
     }
 
@@ -102,7 +99,7 @@ class SearchParams {
 
         private fun put(result: HashMap<String, String>, key: String, values: List<String?>?) {
             if (values != null) {
-                result[key] = TextUtils.join(",", values)
+                result[key] = values.joinToString(",")
             }
         }
     }

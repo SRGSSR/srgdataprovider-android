@@ -1,6 +1,5 @@
 package ch.srg.dataProvider.integrationlayer.data.remote
 
-import android.net.Uri
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -49,7 +48,7 @@ data class Resource @JvmOverloads constructor(
         }
 
     fun isLocalFile(): Boolean {
-        return Uri.parse(url).scheme == LOCAL_FILE_SCHEME_URL
+        return url.startsWith(LOCAL_FILE_SCHEME_URL)
     }
 
     fun hasDrm(): Boolean {
@@ -72,6 +71,6 @@ data class Resource @JvmOverloads constructor(
     }
 
     companion object {
-        const val LOCAL_FILE_SCHEME_URL = "file"
+        const val LOCAL_FILE_SCHEME_URL = "file:"
     }
 }

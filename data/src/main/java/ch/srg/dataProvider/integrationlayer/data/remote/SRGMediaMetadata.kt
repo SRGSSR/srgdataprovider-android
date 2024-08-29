@@ -1,6 +1,5 @@
 package ch.srg.dataProvider.integrationlayer.data.remote
 
-import android.text.TextUtils
 import java.util.Date
 
 /**
@@ -28,7 +27,7 @@ interface SRGMediaMetadata : SRGIdentifierMetadata, SRGImageMetadata, SRGMetadat
     fun getDownloadUri(quality: Quality = Quality.HD): String? {
         return when (quality) {
             Quality.SD -> podcastSdUrl
-            Quality.HD, Quality.HQ -> if (TextUtils.isEmpty(podcastHdUrl)) podcastSdUrl else podcastHdUrl
+            Quality.HD, Quality.HQ -> if (podcastHdUrl.isNullOrEmpty()) podcastSdUrl else podcastHdUrl
         }
     }
 

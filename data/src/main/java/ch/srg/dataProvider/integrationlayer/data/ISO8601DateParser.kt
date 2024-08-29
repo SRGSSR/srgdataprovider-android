@@ -2,7 +2,8 @@ package ch.srg.dataProvider.integrationlayer.data
 
 import java.text.ParseException
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
+import java.util.Locale
 
 /**
  * DateParser to convert Integration Layer String date to date (ISO_8601)

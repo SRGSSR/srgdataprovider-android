@@ -1,6 +1,5 @@
 package ch.srg.dataProvider.integrationlayer.data.remote
 
-import android.text.TextUtils
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -80,7 +79,7 @@ data class MediaComposition(
             return false
         }
         for (chapter in chapterList) {
-            if (TextUtils.equals(chapter.urn, urn)) {
+            if (chapter.urn == urn) {
                 return true
             }
             if (chapter.findSegment(urn) != null) {
