@@ -59,7 +59,7 @@ dependencies {
 
     testImplementation(libs.junit)
     testRuntimeOnly(libs.robolectric)
-    testImplementation(libs.ext.junit)
+    testImplementation(libs.androidx.test.ext.junit)
 }
 
 publishing {
