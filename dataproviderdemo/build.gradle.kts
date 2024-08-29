@@ -59,7 +59,6 @@ dependencies {
     implementation(project(":dataprovider-retrofit"))
     implementation(libs.androidx.activity)
     implementation(libs.material)
-    implementation(libs.constraintlayout)
     implementation(libs.lifecycle.runtime)
     implementation(libs.lifecycle.viewmodel)
 }
