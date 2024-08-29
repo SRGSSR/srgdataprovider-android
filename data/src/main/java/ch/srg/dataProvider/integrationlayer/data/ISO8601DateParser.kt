@@ -7,7 +7,7 @@ import java.util.*
 /**
  * DateParser to convert Integration Layer String date to date (ISO_8601)
  *
- * DateParser isn't Thread Safe, each thread must use it own instance.
+ * DateParser isn't Thread Safe, each thread must use its own instance.
  * Because SimpleDateFormat isn't Thread Safe @link(https://developer.android.com/reference/java/text/SimpleDateFormat)
  *
  *

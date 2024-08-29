@@ -1,5 +1,7 @@
 package ch.srg.dataProvider.integrationlayer.data.remote
+
 import kotlinx.serialization.Serializable
+
 /**
  * Copyright (c) SRG SSR. All rights reserved.
  * <p>

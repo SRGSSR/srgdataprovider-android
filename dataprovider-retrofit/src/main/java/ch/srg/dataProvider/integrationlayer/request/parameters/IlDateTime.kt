@@ -1,7 +1,9 @@
 package ch.srg.dataProvider.integrationlayer.request.parameters
 
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Calendar
+import java.util.Date
+import java.util.Locale
 
 /**
  * Format date for Integration layer that use Format: ‘yyyy-MM-ddTHH:mm:ss’ or ISO-8601 based format.

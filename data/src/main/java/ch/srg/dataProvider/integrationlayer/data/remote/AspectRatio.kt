@@ -8,21 +8,21 @@ import kotlinx.serialization.Serializable
 data class AspectRatio(val numerator: Int, val denominator: Int) {
 
     override fun toString(): String {
-        return "$numerator$Separator$denominator"
+        return "$numerator$SEPARATOR$denominator"
     }
 
     companion object {
         val Infinity = AspectRatio(1, 0)
         val Zero = AspectRatio(0, 1)
 
-        private const val Separator = ":"
+        private const val SEPARATOR = ":"
 
         /**
          * Parse Aspect ratio writing with this numerator:denominator format.
-         * Example : 1:1, 16:9, 9:16
+         * Examples: 1:1, 16:9, 9:16
          */
         fun parse(str: String): AspectRatio {
-            val numeratorDenominatorString = str.split(Separator)
+            val numeratorDenominatorString = str.split(SEPARATOR)
             require(numeratorDenominatorString.size == 2) { "Expected rational as numerator:denominator but is $str" }
             val numerator = numeratorDenominatorString[0].toInt()
             val denominator = numeratorDenominatorString[1].toInt()

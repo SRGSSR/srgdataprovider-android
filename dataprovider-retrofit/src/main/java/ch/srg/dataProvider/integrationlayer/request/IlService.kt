@@ -38,7 +38,7 @@ import retrofit2.http.Url
  * Retrofit suspend function already called in IO Dispatcher ie withContext(Dispatchers.IO)
  * So no need to call it when calling it inside a Coroutine scope.
  *
- * suspend function may throws those exceptions :
+ * Suspend function may throw those exceptions:
  *  - retrofit2.HttpException
  *  - java.io.IOException
  *
@@ -390,10 +390,10 @@ interface IlService {
     //region search
 
     /**
-     * <pre>SWI supports only the parameters ‘q’ (must not be empty), ‘pageSize’ and 'next’
+     * <pre>SWI supports only the parameters ‘q’ (must not be empty), ‘pageSize’ and ‘next’
      * For easier client integration the parameter ‘includeAggregations’ is also allowed for SWI, but not supported by the backend.
      *
-     * RTS support all filter parameters except the ‘quality’ parameter.
+     * RTS supports all filter parameters except the ‘quality’ parameter.
      *
      * On the aggregations duration means
      * duration:0, count:2 -> Two medias with a duration up to 59999 milliseconds

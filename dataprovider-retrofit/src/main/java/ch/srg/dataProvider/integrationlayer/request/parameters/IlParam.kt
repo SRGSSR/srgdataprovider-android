@@ -17,9 +17,7 @@ sealed class IlParam(val param: String) {
 
         other as IlParam
 
-        if (param != other.param) return false
-
-        return true
+        return param == other.param
     }
 
     override fun hashCode(): Int {

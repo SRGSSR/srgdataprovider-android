@@ -53,15 +53,15 @@ data class Resource @JvmOverloads constructor(
     }
 
     fun hasDrm(): Boolean {
-        return drmList != null && drmList.isNotEmpty()
+        return !drmList.isNullOrEmpty()
     }
 
     fun hasSubtitles(): Boolean {
-        return subtitleVariants != null && subtitleVariants.isNotEmpty()
+        return !subtitleVariants.isNullOrEmpty()
     }
 
     fun hasAudioTracks(): Boolean {
-        return audioVariants != null && audioVariants.isNotEmpty()
+        return !audioVariants.isNullOrEmpty()
     }
 
     @Serializable

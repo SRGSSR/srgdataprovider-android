@@ -15,11 +15,14 @@ object UserAgentUtils {
 
     fun createUserAgent(application: Context): String {
         var version: String
-        var verCode: Int
+        var verCode: Long
         try {
             val pInfo = application.packageManager.getPackageInfo(application.packageName, 0)
+
+            @Suppress("DEPRECATION")
+            val versionCode = if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P) pInfo.longVersionCode else pInfo.versionCode.toLong()
             version = pInfo.versionName ?: UNKNOWN_VERSION
-            verCode = pInfo.versionCode
+            verCode = versionCode
         } catch (ignored: PackageManager.NameNotFoundException) {
             version = UNKNOWN_VERSION
             verCode = 0

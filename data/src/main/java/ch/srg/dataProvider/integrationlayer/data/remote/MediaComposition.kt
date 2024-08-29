@@ -35,7 +35,7 @@ data class MediaComposition(
     )
 
     /**
-     *  The chapter which should be initially played.
+     *  The chapter that should be initially played.
      */
     fun getMainChapter(): Chapter {
         return checkNotNull(findChapter(chapterUrn)) { "The main chapter is missing from mediaComposition" }

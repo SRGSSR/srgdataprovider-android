@@ -33,7 +33,7 @@ interface SRGMediaMetadata : SRGIdentifierMetadata, SRGImageMetadata, SRGMetadat
     }
 
     /**
-     * isBlocked if it has a blockReason or blocked by TimeAvailability at given time
+     * isBlocked if it has a blockReason or blocked by TimeAvailability at a given time
      */
     fun isBlocked(at: Date = Date()): Boolean {
         return blockReason != null || getTimeAvailability(at) != TimeAvailability.AVAILABLE
