@@ -52,7 +52,7 @@ android {
 
 dependencies {
     api(project(":dataprovider-retrofit"))
-    api(libs.paging.common)
+    api(libs.androidx.paging.common)
 }
 
 publishing {
