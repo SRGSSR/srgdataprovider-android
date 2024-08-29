@@ -15,11 +15,11 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-      - uses: gradle/actions/setup-gradle@v3
+      - uses: gradle/actions/setup-gradle@v4
       - name: Run Android Lint
         run: ./gradlew lint
       - uses: github/codeql-action/upload-sarif@v3
-        if: success() || failure()
+        if: ${{ !cancelled() }}
         with:
           sarif_file: build/reports/android-lint/
           category: android-lint
@@ -34,11 +34,11 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-      - uses: gradle/actions/setup-gradle@v3
+      - uses: gradle/actions/setup-gradle@v4
       - name: Run Detekt
         run: ./gradlew detekt
       - uses: github/codeql-action/upload-sarif@v3
-        if: success() || failure()
+        if: ${{ !cancelled() }}
         with:
           sarif_file: build/reports/detekt.sarif
           category: detekt
@@ -53,6 +53,6 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-      - uses: gradle/actions/setup-gradle@v3
+      - uses: gradle/actions/setup-gradle@v4
       - name: Run Unit Tests
         run: ./gradlew testDebug
