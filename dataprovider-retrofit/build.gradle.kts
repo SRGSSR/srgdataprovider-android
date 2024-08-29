@@ -55,7 +55,7 @@ dependencies {
     api(libs.retrofit)
     compileOnly(libs.androidx.annotation)
     implementation(libs.retrofit2.kotlinx.serialization.converter)
-    implementation(libs.logging.interceptor)
+    implementation(libs.okhttp.logging.interceptor)
 
     testImplementation(libs.junit)
     testRuntimeOnly(libs.robolectric)
