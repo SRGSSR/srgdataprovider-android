@@ -34,7 +34,7 @@ public class IlUrn {
      */
     public IlUrn(@NonNull String urn) throws IllegalArgumentException {
         if (!parseBuMam(urn)
-                && !parseSwissTxt(urn)) {
+            && !parseSwissTxt(urn)) {
             throw new IllegalArgumentException(String.format("URN '%s' does not match a valid URN pattern.", urn));
         }
     }
@@ -51,7 +51,7 @@ public class IlUrn {
                 assetType = ASSET_SHOW;
             }
 
-            id = matcher.group(3); // Do not transform ID since it is case sensitive.
+            id = matcher.group(3); // Do not transform ID since it is case-sensitive.
             underlying = "urn:" + bu + ":" + assetType + ":" + id;
             return true;
         } else {
@@ -105,7 +105,7 @@ public class IlUrn {
     }
 
     /**
-     * Return Asset Type (one of audio or video)
+     * Return Asset Type (either audio or video)
      */
     public String getAssetType() {
         return assetType;
@@ -121,6 +121,7 @@ public class IlUrn {
     /**
      * Returns the underlying string representation.
      */
+    @NonNull
     @Override
     public String toString() {
         return underlying;

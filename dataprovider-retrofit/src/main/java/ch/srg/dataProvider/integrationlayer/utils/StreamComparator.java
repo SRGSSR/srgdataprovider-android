@@ -21,11 +21,11 @@ public class StreamComparator implements Comparator<Resource> {
 
     public static final int SCORE_NOT_SUPPORTED = Integer.MAX_VALUE;
 
-    private List<Quality> orderedQualities;
-    private List<StreamingMethod> orderedStreaming;
+    private final List<Quality> orderedQualities;
+    private final List<StreamingMethod> orderedStreaming;
     @Nullable
-    private List<Resource.Drm.Type> supportedDrms;
-    private boolean dvrSupported;
+    private final List<Resource.Drm.Type> supportedDrms;
+    private final boolean dvrSupported;
 
     public StreamComparator(List<Quality> orderedQualities, List<StreamingMethod> orderedStreaming, @Nullable List<Resource.Drm.Type> supportedDrms, boolean dvrSupported) {
         this.orderedQualities = orderedQualities;
@@ -44,16 +44,16 @@ public class StreamComparator implements Comparator<Resource> {
 
     public int score(Resource r) {
         if (r.getStreamingMethod() == null
-                || (!dvrSupported && r.getDvr())
-                || (!isSupportedDrm(r.getDrmList()))) {
+            || (!dvrSupported && r.getDvr())
+            || (!isSupportedDrm(r.getDrmList()))) {
             return SCORE_NOT_SUPPORTED;
         }
-        int indexOfStreaming = orderedStreaming.indexOf(r.getStreamingMethod()); // will retrun -1 if not in the list
-        int indexOfQuality = orderedQualities.indexOf(r.getQuality()); // will retrun -1 if not in the list
+        int indexOfStreaming = orderedStreaming.indexOf(r.getStreamingMethod()); // will return -1 if not in the list
+        int indexOfQuality = orderedQualities.indexOf(r.getQuality()); // will return -1 if not in the list
 
         return (indexOfStreaming < 0 ? orderedStreaming.size() : indexOfStreaming) * HANDICAP_STREAMING
-                + (indexOfQuality < 0 ? orderedQualities.size() : indexOfQuality) * HANDICAP_QUALITY
-                + (r.getDvr() ? 0 : HANDICAP_DVR);
+            + (indexOfQuality < 0 ? orderedQualities.size() : indexOfQuality) * HANDICAP_QUALITY
+            + (r.getDvr() ? 0 : HANDICAP_DVR);
     }
 
     private boolean isSupportedDrm(List<Resource.Drm> drmList) {

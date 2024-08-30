@@ -21,7 +21,7 @@ import ch.srg.dataProvider.integrationlayer.request.parameters.IlUrns
 class SearchProvider(private val ilService: IlService) {
 
     /**
-     * Search media result without Media object, only urns
+     * Search media result without a Media object, only urns
      */
     suspend fun searchMediaResult(
         bu: Bu,
@@ -33,7 +33,7 @@ class SearchProvider(private val ilService: IlService) {
     }
 
     /**
-     * Search media result without Media object, only urns
+     * Search media result without a Media object, only urns
      */
     suspend fun searchMediaResult(nextUrl: String): SearchResultMediaList {
         return ilService.getSearchMediaNextUrl(nextUrl)
@@ -74,7 +74,7 @@ class SearchProvider(private val ilService: IlService) {
     }
 
     /**
-     * Search show result without Media object, only urns
+     * Search show result without a Media object, only urns
      */
     suspend fun searchShowResult(
         bu: Bu,
@@ -86,7 +86,7 @@ class SearchProvider(private val ilService: IlService) {
     }
 
     /**
-     * Search show result without Media object, only urns
+     * Search show result without a Media object, only urns
      */
     suspend fun searchShowResultNextUrl(nextUrl: String): SearchResultShowList {
         return ilService.getSearchShowNextUrl(nextUrl)

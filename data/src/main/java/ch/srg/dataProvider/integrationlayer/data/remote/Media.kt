@@ -1,4 +1,5 @@
 @file:UseSerializers(DateSerializer::class)
+
 package ch.srg.dataProvider.integrationlayer.data.remote
 
 import ch.srg.dataProvider.integrationlayer.data.ImageUrl

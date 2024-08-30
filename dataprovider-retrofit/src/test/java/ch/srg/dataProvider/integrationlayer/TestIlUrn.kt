@@ -2,7 +2,7 @@ package ch.srg.dataProvider.integrationlayer
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import ch.srg.dataProvider.integrationlayer.utils.IlUrn
-import junit.framework.Assert
+import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
 

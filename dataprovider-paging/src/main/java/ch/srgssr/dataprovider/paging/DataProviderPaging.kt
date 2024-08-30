@@ -38,7 +38,7 @@ class DataProviderPaging(
 ) {
     private val searchProvider = SearchProvider(ilService)
 
-    fun getShowListFromUrns(tabUrns: List<String>, pageSize: Int = DefaultPageSize): Flow<PagingData<Show>> {
+    fun getShowListFromUrns(tabUrns: List<String>, pageSize: Int = DEFAULT_PAGE_SIZE): Flow<PagingData<Show>> {
         return Pager(config = pageSize.toPagingConfig(), pagingSourceFactory = {
             UrnsPagingSource(urns = tabUrns, call = { urns ->
                 ilService.getShowListFromUrns(IlUrns(urns))
@@ -46,7 +46,7 @@ class DataProviderPaging(
         }).flow
     }
 
-    fun getMediaListFromUrns(tabUrns: List<String>, pageSize: Int = DefaultPageSize): Flow<PagingData<Media>> {
+    fun getMediaListFromUrns(tabUrns: List<String>, pageSize: Int = DEFAULT_PAGE_SIZE): Flow<PagingData<Media>> {
         return Pager(config = pageSize.toPagingConfig(), pagingSourceFactory = {
             UrnsPagingSource(urns = tabUrns, call = { urns ->
                 ilService.getMediaListFromUrns(IlUrns(urns))
@@ -54,7 +54,7 @@ class DataProviderPaging(
         }).flow
     }
 
-    fun getLatestMediaByShowUrn(showUrn: String, pageSize: Int = DefaultPageSize): Flow<PagingData<Media>> {
+    fun getLatestMediaByShowUrn(showUrn: String, pageSize: Int = DEFAULT_PAGE_SIZE): Flow<PagingData<Media>> {
         return createNextUrlPagingData(
             pageSize = pageSize, initialCall = { ilService.getLatestMediaByShowUrn(showUrn, it.toIlPaging()) },
             nextCall = { ilService.getMediaListNextUrl(it) }
@@ -67,7 +67,7 @@ class DataProviderPaging(
         maxPublishDate: Date? = null,
         minPublishDate: Date? = null,
         types: String? = null,
-        pageSize: Int = DefaultPageSize
+        pageSize: Int = DEFAULT_PAGE_SIZE
     ): Flow<PagingData<Media>> {
         return Pager(config = pageSize.toPagingConfig(), pagingSourceFactory = {
             UrnsPagingSource(
@@ -86,7 +86,7 @@ class DataProviderPaging(
         }).flow
     }
 
-    fun getMediaRecommendedByUrn(urn: String, pageSize: Int = DefaultPageSize): Flow<PagingData<Media>> {
+    fun getMediaRecommendedByUrn(urn: String, pageSize: Int = DEFAULT_PAGE_SIZE): Flow<PagingData<Media>> {
         return createNextUrlPagingData(
             pageSize = pageSize,
             initialCall = { ilService.getMediaRecommendedByUrn(urn, it.toIlPaging()) },
@@ -94,7 +94,7 @@ class DataProviderPaging(
         )
     }
 
-    fun getLatestMediaByTopicUrn(topicUrn: String, pageSize: Int = DefaultPageSize): Flow<PagingData<Media>> {
+    fun getLatestMediaByTopicUrn(topicUrn: String, pageSize: Int = DEFAULT_PAGE_SIZE): Flow<PagingData<Media>> {
         return createNextUrlPagingData(
             pageSize = pageSize,
             initialCall = { ilService.getLatestMediaByTopicUrn(topicUrn, it.toIlPaging()) },
@@ -102,7 +102,7 @@ class DataProviderPaging(
         )
     }
 
-    fun getMostClickedMediaByTopicUrn(topicUrn: String, pageSize: Int = DefaultPageSize): Flow<PagingData<Media>> {
+    fun getMostClickedMediaByTopicUrn(topicUrn: String, pageSize: Int = DEFAULT_PAGE_SIZE): Flow<PagingData<Media>> {
         return createNextUrlPagingData(
             pageSize = pageSize,
             initialCall = { ilService.getMostClickedMediaByTopicUrn(topicUrn, it.toIlPaging()) },
@@ -110,7 +110,7 @@ class DataProviderPaging(
         )
     }
 
-    fun getTvMostClickedMedias(bu: Bu, topicId: String? = null, pageSize: Int = DefaultPageSize): Flow<PagingData<Media>> {
+    fun getTvMostClickedMedias(bu: Bu, topicId: String? = null, pageSize: Int = DEFAULT_PAGE_SIZE): Flow<PagingData<Media>> {
         return createNextUrlPagingData(
             pageSize = pageSize,
             initialCall = { ilService.getTvMostClickedMedias(bu, topicId, it.toIlPaging()) },
@@ -118,7 +118,7 @@ class DataProviderPaging(
         )
     }
 
-    fun getTvSoonExpiringMedias(bu: Bu, topicId: String? = null, pageSize: Int = DefaultPageSize): Flow<PagingData<Media>> {
+    fun getTvSoonExpiringMedias(bu: Bu, topicId: String? = null, pageSize: Int = DEFAULT_PAGE_SIZE): Flow<PagingData<Media>> {
         return createNextUrlPagingData(
             pageSize = pageSize,
             initialCall = { ilService.getTvSoonExpiringMedias(bu, topicId, it.toIlPaging()) },
@@ -126,7 +126,7 @@ class DataProviderPaging(
         )
     }
 
-    fun getTvSoonExpiringMedias(bu: Bu, pageSize: Int = DefaultPageSize): Flow<PagingData<Media>> {
+    fun getTvSoonExpiringMedias(bu: Bu, pageSize: Int = DEFAULT_PAGE_SIZE): Flow<PagingData<Media>> {
         return createNextUrlPagingData(
             pageSize = pageSize,
             initialCall = { ilService.getTvWebFirstMedias(bu, it.toIlPaging()) },
@@ -134,7 +134,7 @@ class DataProviderPaging(
         )
     }
 
-    fun getTvLatestEpisodes(bu: Bu, pageSize: Int = DefaultPageSize): Flow<PagingData<Media>> {
+    fun getTvLatestEpisodes(bu: Bu, pageSize: Int = DEFAULT_PAGE_SIZE): Flow<PagingData<Media>> {
         return createNextUrlPagingData(
             pageSize = pageSize,
             initialCall = { ilService.getTvLatestEpisodes(bu, it.toIlPaging()) },
@@ -142,7 +142,7 @@ class DataProviderPaging(
         )
     }
 
-    fun getTrendingMedias(bu: Bu, type: IlMediaType, onlyEpisodes: Boolean = false, pageSize: Int = DefaultPageSize): Flow<PagingData<Media>> {
+    fun getTrendingMedias(bu: Bu, type: IlMediaType, onlyEpisodes: Boolean = false, pageSize: Int = DEFAULT_PAGE_SIZE): Flow<PagingData<Media>> {
         return createNextUrlPagingData(
             pageSize = pageSize,
             initialCall = { ilService.getTrendingMedias(bu, type, onlyEpisodes, it.toIlPaging()) },
@@ -150,7 +150,7 @@ class DataProviderPaging(
         )
     }
 
-    fun getLatestMediaByChannelId(bu: Bu, type: IlMediaType, channelId: String, pageSize: Int = DefaultPageSize): Flow<PagingData<Media>> {
+    fun getLatestMediaByChannelId(bu: Bu, type: IlMediaType, channelId: String, pageSize: Int = DEFAULT_PAGE_SIZE): Flow<PagingData<Media>> {
         return createNextUrlPagingData(
             pageSize = pageSize,
             initialCall = { ilService.getLatestMediaByChannelId(bu, type, channelId, it.toIlPaging()) },
@@ -158,7 +158,7 @@ class DataProviderPaging(
         )
     }
 
-    fun getTvEpisodesByDate(bu: Bu, date: IlDate, pageSize: Int = DefaultPageSize): Flow<PagingData<Media>> {
+    fun getTvEpisodesByDate(bu: Bu, date: IlDate, pageSize: Int = DEFAULT_PAGE_SIZE): Flow<PagingData<Media>> {
         return createNextUrlPagingData(
             pageSize = pageSize,
             initialCall = { ilService.getTvEpisodesByDate(bu, date, it.toIlPaging()) },
@@ -166,7 +166,7 @@ class DataProviderPaging(
         )
     }
 
-    fun getEpisodeCompositionByUrn(showUrn: String, pageSize: Int = DefaultPageSize): Flow<PagingData<Episode>> {
+    fun getEpisodeCompositionByUrn(showUrn: String, pageSize: Int = DEFAULT_PAGE_SIZE): Flow<PagingData<Episode>> {
         return createNextUrlPagingData(
             pageSize = pageSize,
             initialCall = { ilService.getEpisodeCompositionByUrn(showUrn, it.toIlPaging()) },
@@ -178,7 +178,7 @@ class DataProviderPaging(
         bu: Bu,
         type: LiveCenterType,
         onlyEventsWithResult: Boolean = true,
-        pageSize: Int = DefaultPageSize
+        pageSize: Int = DEFAULT_PAGE_SIZE
     ): Flow<PagingData<Media>> {
         return createNextUrlPagingData(
             pageSize = pageSize,
@@ -187,7 +187,7 @@ class DataProviderPaging(
         )
     }
 
-    fun getScheduledLiveStreamVideos(bu: Bu, signLanguageOnly: Boolean = false, pageSize: Int = DefaultPageSize): Flow<PagingData<Media>> {
+    fun getScheduledLiveStreamVideos(bu: Bu, signLanguageOnly: Boolean = false, pageSize: Int = DEFAULT_PAGE_SIZE): Flow<PagingData<Media>> {
         return createNextUrlPagingData(
             pageSize = pageSize,
             initialCall = { ilService.getScheduledLiveStreamVideos(bu, signLanguageOnly, it.toIlPaging()) },
@@ -195,7 +195,7 @@ class DataProviderPaging(
         )
     }
 
-    fun getRadioEpisodesByDateByChannelId(bu: Bu, date: IlDate, channelId: String, pageSize: Int = DefaultPageSize): Flow<PagingData<Media>> {
+    fun getRadioEpisodesByDateByChannelId(bu: Bu, date: IlDate, channelId: String, pageSize: Int = DEFAULT_PAGE_SIZE): Flow<PagingData<Media>> {
         return createNextUrlPagingData(
             pageSize = pageSize,
             initialCall = { ilService.getRadioEpisodesByDateByChannelId(bu, date, channelId, it.toIlPaging()) },
@@ -207,7 +207,7 @@ class DataProviderPaging(
         bu: Bu,
         channelId: String,
         onlyEpisodes: Boolean? = null,
-        pageSize: Int = DefaultPageSize
+        pageSize: Int = DEFAULT_PAGE_SIZE
     ): Flow<PagingData<Media>> {
         return createNextUrlPagingData(
             pageSize = pageSize,
@@ -217,7 +217,7 @@ class DataProviderPaging(
         )
     }
 
-    fun getRadioMostClickedMediasByChannelId(bu: Bu, onlyEpisodes: Boolean? = null, pageSize: Int = DefaultPageSize): Flow<PagingData<Media>> {
+    fun getRadioMostClickedMediasByChannelId(bu: Bu, onlyEpisodes: Boolean? = null, pageSize: Int = DEFAULT_PAGE_SIZE): Flow<PagingData<Media>> {
         return createNextUrlPagingData(
             pageSize = pageSize,
             initialCall = { ilService.getRadioMostClickedMedias(bu, onlyEpisodes, it.toIlPaging()) },
@@ -225,7 +225,7 @@ class DataProviderPaging(
         )
     }
 
-    fun getRadioSongListByChannelId(bu: Bu, channelId: String, pageSize: Int = DefaultPageSize): Flow<PagingData<Song>> {
+    fun getRadioSongListByChannelId(bu: Bu, channelId: String, pageSize: Int = DEFAULT_PAGE_SIZE): Flow<PagingData<Song>> {
         return createNextUrlPagingData(
             pageSize = pageSize,
             initialCall = { ilService.getRadioSongListByChannelId(bu = bu, channelId = channelId, pageSize = it.toIlPaging()) },
@@ -235,7 +235,7 @@ class DataProviderPaging(
 
     fun getAllAlphabeticalShows(bu: Bu, transmission: Transmission, radioChannelId: String? = null): Flow<PagingData<Show>> {
         return createNextUrlPagingData(
-            pageSize = DefaultPageSize,
+            pageSize = DEFAULT_PAGE_SIZE,
             initialCall = {
                 ilService.getAllAlphabeticalShows(
                     bu = bu, transmission = IlTransmission(transmission),
@@ -245,7 +245,7 @@ class DataProviderPaging(
         )
     }
 
-    fun getTvAlphabeticalShows(bu: Bu, pageSize: Int = DefaultPageSize): Flow<PagingData<Show>> {
+    fun getTvAlphabeticalShows(bu: Bu, pageSize: Int = DEFAULT_PAGE_SIZE): Flow<PagingData<Show>> {
         return createNextUrlPagingData(
             pageSize = pageSize,
             initialCall = { ilService.getTvAlphabeticalShows(bu = bu, pageSize = it.toIlPaging()) },
@@ -253,7 +253,7 @@ class DataProviderPaging(
         )
     }
 
-    fun getRadioAlphabeticalShowsByChannelId(bu: Bu, radioChannelId: String, pageSize: Int = DefaultPageSize): Flow<PagingData<Show>> {
+    fun getRadioAlphabeticalShowsByChannelId(bu: Bu, radioChannelId: String, pageSize: Int = DEFAULT_PAGE_SIZE): Flow<PagingData<Show>> {
         return createNextUrlPagingData(
             pageSize = pageSize,
             initialCall = { ilService.getRadioAlphabeticalShowsByChannelId(bu = bu, channelId = radioChannelId, pageSize = it.toIlPaging()) },
@@ -275,7 +275,7 @@ class DataProviderPaging(
         searchTerm: String,
         queryParameters: SearchParams.MediaParams,
         lastResult: MutableSharedFlow<SearchResultWithMediaList>? = null,
-        pageSize: Int = DefaultPageSize
+        pageSize: Int = DEFAULT_PAGE_SIZE
     ): Flow<PagingData<Media>> {
         return createNextUrlPagingData(
             pageSize,
@@ -303,7 +303,7 @@ class DataProviderPaging(
         searchTerm: String,
         queryParameters: SearchParams.ShowParams,
         lastResult: MutableSharedFlow<SearchResultWithShowList>? = null,
-        pageSize: Int = DefaultPageSize
+        pageSize: Int = DEFAULT_PAGE_SIZE
     ): Flow<PagingData<Show>> {
         return createNextUrlPagingData(
             pageSize,
@@ -319,7 +319,7 @@ class DataProviderPaging(
     }
 
     companion object {
-        private const val DefaultPageSize = 10
+        private const val DEFAULT_PAGE_SIZE = 10
 
         private fun Int.toPagingConfig() = PagingConfig(pageSize = this, prefetchDistance = 1)
 

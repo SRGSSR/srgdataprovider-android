@@ -2,12 +2,13 @@ package ch.srg.dataProvider.integrationlayer.data
 
 import java.text.ParseException
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
+import java.util.Locale
 
 /**
  * DateParser to convert Integration Layer String date to date (ISO_8601)
  *
- * DateParser isn't Thread Safe, each thread must use it own instance.
+ * DateParser isn't Thread Safe, each thread must use its own instance.
  * Because SimpleDateFormat isn't Thread Safe @link(https://developer.android.com/reference/java/text/SimpleDateFormat)
  *
  *

@@ -9,16 +9,12 @@ import ch.srg.dataProvider.integrationlayer.request.IlHost
  *
  * If the image url isn't supported by [DefaultImageUrlDecorator] the same url is returned.
  *
- * confluence doc : https://srgssr-ch.atlassian.net/wiki/spaces/SRGPLAY/pages/799082429/Project+-+Image+Service)
+ * Confluence doc: https://srgssr-ch.atlassian.net/wiki/spaces/SRGPLAY/pages/799082429/Project+-+Image+Service
  *
  * @param ilHost The [IlHost] of the integration layer image service.
  */
 class DefaultImageUrlDecorator(ilHost: IlHost) : ImageUrlDecorator {
-    private val imageServiceUri: Uri
-
-    init {
-        imageServiceUri = ilHost.hostUri.buildUpon().appendEncodedPath(IMAGES_SEGMENT).build()
-    }
+    private val imageServiceUri = ilHost.hostUri.buildUpon().appendEncodedPath(IMAGES_SEGMENT).build()
 
     override fun decorate(sourceUrl: String, widthPixels: Int): String {
         // Il image service only support some image url hostnames!
