@@ -27,7 +27,7 @@ interface SRGMediaMetadata : SRGIdentifierMetadata, SRGImageMetadata, SRGMetadat
     fun getDownloadUri(quality: Quality = Quality.HD): String? {
         return when (quality) {
             Quality.SD -> podcastSdUrl
-            Quality.HD, Quality.HQ -> if (podcastHdUrl.isNullOrEmpty()) podcastSdUrl else podcastHdUrl
+            Quality.HD, Quality.HQ -> if (podcastHdUrl.isNullOrBlank()) podcastSdUrl else podcastHdUrl
         }
     }
 
