@@ -53,7 +53,6 @@ android {
 dependencies {
     api(project(":data"))
     api(libs.retrofit)
-    compileOnly(libs.androidx.annotation)
     api(platform(libs.retrofit.bom))
     implementation(libs.retrofit.converter.kotlinx.serialization)
     implementation(libs.okhttp.logging.interceptor)
