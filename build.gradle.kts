@@ -60,10 +60,13 @@ val clean by tasks.registering(Delete::class) {
  */
 val installGitHook by tasks.registering(Copy::class) {
     description = "Adding Git hook script to local working copy"
-    from(file("${rootProject.rootDir}/git_hooks/pre-commit"))
-    into { file("${rootProject.rootDir}/.git/hooks") }
+    from(rootProject.file("git_hooks/pre-commit"))
+    into(rootProject.file(".git/hooks"))
     filePermissions {
         unix("rwxr-xr-x")
+    }
+    doFirst {
+        delete(rootProject.file(".git/hooks/pre-commit"))
     }
 }
 
