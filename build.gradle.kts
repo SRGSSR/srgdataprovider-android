@@ -50,20 +50,24 @@ allprojects {
     }
 }
 
-tasks.register("clean", Delete::class) {
-    delete(rootProject.buildDir)
+val clean by tasks.registering(Delete::class) {
+    delete(rootProject.layout.buildDirectory)
 }
 
 /*
  * https://detekt.dev/docs/gettingstarted/git-pre-commit-hook
  * https://medium.com/@alistair.cerio/android-ktlint-and-pre-commit-git-hook-5dd606e230a9
  */
-tasks.register("installGitHook", Copy::class) {
-    description = "Adding git hook script to local working copy"
-    println("Installing git hook to ${rootProject.rootDir}/.git/hooks")
-    from(file("${rootProject.rootDir}/git_hooks/pre-commit"))
-    into { file("${rootProject.rootDir}/.git/hooks") }
-    fileMode = 0x777
+val installGitHook by tasks.registering(Copy::class) {
+    description = "Adding Git hook script to local working copy"
+    from(rootProject.file("git_hooks/pre-commit"))
+    into(rootProject.file(".git/hooks"))
+    filePermissions {
+        unix("rwxr-xr-x")
+    }
+    doFirst {
+        delete(rootProject.file(".git/hooks/pre-commit"))
+    }
 }
 
 tasks.getByPath(":data:preBuild").dependsOn(":installGitHook")
