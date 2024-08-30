@@ -14,10 +14,16 @@ interface IlStatisticService {
     suspend fun getMediaStatisticByUrn(@Path("urn") urn: String): MediaStatisticResult
 
     @POST("2.0/mediaStatistic/byUrn/{urn}/clicked")
-    suspend fun postMediaClicked(@Path("urn") urn: String, @Body mediaStatisticsBody: MediaStatisticPost): MediaStatisticResult
+    suspend fun postMediaClicked(
+        @Path("urn") urn: String,
+        @Body mediaStatisticsBody: MediaStatisticPost
+    ): MediaStatisticResult
 
     @POST("2.0/mediaStatistic/byUrn/{urn}/liked")
-    suspend fun postMediaLiked(@Path("urn") urn: String, @Body mediaStatisticsBody: MediaStatisticPost): MediaStatisticResult
+    suspend fun postMediaLiked(
+        @Path("urn") urn: String,
+        @Body mediaStatisticsBody: MediaStatisticPost
+    ): MediaStatisticResult
 
     @POST("2.0/mediaStatistic/byUrn/{urn}/shared/{service}")
     suspend fun postMediaShared(

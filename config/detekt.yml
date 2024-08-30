@@ -300,7 +300,6 @@ naming:
   BooleanPropertyNaming:
     active: false
     allowedPattern: '^(is|has|are)'
-    ignoreOverridden: true
   ClassNaming:
     active: true
     classPattern: '[A-Z][a-zA-Z0-9]*'
@@ -309,7 +308,6 @@ naming:
     parameterPattern: '[a-z][A-Za-z0-9]*'
     privateParameterPattern: '[a-z][A-Za-z0-9]*'
     excludeClassPattern: '$^'
-    ignoreOverridden: true
   EnumNaming:
     active: true
     enumEntryPattern: '[A-Z][_a-zA-Z0-9]*'
@@ -327,13 +325,11 @@ naming:
     excludes: [ '**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**' ]
     functionPattern: '[a-z][a-zA-Z0-9]*'
     excludeClassPattern: '$^'
-    ignoreOverridden: true
     ignoreAnnotated: [ 'Composable' ]
   FunctionParameterNaming:
     active: true
     parameterPattern: '[a-z][A-Za-z0-9]*'
     excludeClassPattern: '$^'
-    ignoreOverridden: true
   InvalidPackageDeclaration:
     active: true
     rootPackage: ''
@@ -375,7 +371,6 @@ naming:
     variablePattern: '[a-z][A-Za-z0-9]*'
     privateVariablePattern: '(_)?[a-z][A-Za-z0-9]*'
     excludeClassPattern: '$^'
-    ignoreOverridden: true
 
 performance:
   active: true
@@ -515,12 +510,11 @@ style:
     includeLineWrapping: false
   ForbiddenComment:
     active: true
-    values:
+    comments:
       - 'FIXME:'
       - 'STOPSHIP:'
       - 'TODO:'
     allowedPatterns: ''
-    customMessage: ''
   ForbiddenImport:
     active: false
     imports: [ ]
@@ -564,7 +558,7 @@ style:
     ignoreRanges: false
     ignoreExtensionFunctions: true
     ignoreAnnotated: [ 'Composable' ]
-  MandatoryBracesIfStatements:
+  BracesOnIfStatements:
     active: false
   MandatoryBracesLoops:
     active: false
@@ -597,7 +591,7 @@ style:
     active: true
   OptionalUnit:
     active: false
-  OptionalWhenBraces:
+  BracesOnWhenStatements:
     active: false
   PreferToOverPairSyntax:
     active: false

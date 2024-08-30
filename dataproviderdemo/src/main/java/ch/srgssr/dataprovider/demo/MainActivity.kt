@@ -2,7 +2,8 @@ package ch.srgssr.dataprovider.demo
 
 import android.os.Bundle
 import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
+import androidx.activity.ComponentActivity
+import androidx.activity.enableEdgeToEdge
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -16,14 +17,15 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import okhttp3.OkHttpClient
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : ComponentActivity(R.layout.activity_main) {
 
     private lateinit var okHttp: OkHttpClient
     private lateinit var ilService: IlService
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
+
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
         okHttp = OkHttpModule.createOkHttpClient(this)
         ilService = IlServiceModule.createIlService(okHttp, ilHost = IlHost.PROD)

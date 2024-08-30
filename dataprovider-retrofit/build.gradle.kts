@@ -10,7 +10,6 @@ android {
 
     defaultConfig {
         minSdk = Config.minSdk
-        targetSdk = Config.targetSdk
         group = Config.maven_group
         version = Config.versionName
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -30,17 +29,18 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
     lint {
         // https://developer.android.com/reference/tools/gradle-api/4.1/com/android/build/api/dsl/LintOptions
         abortOnError = false
         sarifReport = true
         sarifOutput = rootProject.layout.buildDirectory.file("reports/android-lint/${project.name}.sarif").get().asFile
+        targetSdk = Config.targetSdk
     }
     publishing {
         singleVariant("release") {
@@ -54,12 +54,13 @@ dependencies {
     api(project(":data"))
     api(libs.retrofit)
     compileOnly(libs.androidx.annotation)
-    implementation(libs.retrofit2.kotlinx.serialization.converter)
-    implementation(libs.logging.interceptor)
+    api(platform(libs.retrofit.bom))
+    implementation(libs.retrofit.converter.kotlinx.serialization)
+    implementation(libs.okhttp.logging.interceptor)
 
     testImplementation(libs.junit)
     testRuntimeOnly(libs.robolectric)
-    testImplementation(libs.ext.junit)
+    testImplementation(libs.androidx.test.ext.junit)
 }
 
 publishing {

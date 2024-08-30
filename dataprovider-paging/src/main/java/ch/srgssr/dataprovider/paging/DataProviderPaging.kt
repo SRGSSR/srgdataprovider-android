@@ -256,7 +256,9 @@ class DataProviderPaging(
     fun getRadioAlphabeticalShowsByChannelId(bu: Bu, radioChannelId: String, pageSize: Int = DEFAULT_PAGE_SIZE): Flow<PagingData<Show>> {
         return createNextUrlPagingData(
             pageSize = pageSize,
-            initialCall = { ilService.getRadioAlphabeticalShowsByChannelId(bu = bu, channelId = radioChannelId, pageSize = it.toIlPaging()) },
+            initialCall = {
+                ilService.getRadioAlphabeticalShowsByChannelId(bu = bu, channelId = radioChannelId, pageSize = it.toIlPaging())
+            },
             nextCall = { ilService.getShowListNextUrl(it) }
         )
     }
