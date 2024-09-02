@@ -16,6 +16,7 @@ import java.io.Serializable
  */
 @Suppress("SerialVersionUIDInSerializableClass")
 @kotlinx.serialization.Serializable(with = ImageUrlSerializer::class)
+// TODO Why is this class 'java.io.Serializable'?
 data class ImageUrl(
     /**
      * Only for internal use! Please use a Decorator!
