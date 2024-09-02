@@ -52,11 +52,10 @@ android {
 }
 
 dependencies {
+    api(libs.kotlinx.datetime)
     api(libs.kotlinx.serialization.json)
 
-    testRuntimeOnly(libs.robolectric)
-    testImplementation(libs.junit)
-    testImplementation(libs.androidx.test.ext.junit)
+    testImplementation(libs.kotlin.test)
 }
 
 publishing {

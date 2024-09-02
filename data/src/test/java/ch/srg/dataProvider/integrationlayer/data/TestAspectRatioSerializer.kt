@@ -2,8 +2,8 @@ package ch.srg.dataProvider.integrationlayer.data
 
 import ch.srg.dataProvider.integrationlayer.data.remote.AspectRatio
 import kotlinx.serialization.encodeToString
-import org.junit.Assert.assertEquals
-import org.junit.Test
+import kotlin.test.Test
+import kotlin.test.assertEquals
 
 class TestAspectRatioSerializer {
 
