@@ -1,11 +1,7 @@
-@file:UseSerializers(DateSerializer::class)
-
 package ch.srg.dataProvider.integrationlayer.data.remote
 
-import ch.srg.dataProvider.integrationlayer.data.serializer.DateSerializer
+import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.UseSerializers
-import java.util.Date
 
 /**
  * Copyright (c) SRG SSR. All rights reserved.
@@ -42,7 +38,7 @@ data class ShowBucket(val urn: String, val title: String, override val count: In
 data class DurationInMinutesBucket(val duration: Long, override val count: Int) : Bucket
 
 @Serializable
-data class DateBucket(val date: Date, override val count: Int) : Bucket
+data class DateBucket(val date: Instant, override val count: Int) : Bucket
 
 @Serializable
 data class MediaAggregations(

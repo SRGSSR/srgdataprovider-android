@@ -1,13 +1,10 @@
-@file:UseSerializers(DateSerializer::class)
-
 package ch.srg.dataProvider.integrationlayer.data.remote
 
 import ch.srg.dataProvider.integrationlayer.data.ImageUrl
-import ch.srg.dataProvider.integrationlayer.data.serializer.DateSerializer
+import kotlinx.datetime.Instant
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.UseSerializers
-import java.util.Date
+import kotlin.time.Duration.Companion.milliseconds
 
 /**
  * Copyright (c) SRG SSR. All rights reserved.
@@ -30,7 +27,7 @@ data class Segment @JvmOverloads constructor(
      */
     val markOut: Long,
     override val type: Type,
-    override val date: Date,
+    override val date: Instant,
     override val duration: Long,
     override val displayable: Boolean,
     override val playableAbroad: Boolean,
@@ -44,8 +41,8 @@ data class Segment @JvmOverloads constructor(
     override val youthProtectionColor: YouthProtectionColor? = null,
     override val podcastSdUrl: String? = null,
     override val podcastHdUrl: String? = null,
-    override val validFrom: Date? = null,
-    override val validTo: Date? = null,
+    override val validFrom: Instant? = null,
+    override val validTo: Instant? = null,
     override val assignedBy: Referrer? = null,
     override val relatedContentList: List<RelatedContent>? = null,
     override val socialCountList: List<SocialCountEntry>? = null,
@@ -65,23 +62,23 @@ data class Segment @JvmOverloads constructor(
      *  The date corresponding to the mark in time, `null` if no such relationship exists.
      *  @see resourceReferenceDate
      */
-    var markInDate: Date? = null
+    var markInDate: Instant? = null
 
     /**
      * The date corresponding to the mark out time, `null` if no such relationship exists.
      *  @see resourceReferenceDate
      */
-    var markOutDate: Date? = null
+    var markOutDate: Instant? = null
 
     /**
      * Reference date to compute mark in and mark out date, `null` if no such relationship exists.
      */
-    var resourceReferenceDate: Date? = null
+    var resourceReferenceDate: Instant? = null
         set(value) {
             field = value
             if (value != null) {
-                markInDate = Date(value.time + markIn)
-                markOutDate = Date(value.time + markOut)
+                markInDate = value + markIn.milliseconds
+                markOutDate = value + markOut.milliseconds
             } else {
                 markInDate = null
                 markOutDate = null

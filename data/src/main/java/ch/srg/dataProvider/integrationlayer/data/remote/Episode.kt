@@ -1,12 +1,8 @@
-@file:UseSerializers(DateSerializer::class)
-
 package ch.srg.dataProvider.integrationlayer.data.remote
 
 import ch.srg.dataProvider.integrationlayer.data.ImageUrl
-import ch.srg.dataProvider.integrationlayer.data.serializer.DateSerializer
+import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.UseSerializers
-import java.util.Date
 
 /**
  * Copyright (c) SRG SSR. All rights reserved.
@@ -22,7 +18,7 @@ data class Episode(
     override val description: String? = null,
     override val imageTitle: String? = null,
     override val imageCopyright: String? = null,
-    val publishedDate: Date? = null,
+    val publishedDate: Instant? = null,
     val fullLengthUrn: String? = null,
     val seasonNumber: Int? = null,
     val number: Int? = null,

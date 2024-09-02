@@ -58,6 +58,7 @@ kotlin {
 }
 
 dependencies {
+    api(libs.kotlinx.datetime)
     api(libs.kotlinx.serialization.json)
 
     testRuntimeOnly(libs.robolectric)
