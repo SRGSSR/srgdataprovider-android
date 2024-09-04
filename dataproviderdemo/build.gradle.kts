@@ -39,6 +39,7 @@ android {
     }
 
     compileOptions {
+        isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
@@ -64,4 +65,5 @@ dependencies {
     implementation(project(":dataprovider-retrofit"))
     implementation(libs.androidx.activity)
     implementation(libs.androidx.lifecycle.runtime)
+    coreLibraryDesugaring(libs.android.desugar.jdk.libs)
 }
