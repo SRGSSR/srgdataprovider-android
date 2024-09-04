@@ -1,6 +1,5 @@
 package ch.srg.dataProvider.integrationlayer.data.remote
 
-import ch.srg.dataProvider.integrationlayer.data.ImageUrl
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -29,7 +28,7 @@ class ProgramGuideTest {
                         vendor = Vendor.RTS,
                         urn = "urn:rts:video:$index",
                         title = "channel-title$index",
-                        imageUrl = ImageUrl("https://image.url/"),
+                        imageUrl = "https://image.url/",
                         transmission = Transmission.TV,
                     )
                 )

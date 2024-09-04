@@ -1,7 +1,5 @@
 package ch.srg.dataProvider.integrationlayer.data.remote
 
-import ch.srg.dataProvider.integrationlayer.data.ImageUrl
-
 /**
  * Copyright (c) SRG SSR. All rights reserved.
  * <p>
@@ -23,7 +21,7 @@ interface SRGMetadata {
 }
 
 interface SRGImageMetadata {
-    val imageUrl: ImageUrl
+    val imageUrl: String
     val imageTitle: String?
     val imageCopyright: String?
     val imageFocalPoint: FocalPoint?
@@ -32,5 +30,5 @@ interface SRGImageMetadata {
 interface SRGChannelMetadata : SRGIdentifierMetadata, SRGMetadata, SRGImageMetadata {
     val transmission: Transmission
     val timeTableUrl: String?
-    val rawImageUrl: ImageUrl?
+    val rawImageUrl: String?
 }

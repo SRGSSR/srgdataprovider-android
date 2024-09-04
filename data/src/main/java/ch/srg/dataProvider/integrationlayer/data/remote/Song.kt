@@ -2,7 +2,6 @@
 
 package ch.srg.dataProvider.integrationlayer.data.remote
 
-import ch.srg.dataProvider.integrationlayer.data.ImageUrl
 import ch.srg.dataProvider.integrationlayer.data.serializer.DateSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.UseSerializers
@@ -26,8 +25,8 @@ data class Song(
 @Serializable
 data class Cd(
     val name: String,
-    val coverUrlSmall: ImageUrl? = null,
-    val coverUrlLarge: ImageUrl? = null
+    val coverUrlSmall: String? = null,
+    val coverUrlLarge: String? = null
 )
 
 @Serializable

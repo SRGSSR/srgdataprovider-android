@@ -1,6 +1,5 @@
 package ch.srg.dataProvider.integrationlayer.data.remote
 
-import ch.srg.dataProvider.integrationlayer.data.ImageUrl
 import java.util.Date
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -51,7 +50,7 @@ class MediaCompositionTest {
                 vendor = Vendor.RTS,
                 urn = urn,
                 title = "chapter-title",
-                imageUrl = ImageUrl("https://image.url"),
+                imageUrl = "https://image.url",
                 type = Type.EPISODE,
                 date = Date(),
                 duration = 90.minutes.inWholeMilliseconds,
