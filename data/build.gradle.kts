@@ -55,7 +55,7 @@ dependencies {
     api(libs.kotlinx.serialization.json)
 
     testRuntimeOnly(libs.robolectric)
-    testImplementation(libs.junit)
+    testImplementation(libs.kotlin.test)
     testImplementation(libs.androidx.test.ext.junit)
 }
 
