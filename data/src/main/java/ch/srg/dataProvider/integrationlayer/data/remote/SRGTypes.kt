@@ -44,7 +44,7 @@ enum class BlockReason {
     companion object {
         fun parseValue(value: String): BlockReason {
             return try {
-                valueOf(value)
+                enumValueOf(value)
             } catch (e: IllegalArgumentException) {
                 UNKNOWN
             }

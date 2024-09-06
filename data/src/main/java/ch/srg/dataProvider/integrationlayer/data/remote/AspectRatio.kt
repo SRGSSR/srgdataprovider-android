@@ -24,9 +24,9 @@ data class AspectRatio(val numerator: Int, val denominator: Int) {
         fun parse(str: String): AspectRatio {
             val numeratorDenominatorString = str.split(SEPARATOR)
             require(numeratorDenominatorString.size == 2) { "Expected rational as numerator:denominator but is $str" }
-            val numerator = numeratorDenominatorString[0].toInt()
             val denominator = numeratorDenominatorString[1].toInt()
             if (denominator == 0) return Infinity
+            val numerator = numeratorDenominatorString[0].toInt()
             if (numerator == 0) return Zero
             return AspectRatio(numerator, denominator)
         }
