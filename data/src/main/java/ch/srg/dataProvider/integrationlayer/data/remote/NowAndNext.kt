@@ -27,5 +27,4 @@ data class NowAndNext(
     override val rawImageUrl: ImageUrl? = null,
     val now: Program? = null,
     val next: Program? = null
-) :
-    SRGChannelMetadata
+) : SRGChannelMetadata

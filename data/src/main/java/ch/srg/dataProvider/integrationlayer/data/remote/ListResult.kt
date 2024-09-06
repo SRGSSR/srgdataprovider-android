@@ -13,14 +13,10 @@ abstract class ListResult<T> : Iterable<T> {
     abstract val next: String?
 
     val list: List<T>
-        get() {
-            return data.orEmpty()
-        }
+        get() = data.orEmpty()
 
     val size: Int
-        get() {
-            return list.size
-        }
+        get() = list.size
 
     fun isEmpty(): Boolean {
         return data.isNullOrEmpty()
