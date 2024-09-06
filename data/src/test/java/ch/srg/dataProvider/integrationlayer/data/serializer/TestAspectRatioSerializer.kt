@@ -1,5 +1,6 @@
-package ch.srg.dataProvider.integrationlayer.data
+package ch.srg.dataProvider.integrationlayer.data.serializer
 
+import ch.srg.dataProvider.integrationlayer.data.DataProviderJson
 import ch.srg.dataProvider.integrationlayer.data.remote.AspectRatio
 import kotlinx.serialization.encodeToString
 import kotlin.test.Test

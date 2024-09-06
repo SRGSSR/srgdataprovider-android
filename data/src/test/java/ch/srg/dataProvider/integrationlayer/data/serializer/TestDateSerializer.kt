@@ -1,7 +1,7 @@
-package ch.srg.dataProvider.integrationlayer.data
+package ch.srg.dataProvider.integrationlayer.data.serializer
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import ch.srg.dataProvider.integrationlayer.data.serializer.DateSerializer
+import ch.srg.dataProvider.integrationlayer.data.DataProviderJson
 import org.junit.runner.RunWith
 import java.util.Date
 import kotlin.test.Ignore
