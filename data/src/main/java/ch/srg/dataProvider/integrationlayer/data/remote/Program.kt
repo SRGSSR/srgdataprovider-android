@@ -2,7 +2,6 @@
 
 package ch.srg.dataProvider.integrationlayer.data.remote
 
-import ch.srg.dataProvider.integrationlayer.data.ImageUrl
 import ch.srg.dataProvider.integrationlayer.data.serializer.DateSerializer
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -21,7 +20,7 @@ data class Program(
     val endTime: Date,
     override val lead: String? = null,
     override val description: String? = null,
-    val imageUrl: ImageUrl? = null,
+    val imageUrl: String? = null,
     val imageFocalPoint: FocalPoint? = null,
     val imageTitle: String? = null,
     val imageCopyright: String? = null,
