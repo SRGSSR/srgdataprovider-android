@@ -5,7 +5,7 @@ object Config {
 
     const val major = 0
     const val minor = 11
-    const val patch = "0.test-force-sam"
+    const val patch = 1
     const val versionName = "$major.$minor.$patch"
 
     const val maven_group = "ch.srg.data.provider"
