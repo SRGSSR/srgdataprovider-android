@@ -13,17 +13,21 @@ class HostInterceptor : Interceptor {
         val originalRequest = chain.request()
         val originalHttpUrl = originalRequest.url
 
-        if (originalHttpUrl.queryParameter("forceSAM") != null || !originalHttpUrl.pathSegments.contains("sam")) {
+        if (originalHttpUrl.queryParameter(FORCE_SAM) != null || !originalHttpUrl.pathSegments.contains("sam")) {
             return chain.proceed(originalRequest)
         }
 
         val url = originalHttpUrl.newBuilder()
-            .addQueryParameter("forceSAM", "true")
+            .addQueryParameter(FORCE_SAM, "true")
             .build()
 
         // Request customization: add request headers
         val requestBuilder = originalRequest.newBuilder().url(url)
         val request = requestBuilder.build()
         return chain.proceed(request)
+    }
+
+    companion object {
+        private const val FORCE_SAM = "forceSAM"
     }
 }
