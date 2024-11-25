@@ -77,7 +77,7 @@ publishing {
             }
         }
         maven {
-            url = uri("https://maven.ecetest.rts.ch/content/repositories/srg-letterbox-releases/")
+            url = uri("https://nxrm.rts.ch/repository/maven-srgssr-releases/")
             credentials {
                 username = project.findProperty("sonatypeUsername") as String? ?: System.getenv("SONATYPE_USERNAME")
                 password = project.findProperty("sonatypePassword") as String? ?: System.getenv("SONATYPE_PASSWORD")
