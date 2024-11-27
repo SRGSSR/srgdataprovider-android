@@ -2,6 +2,7 @@ package ch.srg.dataProvider.integrationlayer.dependencies.modules
 
 import android.content.Context
 import android.content.res.Configuration
+import ch.srg.dataProvider.integrationlayer.utils.HostInterceptor
 import ch.srg.dataProvider.integrationlayer.utils.UserAgentInterceptor
 import ch.srg.dataProvider.integrationlayer.utils.UserAgentUtils
 import ch.srg.dataProvider.integrationlayer.utils.VectorInterceptor
@@ -31,6 +32,7 @@ object OkHttpModule {
         logging.setLevel(HttpLoggingInterceptor.Level.HEADERS)
         builder.addInterceptor(logging)
         builder.addInterceptor(UserAgentInterceptor(UserAgentUtils.createUserAgent(context)))
+        builder.addInterceptor(HostInterceptor())
         builder.addInterceptor(VectorInterceptor(vector))
         builder.readTimeout(READ_TIMEOUT_SECONDS, TimeUnit.SECONDS)
         builder.connectTimeout(CONNECT_TIMEOUT_SECONDS, TimeUnit.SECONDS)
