@@ -30,7 +30,7 @@ allprojects {
     }
 
     tasks.withType<Detekt>().configureEach {
-        jvmTarget = "17"
+        jvmTarget = "11"
         reports {
             xml.required.set(false)
             html.required.set(true)
