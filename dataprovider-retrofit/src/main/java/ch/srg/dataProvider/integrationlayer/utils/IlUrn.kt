@@ -6,24 +6,24 @@ import java.util.regex.Pattern
  * This very simple class represents a URN provided by the IL.
  */
 class IlUrn private constructor() {
-    private var underlying: String? = null
+    private lateinit var underlyingUrn: String
 
     /**
      * Returns Business Unit.
      */
-    var bu: String? = null
+    lateinit var bu: String
         private set
 
     /**
      * Return Asset Type (either audio or video)
      */
-    var assetType: String? = null
+    lateinit var assetType: String
         private set
 
     /**
      * Return ID
      */
-    var id: String? = null
+    lateinit var id: String
         private set
 
     val isAudio: Boolean
@@ -46,40 +46,40 @@ class IlUrn private constructor() {
         }
     }
 
-    constructor(bu: String?, assetType: String?, id: String?) : this() {
-        this.bu = bu ?: "default"
+    constructor(bu: String, assetType: String, id: String) : this() {
+        this.bu = bu
         this.assetType = assetType
         this.id = id
 
-        underlying = "urn:" + this.bu + ":" + this.assetType + ":" + this.id
+        underlyingUrn = "urn:" + this.bu + ":" + this.assetType + ":" + this.id
     }
 
     fun equalsToString(other: String): Boolean {
         return try {
-            underlying == IlUrn(other).toString()
+            underlyingUrn == IlUrn(other).toString()
         } catch (_: IllegalArgumentException) {
             false
         }
     }
 
     override fun toString(): String {
-        return underlying.orEmpty()
+        return underlyingUrn
     }
 
     @Suppress("MagicNumber")
     private fun parseBuMam(urn: String): Boolean {
         val matcher = PATTERN_BUMAM.matcher(urn)
         if (matcher.matches()) {
-            bu = matcher.group(1)?.lowercase()
-            assetType = matcher.group(2)?.lowercase()
-            id = matcher.group(3) // Do not transform ID since it is case-sensitive.
+            bu = checkNotNull(matcher.group(1)).lowercase()
+            assetType = checkNotNull(matcher.group(2)).lowercase()
+            id = checkNotNull(matcher.group(3)) // Do not transform ID since it is case-sensitive.
 
             if (assetType == ASSET_GROUP) {
                 // Is a synonym of show (used in search request URN)
                 assetType = ASSET_SHOW
             }
 
-            underlying = "urn:$bu:$assetType:$id"
+            underlyingUrn = "urn:$bu:$assetType:$id"
 
             return true
         } else {
@@ -92,16 +92,16 @@ class IlUrn private constructor() {
         val matcher = PATTERN_SWISSTXT.matcher(urn)
         if (matcher.matches()) {
             val swissTxt = matcher.group(1)?.lowercase()
-            bu = matcher.group(3)?.lowercase()
-            assetType = matcher.group(2)?.lowercase()
-            id = matcher.group(4)
+            bu = checkNotNull(matcher.group(3)).lowercase()
+            assetType = checkNotNull(matcher.group(2)).lowercase()
+            id = checkNotNull(matcher.group(4))
 
             if (assetType == ASSET_GROUP) {
                 // Is a synonym of show (used in search request URN)
                 assetType = ASSET_SHOW
             }
 
-            underlying = "urn:$swissTxt:$assetType:$bu:$id"
+            underlyingUrn = "urn:$swissTxt:$assetType:$bu:$id"
 
             return true
         } else {
@@ -131,7 +131,7 @@ class IlUrn private constructor() {
         }
 
         @JvmStatic
-        fun format(bu: String?, assetType: String?, id: String?): String {
+        fun format(bu: String, assetType: String, id: String): String {
             return "urn:$bu:$assetType:$id"
         }
 
@@ -171,7 +171,7 @@ class IlUrn private constructor() {
          * @return assetType or "tv" if unparseable URN
          */
         @JvmStatic
-        fun getAssetType(urn: String?): String? {
+        fun getAssetType(urn: String?): String {
             return if (urn != null && isUrn(urn)) IlUrn(urn).assetType else ASSET_VIDEO
         }
     }
