@@ -26,4 +26,5 @@ data class Section(
     @SerialName("end")
     val endDate: Date? = null,
     val hasPersonalizedContent: Boolean? = null,
+    val mediaType: MediaType? = null,
 ) : ILObject
