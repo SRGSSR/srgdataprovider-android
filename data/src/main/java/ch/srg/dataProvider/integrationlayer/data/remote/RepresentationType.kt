@@ -19,6 +19,7 @@ object RepresentationType {
     const val TopicSelector = "TopicSelector"
     const val Livestreams = "Livestreams"
     const val ContinueWatching = "ContinueWatching"
+    const val ContinueStreaming = "ContinueStreaming"
     const val FavoriteShows = "FavoriteShows"
     const val WatchLater = "WatchLater"
     const val ExpiringSoon = "ExpiringSoon"
