@@ -2,10 +2,10 @@
 
 ## About
 
-The SRG Data Provider library provides a simple way to retrieve metadata for all SRG SSRG business units in a common format.
+The SRG Data Provider library provides a simple way to retrieve metadata for all SRG SSR business units in a common format.
 
 The library provides:
 
-* Requests with Retrofit to get the usual metadata associated with SRG SSR productions.
-* Gson serialization and deserialization.
+* Requests with [Retrofit](https://github.com/square/retrofit) to get the usual metadata associated with SRG SSR productions.
+* [KotlinX Serialization](https://github.com/Kotlin/kotlinx.serialization) serialization and deserialization.
 * A flat object model to easily access the data relevant to front-end users.
