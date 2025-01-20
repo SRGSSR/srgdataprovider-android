@@ -22,6 +22,7 @@ object RepresentationType {
     const val ContinueStreaming = "ContinueStreaming"
     const val FavoriteShows = "FavoriteShows"
     const val WatchLater = "WatchLater"
+    const val StreamLater = "StreamLater"
     const val ExpiringSoon = "ExpiringSoon"
     const val MyProgram = "MyProgram"
     const val ShowAccess = "ShowAccess"
