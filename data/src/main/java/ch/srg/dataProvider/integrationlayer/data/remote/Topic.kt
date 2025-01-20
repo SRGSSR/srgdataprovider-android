@@ -1,6 +1,5 @@
 package ch.srg.dataProvider.integrationlayer.data.remote
 
-import ch.srg.dataProvider.integrationlayer.data.ImageUrl
 import kotlinx.serialization.Serializable
 
 /**
@@ -18,7 +17,7 @@ data class Topic(
     override val lead: String? = null,
     override val description: String? = null,
     val viewedMedias: Int? = null,
-    val imageUrl: ImageUrl? = null,
+    val imageUrl: String? = null,
     val imageTitle: String? = null,
     val imageFocalPoint: FocalPoint? = null,
     val imageCopyright: String? = null,
