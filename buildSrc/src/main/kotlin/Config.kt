@@ -8,5 +8,5 @@ object Config {
     const val patch = 1
     const val versionName = "$major.$minor.$patch"
 
-    const val maven_group = "ch.srg.data.provider"
+    const val mavenGroup = "ch.srg.data.provider"
 }

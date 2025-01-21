@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         minSdk = Config.minSdk
-        group = Config.maven_group
+        group = Config.mavenGroup
         version = Config.versionName
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
