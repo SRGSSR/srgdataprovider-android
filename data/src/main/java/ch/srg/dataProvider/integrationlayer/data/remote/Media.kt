@@ -26,8 +26,6 @@ data class Media(
     override val duration: Long,
     override val imageUrl: ImageUrl,
     override val imageFocalPoint: FocalPoint? = null,
-    val podcastImageUrl: ImageUrl? = null,
-    val podcastImageIsFallbackUrl: Boolean = true,
     override val lead: String? = null,
     override val description: String? = null,
     override val imageTitle: String? = null,
