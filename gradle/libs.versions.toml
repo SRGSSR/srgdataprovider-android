@@ -2,7 +2,7 @@
 android-gradle-plugin = "8.8.1"
 androidx-activity = "1.10.0"
 androidx-lifecycle = "2.8.7"
-androidx-paging = "3.3.5"
+androidx-paging = "3.3.6"
 androidx-test-ext-junit = "1.2.1"
 detekt = "1.23.7"
 junit = "4.13.2"
