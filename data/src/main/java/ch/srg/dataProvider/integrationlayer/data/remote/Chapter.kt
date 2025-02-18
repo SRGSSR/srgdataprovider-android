@@ -114,11 +114,6 @@ data class Chapter(
     }
 
     fun doesHaveBlockedSegment(): Boolean {
-        for (segment in segmentList.orEmpty()) {
-            if (segment.isBlocked()) {
-                return true
-            }
-        }
-        return false
+        return segmentList.orEmpty().any { it.isBlocked() }
     }
 }
