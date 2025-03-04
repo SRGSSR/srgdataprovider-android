@@ -1,6 +1,5 @@
 package ch.srg.dataProvider.integrationlayer.data.remote
 
-import android.util.Rational
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
 
@@ -23,5 +22,5 @@ data class SpriteSheet(
     val count: Int = rows * columns
 
     @Transient
-    val aspectRatio = Rational(thumbnailWidth, thumbnailHeight)
+    val aspectRatio = AspectRatio(thumbnailWidth, thumbnailHeight)
 }

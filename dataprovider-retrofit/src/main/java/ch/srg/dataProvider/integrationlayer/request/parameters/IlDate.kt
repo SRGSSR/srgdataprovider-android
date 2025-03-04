@@ -1,5 +1,7 @@
 package ch.srg.dataProvider.integrationlayer.request.parameters
 
+import kotlinx.datetime.Clock
+import kotlinx.datetime.Instant
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -15,6 +17,8 @@ import java.util.TimeZone
  */
 class IlDate(date: Date = Date()) : IlParam(formatDate(date)) {
     constructor(calendar: Calendar) : this(calendar.time)
+
+    constructor(instant: Instant = Clock.System.now()) : this(Date(instant.toEpochMilliseconds()))
 
     /**
      * months = [0-11]
