@@ -1,12 +1,8 @@
-@file:UseSerializers(DateSerializer::class)
-
 package ch.srg.dataProvider.integrationlayer.data.remote
 
 import ch.srg.dataProvider.integrationlayer.data.ImageUrl
-import ch.srg.dataProvider.integrationlayer.data.serializer.DateSerializer
+import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.UseSerializers
-import java.util.Date
 
 /**
  * Copyright (c) SRG SSR. All rights reserved.
@@ -16,7 +12,7 @@ import java.util.Date
 @Serializable
 data class Song(
     val isPlayingNow: Boolean,
-    val date: Date,
+    val date: Instant,
     val title: String,
     val artist: Artist,
     val duration: Int? = null,

@@ -1,12 +1,8 @@
-@file:UseSerializers(DateSerializer::class)
-
 package ch.srg.dataProvider.integrationlayer.data.remote
 
-import ch.srg.dataProvider.integrationlayer.data.serializer.DateSerializer
+import kotlinx.datetime.Instant
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.UseSerializers
-import java.util.Date
 
 /**
  * Copyright (c) SRG SSR. All rights reserved.
@@ -22,9 +18,9 @@ data class Section(
     val representation: Representation,
     val isPublished: Boolean,
     @SerialName("start")
-    val startDate: Date? = null,
+    val startDate: Instant? = null,
     @SerialName("end")
-    val endDate: Date? = null,
+    val endDate: Instant? = null,
     val hasPersonalizedContent: Boolean? = null,
     val mediaType: MediaType? = null,
 ) : ILObject
