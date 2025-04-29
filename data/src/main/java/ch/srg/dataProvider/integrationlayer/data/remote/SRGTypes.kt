@@ -39,7 +39,7 @@ enum class YouthProtectionColor {
 
 @Serializable(with = BlockReasonSerializer::class)
 enum class BlockReason {
-    GEOBLOCK, LEGAL, COMMERCIAL, AGERATING18, AGERATING12, STARTDATE, ENDDATE, JOURNALISTIC, UNKNOWN;
+    GEOBLOCK, LEGAL, COMMERCIAL, AGERATING18, AGERATING12, STARTDATE, ENDDATE, JOURNALISTIC, VPNORPROXYDETECTED, UNKNOWN;
 
     companion object {
         fun parseValue(value: String): BlockReason {
