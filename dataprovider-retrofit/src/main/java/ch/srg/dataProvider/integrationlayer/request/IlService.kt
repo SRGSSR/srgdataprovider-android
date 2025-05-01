@@ -75,12 +75,6 @@ interface IlService {
         @Query("pageSize") pageSize: IlPaging.Size? = null
     ): MediaListResult
 
-    @GET("2.0/mediaList/recommended/byUrn/{urn}")
-    suspend fun getMediaRecommendedByUrn(
-        @Path("urn") urn: String,
-        @Query("pageSize") pageSize: IlPaging.Size? = null
-    ): MediaListResult
-
     /**
      * @param showUrns         List of show urns, max element = 15
      * @param onlyEpisodes     Return only episodes.

@@ -88,14 +88,6 @@ class DataProviderPaging(
         }).flow
     }
 
-    fun getMediaRecommendedByUrn(urn: String, pageSize: Int = DEFAULT_PAGE_SIZE): Flow<PagingData<Media>> {
-        return createNextUrlPagingData(
-            pageSize = pageSize,
-            initialCall = { ilService.getMediaRecommendedByUrn(urn, it.toIlPaging()) },
-            nextCall = { ilService.getMediaListNextUrl(it) }
-        )
-    }
-
     fun getLatestMediaByTopicUrn(topicUrn: String, pageSize: Int = DEFAULT_PAGE_SIZE): Flow<PagingData<Media>> {
         return createNextUrlPagingData(
             pageSize = pageSize,
