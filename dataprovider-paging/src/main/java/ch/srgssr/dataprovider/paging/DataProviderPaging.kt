@@ -234,22 +234,12 @@ class DataProviderPaging(
         )
     }
 
-    fun getAllAlphabeticalShows(bu: Bu, transmission: Transmission, radioChannelId: String? = null): Flow<PagingData<Show>> {
-        return createNextUrlPagingData(
-            pageSize = DEFAULT_PAGE_SIZE,
-            initialCall = {
-                ilService.getAllAlphabeticalShows(
-                    bu = bu, transmission = IlTransmission(transmission),
-                    radioChannelId = radioChannelId
-                )
-            }, nextCall = { ilService.getShowListNextUrl(it) }
-        )
-    }
-
-    fun getTvAlphabeticalShows(bu: Bu, pageSize: Int = DEFAULT_PAGE_SIZE): Flow<PagingData<Show>> {
+    fun getAlphabeticalShows(bu: Bu, transmission: Transmission, pageSize: Int = DEFAULT_PAGE_SIZE): Flow<PagingData<Show>> {
         return createNextUrlPagingData(
             pageSize = pageSize,
-            initialCall = { ilService.getTvAlphabeticalShows(bu = bu, pageSize = it.toIlPaging()) },
+            initialCall = {
+                ilService.getAlphabeticalShows(bu = bu, transmission = IlTransmission(transmission), pageSize = it.toIlPaging())
+            },
             nextCall = { ilService.getShowListNextUrl(it) }
         )
     }

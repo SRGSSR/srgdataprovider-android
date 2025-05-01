@@ -202,9 +202,10 @@ interface IlService {
         @Query("reduced") reduced: Boolean = false
     ): ProgramGuide
 
-    @GET("2.0/{bu}/showList/tv/alphabetical")
-    suspend fun getTvAlphabeticalShows(
+    @GET("2.0/{bu}/showList/{transmission}/alphabetical")
+    suspend fun getAlphabeticalShows(
         @Path("bu") bu: Bu,
+        @Path("transmission") transmission: IlTransmission,
         @Query("pageSize") pageSize: IlPaging?
     ): ShowListResult
 
@@ -362,13 +363,6 @@ interface IlService {
         @Query("livestreamId") liveStreamId: String?,
         @Query("pageSize") pageSize: IlPaging.Size? = null,
     ): ProgramCompositionListResult
-
-    @GET("2.0/{bu}/showList/{transmission}/alphabetical/all")
-    suspend fun getAllAlphabeticalShows(
-        @Path("bu") bu: Bu,
-        @Path("transmission") transmission: IlTransmission,
-        @Query("channelId") radioChannelId: String? = null
-    ): ShowListResult
 
     @GET("2.0/{bu}/showList/mostClickedSearchResults")
     suspend fun getTop10MostClickedSearchShow(
