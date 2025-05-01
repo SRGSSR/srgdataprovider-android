@@ -22,6 +22,7 @@ import ch.srg.dataProvider.integrationlayer.data.remote.TopicListResult
 import ch.srg.dataProvider.integrationlayer.request.parameters.Bu
 import ch.srg.dataProvider.integrationlayer.request.parameters.IlDate
 import ch.srg.dataProvider.integrationlayer.request.parameters.IlDateTime
+import ch.srg.dataProvider.integrationlayer.request.parameters.IlEventType
 import ch.srg.dataProvider.integrationlayer.request.parameters.IlMediaType
 import ch.srg.dataProvider.integrationlayer.request.parameters.IlPaging
 import ch.srg.dataProvider.integrationlayer.request.parameters.IlTransmission
@@ -307,6 +308,7 @@ interface IlService {
     suspend fun getScheduledLiveStreamVideos(
         @Path("bu") bu: Bu,
         @Query("signLanguageOnly") signLanguageOnly: Boolean = false,
+        @Query("eventType") eventType: IlEventType? = null,
         @Query("pageSize") pageSize: IlPaging.Size? = null,
     ): MediaListResult
 

@@ -4,6 +4,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import ch.srg.dataProvider.integrationlayer.data.remote.Episode
+import ch.srg.dataProvider.integrationlayer.data.remote.EventType
 import ch.srg.dataProvider.integrationlayer.data.remote.ListResult
 import ch.srg.dataProvider.integrationlayer.data.remote.LiveCenterType
 import ch.srg.dataProvider.integrationlayer.data.remote.Media
@@ -20,6 +21,7 @@ import ch.srg.dataProvider.integrationlayer.request.SearchProvider
 import ch.srg.dataProvider.integrationlayer.request.parameters.Bu
 import ch.srg.dataProvider.integrationlayer.request.parameters.IlDate
 import ch.srg.dataProvider.integrationlayer.request.parameters.IlDateTime
+import ch.srg.dataProvider.integrationlayer.request.parameters.IlEventType
 import ch.srg.dataProvider.integrationlayer.request.parameters.IlMediaType
 import ch.srg.dataProvider.integrationlayer.request.parameters.IlPaging.Unlimited.toIlPaging
 import ch.srg.dataProvider.integrationlayer.request.parameters.IlTransmission
@@ -187,10 +189,17 @@ class DataProviderPaging(
         )
     }
 
-    fun getScheduledLiveStreamVideos(bu: Bu, signLanguageOnly: Boolean = false, pageSize: Int = DEFAULT_PAGE_SIZE): Flow<PagingData<Media>> {
+    fun getScheduledLiveStreamVideos(
+        bu: Bu,
+        signLanguageOnly: Boolean = false,
+        eventType: EventType,
+        pageSize: Int = DEFAULT_PAGE_SIZE
+    ): Flow<PagingData<Media>> {
         return createNextUrlPagingData(
             pageSize = pageSize,
-            initialCall = { ilService.getScheduledLiveStreamVideos(bu, signLanguageOnly, it.toIlPaging()) },
+            initialCall = {
+                ilService.getScheduledLiveStreamVideos(bu, signLanguageOnly, IlEventType(eventType), it.toIlPaging())
+            },
             nextCall = { ilService.getMediaListNextUrl(it) }
         )
     }

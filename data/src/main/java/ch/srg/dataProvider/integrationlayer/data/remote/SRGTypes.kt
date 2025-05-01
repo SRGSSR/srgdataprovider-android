@@ -33,6 +33,10 @@ enum class LiveCenterType {
     EPISODE, SCHEDULED_LIVESTREAM
 }
 
+enum class EventType {
+    NEWS, SPORT
+}
+
 enum class YouthProtectionColor {
     RED, YELLOW
 }
