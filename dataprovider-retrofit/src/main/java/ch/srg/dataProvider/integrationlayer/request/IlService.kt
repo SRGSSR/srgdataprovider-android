@@ -22,6 +22,7 @@ import ch.srg.dataProvider.integrationlayer.data.remote.TopicListResult
 import ch.srg.dataProvider.integrationlayer.request.parameters.Bu
 import ch.srg.dataProvider.integrationlayer.request.parameters.IlDate
 import ch.srg.dataProvider.integrationlayer.request.parameters.IlDateTime
+import ch.srg.dataProvider.integrationlayer.request.parameters.IlEventType
 import ch.srg.dataProvider.integrationlayer.request.parameters.IlMediaType
 import ch.srg.dataProvider.integrationlayer.request.parameters.IlPaging
 import ch.srg.dataProvider.integrationlayer.request.parameters.IlTransmission
@@ -71,12 +72,6 @@ interface IlService {
     @GET("2.0/mediaList/mostClicked/byTopicUrn/{topicUrn}")
     suspend fun getMostClickedMediaByTopicUrn(
         @Path("topicUrn") topicUrn: String,
-        @Query("pageSize") pageSize: IlPaging.Size? = null
-    ): MediaListResult
-
-    @GET("2.0/mediaList/recommended/byUrn/{urn}")
-    suspend fun getMediaRecommendedByUrn(
-        @Path("urn") urn: String,
         @Query("pageSize") pageSize: IlPaging.Size? = null
     ): MediaListResult
 
@@ -207,9 +202,10 @@ interface IlService {
         @Query("reduced") reduced: Boolean = false
     ): ProgramGuide
 
-    @GET("2.0/{bu}/showList/tv/alphabetical")
-    suspend fun getTvAlphabeticalShows(
+    @GET("2.0/{bu}/showList/{transmission}/alphabetical")
+    suspend fun getAlphabeticalShows(
         @Path("bu") bu: Bu,
+        @Path("transmission") transmission: IlTransmission,
         @Query("pageSize") pageSize: IlPaging?
     ): ShowListResult
 
@@ -307,6 +303,7 @@ interface IlService {
     suspend fun getScheduledLiveStreamVideos(
         @Path("bu") bu: Bu,
         @Query("signLanguageOnly") signLanguageOnly: Boolean = false,
+        @Query("eventType") eventType: IlEventType? = null,
         @Query("pageSize") pageSize: IlPaging.Size? = null,
     ): MediaListResult
 
@@ -366,13 +363,6 @@ interface IlService {
         @Query("livestreamId") liveStreamId: String?,
         @Query("pageSize") pageSize: IlPaging.Size? = null,
     ): ProgramCompositionListResult
-
-    @GET("2.0/{bu}/showList/{transmission}/alphabetical/all")
-    suspend fun getAllAlphabeticalShows(
-        @Path("bu") bu: Bu,
-        @Path("transmission") transmission: IlTransmission,
-        @Query("channelId") radioChannelId: String? = null
-    ): ShowListResult
 
     @GET("2.0/{bu}/showList/mostClickedSearchResults")
     suspend fun getTop10MostClickedSearchShow(
