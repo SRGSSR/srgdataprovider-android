@@ -184,13 +184,18 @@ class DataProviderPaging(
     fun getScheduledLiveStreamVideos(
         bu: Bu,
         signLanguageOnly: Boolean = false,
-        eventType: EventType,
+        eventType: EventType? = null,
         pageSize: Int = DEFAULT_PAGE_SIZE
     ): Flow<PagingData<Media>> {
         return createNextUrlPagingData(
             pageSize = pageSize,
             initialCall = {
-                ilService.getScheduledLiveStreamVideos(bu, signLanguageOnly, IlEventType(eventType), it.toIlPaging())
+                ilService.getScheduledLiveStreamVideos(
+                    bu = bu,
+                    signLanguageOnly = signLanguageOnly,
+                    eventType = eventType?.let(::IlEventType),
+                    pageSize = it.toIlPaging(),
+                )
             },
             nextCall = { ilService.getMediaListNextUrl(it) }
         )
