@@ -1,6 +1,5 @@
 package ch.srg.dataProvider.integrationlayer.data.remote
 
-import ch.srg.dataProvider.integrationlayer.data.ImageUrl
 import kotlinx.serialization.Serializable
 
 /**
@@ -15,7 +14,7 @@ data class Show(
     val transmission: Transmission,
     override val urn: String,
     override val title: String,
-    override val imageUrl: ImageUrl,
+    override val imageUrl: String,
     override val lead: String? = null,
     override val description: String? = null,
     val primaryChannelUrn: String? = null,
@@ -23,10 +22,10 @@ data class Show(
     override val imageFocalPoint: FocalPoint? = null,
     override val imageTitle: String? = null,
     override val imageCopyright: String? = null,
-    val bannerImageUrl: ImageUrl? = null,
-    val posterImageUrl: ImageUrl? = null,
+    val bannerImageUrl: String? = null,
+    val posterImageUrl: String? = null,
     val posterImageIsFallbackUrl: Boolean = true,
-    val podcastImageUrl: ImageUrl? = null,
+    val podcastImageUrl: String? = null,
     val podcastImageIsFallbackUrl: Boolean = true,
     val podcastSubscriptionUrl: String? = null,
     val podcastFeedSdUrl: String? = null,
