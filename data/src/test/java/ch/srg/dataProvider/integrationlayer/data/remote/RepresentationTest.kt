@@ -1,6 +1,5 @@
 package ch.srg.dataProvider.integrationlayer.data.remote
 
-import ch.srg.dataProvider.integrationlayer.data.ImageUrl
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
@@ -49,7 +48,7 @@ class RepresentationTest {
             label = "label",
             hasDetailPage = true,
             pickRandomElement = true,
-            imageUrl = ImageUrl("https://image.url/image.jpg"),
+            imageUrl = "https://image.url/image.jpg",
             imageFocalPoint = FocalPoint(25, 75),
             link = Link(
                 targetType = "target-type",
