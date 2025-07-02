@@ -1,7 +1,7 @@
 package ch.srg.dataProvider.integrationlayer.data.remote
 
-import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
+import kotlin.time.Instant
 
 /**
  * Copyright (c) SRG SSR. All rights reserved.

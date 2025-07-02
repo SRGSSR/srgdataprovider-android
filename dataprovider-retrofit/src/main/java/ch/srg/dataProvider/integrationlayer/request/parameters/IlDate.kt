@@ -1,12 +1,12 @@
 package ch.srg.dataProvider.integrationlayer.request.parameters
 
-import kotlinx.datetime.Clock
-import kotlinx.datetime.Instant
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
+import kotlin.time.Clock
+import kotlin.time.Instant
 
 /**
  * Write date as YYYY-MM-dd

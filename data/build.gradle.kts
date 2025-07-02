@@ -32,7 +32,6 @@ android {
     }
 
     compileOptions {
-        isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
@@ -55,13 +54,12 @@ android {
 kotlin {
     compilerOptions {
         jvmTarget = JvmTarget.JVM_11
+        optIn.add("kotlin.time.ExperimentalTime") // TODO Remove once kotlin.time.Clock and kotlin.time.Instant are not longer experimental
     }
 }
 
 dependencies {
-    api(libs.kotlinx.datetime)
     api(libs.kotlinx.serialization.json)
-    coreLibraryDesugaring(libs.android.desugar.jdk.libs)
 
     testRuntimeOnly(libs.robolectric)
     testImplementation(libs.kotlin.test)

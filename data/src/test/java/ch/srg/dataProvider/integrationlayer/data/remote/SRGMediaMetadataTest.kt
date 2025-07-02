@@ -6,11 +6,7 @@ import ch.srg.dataProvider.integrationlayer.data.remote.BlockReason.STARTDATE
 import ch.srg.dataProvider.integrationlayer.data.remote.TimeAvailability.AVAILABLE
 import ch.srg.dataProvider.integrationlayer.data.remote.TimeAvailability.NOT_AVAILABLE_ANYMORE
 import ch.srg.dataProvider.integrationlayer.data.remote.TimeAvailability.NOT_YET_AVAILABLE
-import kotlinx.datetime.Clock
-import kotlinx.datetime.Instant
-import kotlinx.datetime.LocalDate
-import kotlinx.datetime.TimeZone
-import kotlinx.datetime.atStartOfDayIn
+import java.util.Calendar
 import java.util.Calendar.AUGUST
 import java.util.Calendar.JULY
 import java.util.Calendar.SEPTEMBER
@@ -19,7 +15,9 @@ import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
+import kotlin.time.Clock
 import kotlin.time.Duration.Companion.minutes
+import kotlin.time.Instant
 
 class SRGMediaMetadataTest {
     @Test
@@ -300,11 +298,11 @@ class SRGMediaMetadataTest {
         }
 
         private fun createInstant(year: Int, month: Int, day: Int): Instant {
-            val timestamp = LocalDate(year, month, day)
-                .atStartOfDayIn(TimeZone.currentSystemDefault())
-                .toEpochMilliseconds()
+            val date = Calendar.getInstance().apply {
+                set(year, month, day)
+            }.time
 
-            return Instant.fromEpochMilliseconds(timestamp)
+            return Instant.fromEpochMilliseconds(date.time)
         }
     }
 }

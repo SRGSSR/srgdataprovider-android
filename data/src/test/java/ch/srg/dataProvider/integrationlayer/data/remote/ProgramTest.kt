@@ -1,15 +1,13 @@
 package ch.srg.dataProvider.integrationlayer.data.remote
 
-import kotlinx.datetime.Instant
-import kotlinx.datetime.LocalDate
-import kotlinx.datetime.TimeZone
-import kotlinx.datetime.atStartOfDayIn
+import java.util.Calendar
 import java.util.Calendar.AUGUST
 import java.util.Calendar.OCTOBER
 import java.util.Calendar.SEPTEMBER
 import kotlin.test.Test
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
+import kotlin.time.Instant
 
 class ProgramTest {
     @Test
@@ -31,11 +29,11 @@ class ProgramTest {
 
     private companion object {
         private fun createInstant(year: Int, month: Int, day: Int): Instant {
-            val timestamp = LocalDate(year, month, day)
-                .atStartOfDayIn(TimeZone.currentSystemDefault())
-                .toEpochMilliseconds()
+            val date = Calendar.getInstance().apply {
+                set(year, month, day)
+            }.time
 
-            return Instant.fromEpochMilliseconds(timestamp)
+            return Instant.fromEpochMilliseconds(date.time)
         }
     }
 }

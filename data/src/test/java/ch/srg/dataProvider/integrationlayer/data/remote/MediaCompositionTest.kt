@@ -1,9 +1,9 @@
 package ch.srg.dataProvider.integrationlayer.data.remote
 
 import ch.srg.dataProvider.integrationlayer.data.ImageUrl
-import kotlinx.datetime.Clock
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.time.Clock
 import kotlin.time.Duration.Companion.minutes
 
 class MediaCompositionTest {

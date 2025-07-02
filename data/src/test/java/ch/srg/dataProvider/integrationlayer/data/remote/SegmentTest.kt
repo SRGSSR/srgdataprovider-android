@@ -1,10 +1,10 @@
 package ch.srg.dataProvider.integrationlayer.data.remote
 
 import ch.srg.dataProvider.integrationlayer.data.ImageUrl
-import kotlinx.datetime.Clock
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
+import kotlin.time.Clock
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.minutes
 
