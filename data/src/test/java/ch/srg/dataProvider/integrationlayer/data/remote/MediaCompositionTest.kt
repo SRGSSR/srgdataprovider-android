@@ -1,9 +1,9 @@
 package ch.srg.dataProvider.integrationlayer.data.remote
 
 import ch.srg.dataProvider.integrationlayer.data.ImageUrl
-import java.util.Date
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.time.Clock
 import kotlin.time.Duration.Companion.minutes
 
 class MediaCompositionTest {
@@ -53,7 +53,7 @@ class MediaCompositionTest {
                 title = "chapter-title",
                 imageUrl = ImageUrl("https://image.url"),
                 type = Type.EPISODE,
-                date = Date(),
+                date = Clock.System.now(),
                 duration = 90.minutes.inWholeMilliseconds,
                 segmentList = segmentList,
             )
