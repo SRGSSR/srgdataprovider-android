@@ -1,13 +1,9 @@
-@file:UseSerializers(DateSerializer::class)
-
 package ch.srg.dataProvider.integrationlayer.data.remote
 
 import ch.srg.dataProvider.integrationlayer.data.ImageUrl
-import ch.srg.dataProvider.integrationlayer.data.serializer.DateSerializer
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.UseSerializers
-import java.util.Date
+import kotlin.time.Instant
 
 /**
  * Copyright (c) SRG SSR. All rights reserved.
@@ -17,8 +13,8 @@ import java.util.Date
 @Serializable
 data class Program(
     override val title: String,
-    val startTime: Date,
-    val endTime: Date,
+    val startTime: Instant,
+    val endTime: Instant,
     override val lead: String? = null,
     override val description: String? = null,
     val imageUrl: ImageUrl? = null,
@@ -56,8 +52,8 @@ data class Program(
     val channelUrn: String? = null
 ) : SRGMetadata {
 
-    fun isDateInProgramTime(date: Date): Boolean {
-        return date.after(startTime) && date.before(endTime)
+    fun isDateInProgramTime(instant: Instant): Boolean {
+        return instant > startTime && instant < endTime
     }
 }
 
