@@ -2,7 +2,6 @@
 
 package ch.srg.dataProvider.integrationlayer.data.remote
 
-import ch.srg.dataProvider.integrationlayer.data.ImageUrl
 import ch.srg.dataProvider.integrationlayer.data.serializer.DateSerializer
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.UseSerializers
@@ -17,7 +16,7 @@ import java.util.Date
 data class Episode(
     val id: String,
     override val title: String,
-    override val imageUrl: ImageUrl,
+    override val imageUrl: String,
     override val lead: String? = null,
     override val description: String? = null,
     override val imageTitle: String? = null,

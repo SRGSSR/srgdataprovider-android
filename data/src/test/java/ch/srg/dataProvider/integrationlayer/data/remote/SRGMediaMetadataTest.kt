@@ -1,6 +1,5 @@
 package ch.srg.dataProvider.integrationlayer.data.remote
 
-import ch.srg.dataProvider.integrationlayer.data.ImageUrl
 import ch.srg.dataProvider.integrationlayer.data.remote.BlockReason.ENDDATE
 import ch.srg.dataProvider.integrationlayer.data.remote.BlockReason.STARTDATE
 import ch.srg.dataProvider.integrationlayer.data.remote.TimeAvailability.AVAILABLE
@@ -267,7 +266,7 @@ class SRGMediaMetadataTest {
         override val id: String,
         override val vendor: Vendor,
         // SRGImageMetadata
-        override val imageUrl: ImageUrl,
+        override val imageUrl: String,
         override val imageTitle: String? = null,
         override val imageCopyright: String? = null,
         override val imageFocalPoint: FocalPoint? = null,
@@ -291,7 +290,7 @@ class SRGMediaMetadataTest {
                 urn = "urn:rts:video:123456",
                 id = "media-id",
                 vendor = Vendor.RTS,
-                imageUrl = ImageUrl("https://image.url/"),
+                imageUrl = "https://image.url/",
                 title = "media-title",
             )
         }
