@@ -11,6 +11,13 @@ jobs:
   android-lint:
     name: Android Lint
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - module: 'data'
+          - module: 'dataprovider-paging'
+          - module: 'dataprovider-retrofit'
+          - module: 'dataproviderdemo'
     steps:
       - uses: actions/checkout@v4
       - name: Set up JDK 17
@@ -20,12 +27,12 @@ jobs:
           distribution: 'temurin'
       - uses: gradle/actions/setup-gradle@v4
       - name: Run Android Lint
-        run: ./gradlew lint
+        run: ./gradlew ${{ matrix.module }}:lintDebug
       - uses: github/codeql-action/upload-sarif@v3
         if: ${{ !cancelled() }}
         with:
-          sarif_file: build/reports/android-lint/
-          category: android-lint
+          sarif_file: build/reports/android-lint/${{ matrix.module }}.sarif
+          category: android-lint-${{ matrix.module }}
 
   detekt:
     name: Detekt
