@@ -2,7 +2,6 @@ package ch.srg.dataProvider.integrationlayer
 
 import android.net.Uri
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import ch.srg.dataProvider.integrationlayer.data.ImageUrl
 import ch.srg.dataProvider.integrationlayer.request.IlHost
 import ch.srg.dataProvider.integrationlayer.request.image.DefaultImageUrlDecorator
 import ch.srg.dataProvider.integrationlayer.request.image.ImageSize
@@ -19,56 +18,56 @@ class TestDefaultImageUrlDecorator {
 
     @Test
     fun testPixelValid() {
-        val input = ImageUrl("https://ws.srf.ch/asset/image/audio/123")
-        val encodedInput = Uri.encode("https://ws.srf.ch/asset/image/audio/123")
+        val input = "https://ws.srf.ch/asset/image/audio/123"
+        val encodedInput = Uri.encode(input)
         val expected = "https://il.srgssr.ch/images/?imageUrl=${encodedInput}&format=webp&width=480"
         assertEquals(expected, input.decorated(decorator, 480))
     }
 
     @Test
     fun testPixelWidthInvalid() {
-        val input = ImageUrl("https://ws.srf.ch/asset/image/audio/123")
-        val encodedInput = Uri.encode("https://ws.srf.ch/asset/image/audio/123")
+        val input = "https://ws.srf.ch/asset/image/audio/123"
+        val encodedInput = Uri.encode(input)
         val expected = "https://il.srgssr.ch/images/?imageUrl=${encodedInput}&format=webp&width=480"
         assertEquals(expected, input.decorated(decorator, 460))
     }
 
     @Test
     fun testImageSize() {
-        val input = ImageUrl("https://ws.srf.ch/asset/image/audio/123")
-        val encodedInput = Uri.encode("https://ws.srf.ch/asset/image/audio/123")
+        val input = "https://ws.srf.ch/asset/image/audio/123"
+        val encodedInput = Uri.encode(input)
         val expected = "https://il.srgssr.ch/images/?imageUrl=${encodedInput}&format=webp&width=480"
         assertEquals(expected, input.decorated(decorator, ImageSize.MEDIUM))
     }
 
     @Test
     fun testImageWidth() {
-        val input = ImageUrl("https://ws.srf.ch/asset/image/audio/123")
-        val encodedInput = Uri.encode("https://ws.srf.ch/asset/image/audio/123")
+        val input = "https://ws.srf.ch/asset/image/audio/123"
+        val encodedInput = Uri.encode(input)
         val expected = "https://il.srgssr.ch/images/?imageUrl=${encodedInput}&format=webp&width=1920"
         assertEquals(expected, input.decorated(decorator, ImageWidth.W1920))
     }
 
     @Test
     fun testOtherIlHost() {
-        val input = ImageUrl("https://ws.srf.ch/asset/image/audio/123")
-        val encodedInput = Uri.encode("https://ws.srf.ch/asset/image/audio/123")
+        val input = "https://ws.srf.ch/asset/image/audio/123"
+        val encodedInput = Uri.encode(input)
         val expected = "https://il-stage.srgssr.ch/images/?imageUrl=${encodedInput}&format=webp&width=1920"
         assertEquals(expected, input.decorated(decorator = DefaultImageUrlDecorator(IlHost.STAGE), width = ImageWidth.W1920))
     }
 
     @Test
     fun testExtensionImageWidthWithIlHost() {
-        val input = ImageUrl("https://ws.srf.ch/asset/image/audio/123")
-        val encodedInput = Uri.encode("https://ws.srf.ch/asset/image/audio/123")
+        val input = "https://ws.srf.ch/asset/image/audio/123"
+        val encodedInput = Uri.encode(input)
         val expected = "https://il-stage.srgssr.ch/images/?imageUrl=${encodedInput}&format=webp&width=1920"
         assertEquals(expected, input.decorated(ilHost = IlHost.STAGE, width = ImageWidth.W1920))
     }
 
     @Test
     fun testExtensionImageSizeWithIlHost() {
-        val input = ImageUrl("https://ws.srf.ch/asset/image/audio/123")
-        val encodedInput = Uri.encode("https://ws.srf.ch/asset/image/audio/123")
+        val input = "https://ws.srf.ch/asset/image/audio/123"
+        val encodedInput = Uri.encode(input)
         val expected = "https://il-test.srgssr.ch/images/?imageUrl=${encodedInput}&format=webp&width=480"
         assertEquals(expected, input.decorated(ilHost = IlHost.TEST, imageSize = ImageSize.MEDIUM))
     }
@@ -87,17 +86,15 @@ class TestDefaultImageUrlDecorator {
             "https://swi-services-ch/asset/image/audio/123",
         )
         for (url in tests) {
-            val input = ImageUrl(url)
             val encodedInput = Uri.encode(url)
             val expected = "https://il-test.srgssr.ch/images/?imageUrl=${encodedInput}&format=webp&width=480"
-            assertEquals(expected, input.decorated(ilHost = IlHost.TEST, imageSize = ImageSize.MEDIUM))
+            assertEquals(expected, url.decorated(ilHost = IlHost.TEST, imageSize = ImageSize.MEDIUM))
         }
     }
 
     @Test
     fun testInvalidHostNameUrlReturnInputUrl() {
-        val input = ImageUrl("https://akamai.playsuisse.ch/asset/image/audio/123")
-        val expected = input.rawUrl
-        assertEquals(expected, input.decorated(ilHost = IlHost.TEST, imageSize = ImageSize.MEDIUM))
+        val input = "https://akamai.playsuisse.ch/asset/image/audio/123"
+        assertEquals(input, input.decorated(ilHost = IlHost.TEST, imageSize = ImageSize.MEDIUM))
     }
 }

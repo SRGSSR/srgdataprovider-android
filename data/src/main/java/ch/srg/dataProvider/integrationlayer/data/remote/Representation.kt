@@ -1,6 +1,5 @@
 package ch.srg.dataProvider.integrationlayer.data.remote
 
-import ch.srg.dataProvider.integrationlayer.data.ImageUrl
 import kotlinx.serialization.Serializable
 
 /**
@@ -31,7 +30,7 @@ data class Representation(
     val pickRandomElement: Boolean
         get() = properties?.pickRandomElement == true
 
-    val imageUrl: ImageUrl?
+    val imageUrl: String?
         get() = properties?.imageUrl
 
     val imageFocalPoint: FocalPoint?
@@ -47,7 +46,7 @@ data class Representation(
         val label: String? = null,
         val hasDetailPage: Boolean? = null,
         val pickRandomElement: Boolean? = null,
-        val imageUrl: ImageUrl? = null,
+        val imageUrl: String? = null,
         val imageFocalPoint: FocalPoint? = null,
         val link: Link? = null,
     )
