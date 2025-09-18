@@ -1,13 +1,9 @@
-@file:UseSerializers(DateSerializer::class)
-
 package ch.srg.dataProvider.integrationlayer.data.remote
 
 import ch.srg.dataProvider.integrationlayer.data.ImageUrl
-import ch.srg.dataProvider.integrationlayer.data.serializer.DateSerializer
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.UseSerializers
-import java.util.Date
+import kotlin.time.Instant
 
 /**
  * Copyright (c) SRG SSR. All rights reserved.
@@ -22,7 +18,7 @@ data class Media(
     override val urn: String,
     override val title: String,
     override val type: Type,
-    override val date: Date,
+    override val date: Instant,
     override val duration: Long,
     override val imageUrl: ImageUrl,
     override val imageFocalPoint: FocalPoint? = null,
@@ -34,8 +30,8 @@ data class Media(
     override val youthProtectionColor: YouthProtectionColor? = null,
     override val podcastSdUrl: String? = null,
     override val podcastHdUrl: String? = null,
-    override val validFrom: Date? = null,
-    override val validTo: Date? = null,
+    override val validFrom: Instant? = null,
+    override val validTo: Instant? = null,
     override val assignedBy: Referrer? = null,
     override val playableAbroad: Boolean,
     override val relatedContentList: List<RelatedContent>? = null,

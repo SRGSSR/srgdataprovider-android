@@ -1,11 +1,7 @@
-@file:UseSerializers(DateSerializer::class)
-
 package ch.srg.dataProvider.integrationlayer.data.remote
 
-import ch.srg.dataProvider.integrationlayer.data.serializer.DateSerializer
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.UseSerializers
-import java.util.Date
+import kotlin.time.Instant
 
 /**
  * Copyright (c) SRG SSR. All rights reserved.
@@ -17,6 +13,6 @@ import java.util.Date
 data class BroadCastInformation(
     val hintText: String? = null,
     val url: String? = null,
-    val startDate: Date? = null,
-    val endDate: Date? = null
+    val startDate: Instant? = null,
+    val endDate: Instant? = null
 )

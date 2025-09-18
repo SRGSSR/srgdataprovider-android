@@ -1,13 +1,9 @@
-@file:UseSerializers(DateSerializer::class)
-
 package ch.srg.dataProvider.integrationlayer.data.remote
 
 import ch.srg.dataProvider.integrationlayer.data.ImageUrl
-import ch.srg.dataProvider.integrationlayer.data.serializer.DateSerializer
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.UseSerializers
-import java.util.Date
+import kotlin.time.Instant
 
 /**
  * Copyright (c) SRG SSR. All rights reserved.
@@ -29,12 +25,12 @@ data class Chapter(
     override val blockReason: BlockReason? = null,
     override val youthProtectionColor: YouthProtectionColor? = null,
     override val type: Type,
-    override val date: Date,
+    override val date: Instant,
     override val duration: Long,
     override val podcastSdUrl: String? = null,
     override val podcastHdUrl: String? = null,
-    override val validFrom: Date? = null,
-    override val validTo: Date? = null,
+    override val validFrom: Instant? = null,
+    override val validTo: Instant? = null,
     override val assignedBy: Referrer? = null,
     override val playableAbroad: Boolean = false,
     override val relatedContentList: List<RelatedContent>? = null,
@@ -53,14 +49,14 @@ data class Chapter(
     val segmentList: List<Segment>? = null,
     val resourceList: List<Resource>? = null,
     val spriteSheet: SpriteSheet? = null,
-    val preTrailerStart: Date? = null,
-    val postTrailerStart: Date? = null,
+    val preTrailerStart: Instant? = null,
+    val postTrailerStart: Instant? = null,
     /**
      *  The reference date corresponding to the beginning of the stream, if any. You can use this date to map a time
      *  position relative to the stream (e.g., a segment mark in or mark out) to a date.
      */
     @SerialName("dvrReferenceDate")
-    val resourceReferenceDate: Date? = null,
+    val resourceReferenceDate: Instant? = null,
     val timeIntervalList: List<TimeInterval>? = null,
     override val imageFocalPoint: FocalPoint? = null
 
