@@ -2,7 +2,6 @@
 
 package ch.srg.dataProvider.integrationlayer.data.remote
 
-import ch.srg.dataProvider.integrationlayer.data.ImageUrl
 import ch.srg.dataProvider.integrationlayer.data.serializer.DateSerializer
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -24,7 +23,7 @@ data class Media(
     override val type: Type,
     override val date: Date,
     override val duration: Long,
-    override val imageUrl: ImageUrl,
+    override val imageUrl: String,
     override val imageFocalPoint: FocalPoint? = null,
     override val lead: String? = null,
     override val description: String? = null,
