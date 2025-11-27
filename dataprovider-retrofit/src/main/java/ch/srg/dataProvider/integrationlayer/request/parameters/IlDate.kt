@@ -5,6 +5,8 @@ import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
+import kotlin.time.Clock
+import kotlin.time.Instant
 
 /**
  * Write date as YYYY-MM-dd
@@ -15,6 +17,8 @@ import java.util.TimeZone
  */
 class IlDate(date: Date = Date()) : IlParam(formatDate(date)) {
     constructor(calendar: Calendar) : this(calendar.time)
+
+    constructor(instant: Instant = Clock.System.now()) : this(Date(instant.toEpochMilliseconds()))
 
     /**
      * months = [0-11]

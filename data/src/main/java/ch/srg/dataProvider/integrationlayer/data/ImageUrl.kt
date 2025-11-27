@@ -7,23 +7,20 @@
 package ch.srg.dataProvider.integrationlayer.data
 
 import ch.srg.dataProvider.integrationlayer.data.serializer.ImageUrlSerializer
-import java.io.Serializable
+import kotlinx.serialization.Serializable
 
 /**
  * Image url
  *
  * @property rawUrl Internal image url, to retrieve the url use [ImageUrl.decorated].
  */
-@Suppress("SerialVersionUIDInSerializableClass")
-@kotlinx.serialization.Serializable(with = ImageUrlSerializer::class)
+@Serializable(with = ImageUrlSerializer::class)
 data class ImageUrl(
     /**
-     * Only for internal use! Please use a Decorator!
-     *
      * @return the undecorated url
      */
     val rawUrl: String
-) : Serializable {
+) {
 
     /**
      * Decorated

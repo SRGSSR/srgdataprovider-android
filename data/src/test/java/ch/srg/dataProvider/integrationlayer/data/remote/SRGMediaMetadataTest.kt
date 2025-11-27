@@ -10,13 +10,14 @@ import java.util.Calendar
 import java.util.Calendar.AUGUST
 import java.util.Calendar.JULY
 import java.util.Calendar.SEPTEMBER
-import java.util.Date
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
+import kotlin.time.Clock
 import kotlin.time.Duration.Companion.minutes
+import kotlin.time.Instant
 
 class SRGMediaMetadataTest {
     @Test
@@ -47,11 +48,11 @@ class SRGMediaMetadataTest {
     @Test
     fun `is blocked`() {
         val metadata = createMediaMetadata()
-        val atBeforeFrom = createDate(2024, JULY, 15)
-        val atBetweenFromTo = createDate(2024, AUGUST, 15)
-        val atAfterTo = createDate(2024, SEPTEMBER, 15)
-        val validFrom = createDate(2024, AUGUST, 1)
-        val validTo = createDate(2024, AUGUST, 31)
+        val atBeforeFrom = createInstant(2024, JULY, 15)
+        val atBetweenFromTo = createInstant(2024, AUGUST, 15)
+        val atAfterTo = createInstant(2024, SEPTEMBER, 15)
+        val validFrom = createInstant(2024, AUGUST, 1)
+        val validTo = createInstant(2024, AUGUST, 31)
 
         assertFalse(metadata.copy(blockReason = null, validFrom = null, validTo = null).isBlocked())
         assertFalse(metadata.copy(blockReason = null, validFrom = null, validTo = null).isBlocked(atBeforeFrom))
@@ -85,11 +86,11 @@ class SRGMediaMetadataTest {
     @Test
     fun `get time availability`() {
         val metadata = createMediaMetadata()
-        val atBeforeFrom = createDate(2024, JULY, 15)
-        val atBetweenFromTo = createDate(2024, AUGUST, 15)
-        val atAfterTo = createDate(2024, SEPTEMBER, 15)
-        val validFrom = createDate(2024, AUGUST, 1)
-        val validTo = createDate(2024, AUGUST, 31)
+        val atBeforeFrom = createInstant(2024, JULY, 15)
+        val atBetweenFromTo = createInstant(2024, AUGUST, 15)
+        val atAfterTo = createInstant(2024, SEPTEMBER, 15)
+        val validFrom = createInstant(2024, AUGUST, 1)
+        val validTo = createInstant(2024, AUGUST, 31)
 
         assertEquals(AVAILABLE, metadata.copy(blockReason = null, validFrom = null, validTo = null).getTimeAvailability())
         assertEquals(AVAILABLE, metadata.copy(blockReason = null, validFrom = null, validTo = null).getTimeAvailability(atBeforeFrom))
@@ -200,37 +201,37 @@ class SRGMediaMetadataTest {
     @Test
     fun `is blocked valid from time`() {
         val metadata = createMediaMetadata()
-        val atBeforeFrom = createDate(2024, AUGUST, 15)
-        val atAfterFrom = createDate(2024, SEPTEMBER, 15)
-        val validFrom = createDate(2024, SEPTEMBER, 1)
+        val atBeforeFrom = createInstant(2024, AUGUST, 15)
+        val atAfterFrom = createInstant(2024, SEPTEMBER, 15)
+        val validFrom = createInstant(2024, SEPTEMBER, 1)
 
         assertFalse(metadata.copy(validFrom = null).isBlockedValidFromTime())
-        assertFalse(metadata.copy(validFrom = null).isBlockedValidFromTime(atBeforeFrom.time))
-        assertFalse(metadata.copy(validFrom = null).isBlockedValidFromTime(validFrom.time))
-        assertFalse(metadata.copy(validFrom = null).isBlockedValidFromTime(atAfterFrom.time))
+        assertFalse(metadata.copy(validFrom = null).isBlockedValidFromTime(atBeforeFrom.toEpochMilliseconds()))
+        assertFalse(metadata.copy(validFrom = null).isBlockedValidFromTime(validFrom.toEpochMilliseconds()))
+        assertFalse(metadata.copy(validFrom = null).isBlockedValidFromTime(atAfterFrom.toEpochMilliseconds()))
 
         assertFalse(metadata.copy(validFrom = validFrom).isBlockedValidFromTime())
-        assertTrue(metadata.copy(validFrom = validFrom).isBlockedValidFromTime(atBeforeFrom.time))
-        assertFalse(metadata.copy(validFrom = validFrom).isBlockedValidFromTime(validFrom.time))
-        assertFalse(metadata.copy(validFrom = validFrom).isBlockedValidFromTime(atAfterFrom.time))
+        assertTrue(metadata.copy(validFrom = validFrom).isBlockedValidFromTime(atBeforeFrom.toEpochMilliseconds()))
+        assertFalse(metadata.copy(validFrom = validFrom).isBlockedValidFromTime(validFrom.toEpochMilliseconds()))
+        assertFalse(metadata.copy(validFrom = validFrom).isBlockedValidFromTime(atAfterFrom.toEpochMilliseconds()))
     }
 
     @Test
     fun `is block valid to time`() {
         val metadata = createMediaMetadata()
-        val atBeforeTo = createDate(2024, AUGUST, 15)
-        val atAfterTo = createDate(2024, SEPTEMBER, 15)
-        val validTo = createDate(2024, SEPTEMBER, 1)
+        val atBeforeTo = createInstant(2024, AUGUST, 15)
+        val atAfterTo = createInstant(2024, SEPTEMBER, 15)
+        val validTo = createInstant(2024, SEPTEMBER, 1)
 
         assertFalse(metadata.copy(validTo = null).isBlockValidToTime())
-        assertFalse(metadata.copy(validTo = null).isBlockValidToTime(atBeforeTo.time))
-        assertFalse(metadata.copy(validTo = null).isBlockValidToTime(validTo.time))
-        assertFalse(metadata.copy(validTo = null).isBlockValidToTime(atAfterTo.time))
+        assertFalse(metadata.copy(validTo = null).isBlockValidToTime(atBeforeTo.toEpochMilliseconds()))
+        assertFalse(metadata.copy(validTo = null).isBlockValidToTime(validTo.toEpochMilliseconds()))
+        assertFalse(metadata.copy(validTo = null).isBlockValidToTime(atAfterTo.toEpochMilliseconds()))
 
         assertTrue(metadata.copy(validTo = validTo).isBlockValidToTime())
-        assertFalse(metadata.copy(validTo = validTo).isBlockValidToTime(atBeforeTo.time))
-        assertFalse(metadata.copy(validTo = validTo).isBlockValidToTime(validTo.time))
-        assertTrue(metadata.copy(validTo = validTo).isBlockValidToTime(atAfterTo.time))
+        assertFalse(metadata.copy(validTo = validTo).isBlockValidToTime(atBeforeTo.toEpochMilliseconds()))
+        assertFalse(metadata.copy(validTo = validTo).isBlockValidToTime(validTo.toEpochMilliseconds()))
+        assertTrue(metadata.copy(validTo = validTo).isBlockValidToTime(atAfterTo.toEpochMilliseconds()))
     }
 
     @Test
@@ -248,11 +249,11 @@ class SRGMediaMetadataTest {
     private data class SimpleSRGMediaMetadata(
         override val mediaType: MediaType,
         override val type: Type,
-        override val date: Date,
+        override val date: Instant,
         override val duration: Long,
         override val blockReason: BlockReason? = null,
-        override val validFrom: Date? = null,
-        override val validTo: Date? = null,
+        override val validFrom: Instant? = null,
+        override val validTo: Instant? = null,
         override val assignedBy: Referrer? = null,
         override val playableAbroad: Boolean,
         override val youthProtectionColor: YouthProtectionColor? = null,
@@ -285,7 +286,7 @@ class SRGMediaMetadataTest {
             return SimpleSRGMediaMetadata(
                 mediaType = MediaType.VIDEO,
                 type = Type.EPISODE,
-                date = Date(),
+                date = Clock.System.now(),
                 duration = 90.minutes.inWholeMilliseconds,
                 playableAbroad = false,
                 urn = "urn:rts:video:123456",
@@ -296,10 +297,12 @@ class SRGMediaMetadataTest {
             )
         }
 
-        private fun createDate(year: Int, month: Int, day: Int): Date {
-            return Calendar.getInstance().apply {
+        private fun createInstant(year: Int, month: Int, day: Int): Instant {
+            val date = Calendar.getInstance().apply {
                 set(year, month, day)
             }.time
+
+            return Instant.fromEpochMilliseconds(date.time)
         }
     }
 }

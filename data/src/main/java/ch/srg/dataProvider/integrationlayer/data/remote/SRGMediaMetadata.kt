@@ -1,6 +1,7 @@
 package ch.srg.dataProvider.integrationlayer.data.remote
 
-import java.util.Date
+import kotlin.time.Clock
+import kotlin.time.Instant
 
 /**
  * Copyright (c) SRG SSR. All rights reserved.
@@ -10,11 +11,11 @@ import java.util.Date
 interface SRGMediaMetadata : SRGIdentifierMetadata, SRGImageMetadata, SRGMetadata {
     val mediaType: MediaType
     val type: Type
-    val date: Date
+    val date: Instant
     val duration: Long
     val blockReason: BlockReason?
-    val validFrom: Date?
-    val validTo: Date?
+    val validFrom: Instant?
+    val validTo: Instant?
     val assignedBy: Referrer?
     val playableAbroad: Boolean
     val youthProtectionColor: YouthProtectionColor?
@@ -34,26 +35,28 @@ interface SRGMediaMetadata : SRGIdentifierMetadata, SRGImageMetadata, SRGMetadat
     /**
      * isBlocked if it has a blockReason or blocked by TimeAvailability at a given time
      */
-    fun isBlocked(at: Date = Date()): Boolean {
+    fun isBlocked(at: Instant = Clock.System.now()): Boolean {
         return blockReason != null || getTimeAvailability(at) != TimeAvailability.AVAILABLE
     }
 
-    fun getTimeAvailability(at: Date = Date()): TimeAvailability {
+    fun getTimeAvailability(at: Instant = Clock.System.now()): TimeAvailability {
+        val validTo = validTo
+        val validFrom = validFrom
         return when {
             blockReason == BlockReason.STARTDATE -> TimeAvailability.NOT_YET_AVAILABLE
             blockReason == BlockReason.ENDDATE -> TimeAvailability.NOT_AVAILABLE_ANYMORE
-            validTo != null && at.after(validTo) -> TimeAvailability.NOT_AVAILABLE_ANYMORE
-            validFrom != null && at.before(validFrom) -> TimeAvailability.NOT_YET_AVAILABLE
+            validTo != null && at > validTo -> TimeAvailability.NOT_AVAILABLE_ANYMORE
+            validFrom != null && at < validFrom -> TimeAvailability.NOT_YET_AVAILABLE
             else -> TimeAvailability.AVAILABLE
         }
     }
 
     fun isBlockedValidFromTime(currentTime: Long = System.currentTimeMillis()): Boolean {
-        return validFrom != null && validFrom!!.time > currentTime
+        return validFrom != null && validFrom!!.toEpochMilliseconds() > currentTime
     }
 
     fun isBlockValidToTime(currentTime: Long = System.currentTimeMillis()): Boolean {
-        return validTo != null && currentTime > validTo!!.time
+        return validTo != null && currentTime > validTo!!.toEpochMilliseconds()
     }
 
     fun isTimeBlocked(currentTime: Long): Boolean {
